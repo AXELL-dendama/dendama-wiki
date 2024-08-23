@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BLE library</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <div class="wiki wiki-page">
+        <a name="DendamaBLE"></a>
+        <h1>
+          DendamaBLE<a href="#DendamaBLE" class="wiki-anchor">¶</a><br /><br />
+        </h1>
+        <a name="概要"></a>
+        <h2>概要<a href="#%e6%a6%82%e8%a6%81" class="wiki-anchor">¶</a></h2>
+        <p>
+          電玉とBLE接続するための Cocoa (Touch) Framework、および Android
+          Library<br /><br />
+        </p>
+        <a name="リポジトリ"></a>
+        <h2>
+          リポジトリ<a
+            href="#%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <ul>
+          <li>DendamaBLE-Swift （Cocoa (Touch) Framework）</li>
+          <li>DendamaBLE-Anroid （Android Library）</li>
+        </ul>
+        <a name="準備iOS-macOS-編"></a>
+        <h2>
+          準備（iOS, macOS 編）<a
+            href="#%e6%ba%96%e5%82%99iOS-macOS-%e7%b7%a8"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <p>
+          DendalaBLE をリンクするアプリの Xcode
+          プロジェクトのルートディレクトリを $(SRCROOT) とする。
+        </p>
+        <ol>
+          <li><code>cd</code> $(SRCROOT) を行う。</li>
+          <li>$(SRCROOT)/Cartfile に以下内容を入れる。<br /></li>
+          <li>
+            <code>carthage update --platform iOS</code> を行う。（もしくは
+            <code>--platform Mac</code> 、以降 iOS で説明する。）
+          </li>
+          <li>
+            $(SRCROOT)/Carthage/Build/iOS/DendalaBLE.framework
+            ができているのを確認する。
+          </li>
+          <li>DendamaBLE をリンクするアプリの Xcode プロジェクトを開く。</li>
+          <li>
+            サイドバーの Project Navigator
+            よりプロジェクトを選び、さらにターゲットを選ぶ。
+          </li>
+          <li>
+            General &gt; Link Frameworks and Libraries で
+            +（追加）をクリックし、Add Other... より
+            $(SRCROOT)/Carthage/Build/iOS/DendamaBLE.framework を追加する。
+          </li>
+          <li>
+            Build Phases で Run Script を追加し、Script として
+            <code>/usr/local/bin/carthage copy-frameworks</code>
+            と記述する。さらに、+（追加）をクリックし
+            <code>$(SRCROOT)/Carthage/Build/iOS/DendamaBLE.framework</code>
+            を追加する。（
+            <code>$(SRCROOT)</code>
+            は中身を展開する必要はなく、そのまま記述すればよい。）<br /><br />
+          </li>
+        </ol>
+        <a name="準備Android-編"></a>
+        <h2>
+          準備（Android 編）<a
+            href="#%e6%ba%96%e5%82%99Android-%e7%b7%a8"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <ol>
+          <li>
+            DendamaBLE-Android をダウンロード、もしくはチェックアウトする。
+            <ul>
+              <li>
+                DendamaBLE-Android プロジェクトのルートディレクトリを $(LIBROOT)
+                とする。
+              </li>
+            </ul>
+          </li>
+          <li>
+            DendamaBLE をリンクするアプリの Android Studio プロジェクトを開く。
+          </li>
+          <li>
+            settings.gradle を以下のように修正する。<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >
+include &#39;:app&#39;
+</pre
+            >
+            ↓
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >
+include &#39;:app&#39;, &#39;:dendamable&#39;
+project(&#39;:dendamable&#39;).projectDir = new File(&#39;$(LIBROOT)/dendamable&#39;)
+</pre
+            >
+            $(LIBROOT)
+            の中身は展開しておく（例：&#39;../DendamaBLE-Android/dendamable&#39;）
+          </li>
+          <li>メニューから File &gt; Project Structure... を開く。</li>
+          <li>Modules の app を選択し、Dependencies タブを開く。</li>
+          <li>
+            + をクリックして、Module dependency から :dendamable を追加する。<br /><br />
+          </li>
+        </ol>
+        <a name="利用例"></a>
+        <h2>
+          利用例<a href="#%e5%88%a9%e7%94%a8%e4%be%8b" class="wiki-anchor">¶</a>
+        </h2>
+        <ul>
+          <li>DendamaBLE-Swift</li>
+          <li>DendamaBLE-Android</li>
+        </ul>
+        <a name="リファレンス"></a>
+        <h2>
+          リファレンス<a
+            href="#%e3%83%aa%e3%83%95%e3%82%a1%e3%83%ac%e3%83%b3%e3%82%b9"
+            class="wiki-anchor"
+            >¶</a
+          ><br /><br />
+        </h2>
+        <a name="DendamaUUID"></a>
+        <h3>DendamaUUID<a href="#DendamaUUID" class="wiki-anchor">¶</a></h3>
+        <p>各サービス、キャラクタリスティックのUUID</p>
+        <p>Swift<br /></p>
+        <pre
+          style="
+            margin: 1em 1em 1em 1.6em;
+            padding: 8px;
+            background-color: #3d3d3d;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: auto;
+          "
+        >
+public struct DendamaUUID {
+
+    // Services
+    public static let deviceInformationService: CBUUID
+    public static let legacyDFUService: CBUUID
+    public static let dendamaService: CBUUID
+
+    // Characteristics (Device Information Service)
+    public static let hardwareRevisionString: CBUUID
+    public static let firmwareRevisionString: CBUUID
+
+    // Characteristics (Dendama Service)
+    public static let sensor: CBUUID
+    public static let battery: CBUUID
+    public static let led: CBUUID
+    public static let motor: CBUUID
+}
+</pre
+        >
+        <p></p>
+        <p>Java<br /></p>
+        <pre
+          style="
+            margin: 1em 1em 1em 1.6em;
+            padding: 8px;
+            background-color: #3d3d3d;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: auto;
+          "
+        >
+public class DendamaUUID {
+    // Services
+    public static final UUID deviceInformationService;
+    public static final UUID legayDFUService;
+    public static final UUID dendamaService;
+
+    // Characteristics (Device Information Service)
+    public static final UUID hardwareRevisionString;
+    public static final UUID firmwareRevisionString;
+
+    // Characteristics (Dendama Service)
+    public static final UUID sensor;
+    public static final UUID battery;
+    public static final UUID led;
+    public static final UUID motor;
+}
+</pre
+        >
+        <p>
+          <br />
+          <br />
+        </p>
+        <a name="dendamaDeviceName"></a>
+        <h3>
+          dendamaDeviceName<a href="#dendamaDeviceName" class="wiki-anchor"
+            >¶</a
+          >
+        </h3>
+        <p>デバイス名</p>
+        <p>Swift<br /></p>
+        <pre
+          style="
+            margin: 1em 1em 1em 1.6em;
+            padding: 8px;
+            background-color: #3d3d3d;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: auto;
+          "
+        >
+public let dendamaDeviceName
+</pre
+        >
+        <p></p>
+        Java
+        <ul>
+          <li>（DendamaManager クラスの static メンバ変数）<br /><br /></li>
+        </ul>
+        <a name="DendamaManagerState"></a>
+        <h3>
+          DendamaManagerState<a href="#DendamaManagerState" class="wiki-anchor"
+            >¶</a
+          >
+        </h3>
+        <p>CBCentralManagerState, CBManagerState を電玉用にラップした Enum</p>
+        <p>Swift<br /></p>
+        <pre
+          style="
+            margin: 1em 1em 1em 1.6em;
+            padding: 8px;
+            background-color: #3d3d3d;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: auto;
+          "
+        >
+public enum DendamaManagerState: Int {
+    case unknown
+    case resetting
+    case unsupported
+    case unauthorized
+    case poweredOff
+    case poweredOn
+}
+</pre
+        >
+        <p>
+          <br />
+          <br />
+        </p>
+        <a name="DendamaManager"></a>
+        <h3>
+          DendamaManager<a href="#DendamaManager" class="wiki-anchor">¶</a>
+        </h3>
+        <p>CBCentralManager を電玉用にラップしたクラス</p>
+        <p>Swift<br /></p>
+        <pre
+          style="
+            margin: 1em 1em 1em 1.6em;
+            padding: 8px;
+            background-color: #3d3d3d;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: auto;
+          "
+        >
+open class DendamaManager: NSObject, CBCentralManagerDelegate {
+
+    open let delegate: DendamaManagerDelegate
+    open var peripherals: [String: DendamaPeripheral]
+
+    public init(delegate: DendamaManagerDelegate)
+
+    open var centralManager: CBCentralManager
+    open var state: DendamaManagerState
+
+    open func scan(allowDuplicates: Bool) -&gt; Bool
+    open func stopScan()
+    open func refresh(expires: TimeInterval = 0.0)
+
+    open func connect(_ peripheral: DendamaPeripheral)
+    open func cancelPeripheralConnection(_ peripheral: DendamaPeripheral)
+}
+</pre
+        >
+        <p></p>
+        <p>BluetoothAdapter を電玉用にラップしたクラス</p>
+        <p>Java<br /></p>
+        <pre
+          style="
+            margin: 1em 1em 1em 1.6em;
+            padding: 8px;
+            background-color: #3d3d3d;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: auto;
+          "
+        >
+public class DendamaManager extends Object {
+
+    public final Context mContext;
+    public final DendamaManagerDelegate mDelegate;
+    public final BluetoothAdapter mBluetoothAdapter;
+
+    public Map&lt;String, DendamaPeripheral&gt; mPeripherals;
+
+    public static final String dendamaDeviceName = &quot;Dendama&quot;;
+
+    public DendamaManager(Context context, DendamaManagerDelegate delegate);
+
+    public boolean isEnabled();
+    public void startRequestActivityForResult(Activity activity, int requestCode);
+
+    public boolean scan();
+    public void stopScan();
+    public void refresh();
+
+    public void connect(DendamaPeripheral peripheral);
+    public void cancelPeripheralConnection(DendamaPeripheral peripheral);
+}
+</pre
+        >
+        <p>
+          <br />
+          <br />
+        </p>
+        <a name="DendamaManagerDelegate"></a>
+        <h3>
+          DendamaManagerDelegate<a
+            href="#DendamaManagerDelegate"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h3>
+        <p>CBCentralManagerDelegate を電玉用にラップしたプロトコル</p>
+        <p>Swift<br /></p>
+        <pre
+          style="
+            margin: 1em 1em 1em 1.6em;
+            padding: 8px;
+            background-color: #3d3d3d;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: auto;
+          "
+        >
+@objc public protocol DendamaManagerDelegate {
+    func dendamaManagerDidUpdateState(manager: DendamaManager)
+    @objc optional func dendamaManager(_ manager: DendamaManager, didDiscover peripheral: DendamaPeripheral, rssi RSSI: NSNumber)
+    @objc optional func dendamaManager(_ manager: DendamaManager, didConnect peripheral: DendamaPeripheral)
+    @objc optional func dendamaManager(_ manager: DendamaManager, didDisconnectPeripheral peripheral: DendamaPeripheral, error: Error?)
+    @objc optional func dendamaManager(_ manager: DendamaManager, didFailToConnect peripheral: DendamaPeripheral, error: Error?)
+}
+</pre
+        >
+        <p></p>
+        <p>
+          ScanCallback, BluetoothGattCallback
+          を電玉用にラップしたインターフェース
+        </p>
+        <p>Java<br /></p>
+        <pre
+          style="
+            margin: 1em 1em 1em 1.6em;
+            padding: 8px;
+            background-color: #3d3d3d;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: auto;
+          "
+        >
+public interface DendamaManagerDelegate {
+    public void didDiscoverPeripheral(DendamaManager manager, DendamaPeripheral peripheral, int RSSI);
+    public void didConnectPeripheral(DendamaManager manager, DendamaPeripheral peripheral);
+    public void didDisconnectPeripheral(DendamaManager manager, DendamaPeripheral peripheral);
+    public void didFailToConnectPeripheral(DendamaManager manager, DendamaPeripheral peripheral);
+}
+</pre
+        >
+        <p>
+          <br />
+          <br />
+        </p>
+        <a name="DendamaSensingFlag"></a>
+        <h3>
+          DendamaSensingFlag<a href="#DendamaSensingFlag" class="wiki-anchor"
+            >¶</a
+          >
+        </h3>
+        <p>各皿、けんのフラグ</p>
+        <p>Swift<br /></p>
+        <pre
+          style="
+            margin: 1em 1em 1em 1.6em;
+            padding: 8px;
+            background-color: #3d3d3d;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: auto;
+          "
+        >
+public enum DendamaSensingFlag: UInt8 {
+    case bigCup = 0x01
+    case smallCup = 0x02
+    case baseCup = 0x04
+    case spike = 0x08
+}
+</pre
+        >
+        <p></p>
+        <p>Java<br /></p>
+        <pre
+          style="
+            margin: 1em 1em 1em 1.6em;
+            padding: 8px;
+            background-color: #3d3d3d;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: auto;
+          "
+        >
+public enum DendamaSensingFlag {
+    bigCup((byte)0x01),
+    smallCup((byte)0x02),
+    baseCup((byte)0x04),
+    spike((byte)0x08);
+
+    public final byte rawValue;
+
+    DendamaSensingFlag(final byte rawValue);
+}
+</pre
+        >
+        <p>
+          <br />
+          <br />
+        </p>
+        <a name="DendamaLEDColor"></a>
+        <h3>
+          DendamaLEDColor<a href="#DendamaLEDColor" class="wiki-anchor">¶</a>
+        </h3>
+        <p>LEDの色指定（Swift 版のみ）</p>
+        <p>Swift<br /></p>
+        <pre
+          style="
+            margin: 1em 1em 1em 1.6em;
+            padding: 8px;
+            background-color: #3d3d3d;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: auto;
+          "
+        >
+public enum DendamaLEDColor: UInt8 {
+    case green = 0x00
+    case red = 0x08
+}
+</pre
+        >
+        <p>
+          <br />
+          <br />
+        </p>
+        <a name="DendamaPeripheral"></a>
+        <h3>
+          DendamaPeripheral<a href="#DendamaPeripheral" class="wiki-anchor"
+            >¶</a
+          >
+        </h3>
+        <p>CBPeripheral を電玉用にラップしたクラス</p>
+        <p>Swift<br /></p>
+        <pre
+          style="
+            margin: 1em 1em 1em 1.6em;
+            padding: 8px;
+            background-color: #3d3d3d;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: auto;
+          "
+        >
+open class DendamaPeripheral: NSObject, CBPeripheralDelegate {
+
+    open let peripheral: CBPeripheral
+    open let deviceIdData: Data
+    open var delegate: DendamaPeripheralDelegate?
+
+    open var deviceId: String
+    open var connected: Bool
+    open var hardwareCharacteristic: CBCharacteristic?
+    open var firmwareCharacteristic: CBCharacteristic?
+    open var sensorCharacteristic: CBCharacteristic?
+    open var batteryCharacteristic: CBCharacteristic?
+    open var ledCharacteristic: CBCharacteristic?
+    open var motorCharacteristic: CBCharacteristic?
+    open var sensorNotifying: Bool
+    open var batteryNotifying: Bool
+
+    open func discoverServices()
+    open func readHardwareRevision()
+    open func readFirmwareRevision()
+    open func setNotifySensor(_ enabled: Bool)
+    open func readBattery()
+    open func setNotifyBattery(_ enabled: Bool)    
+    open func lightLED(_ flag: DendamaSensingFlag, seconds: Double, blinkInterval: Double)
+    open func lightLED(_ color: DendamaLEDColor, flag: DendamaSensingFlag, seconds: Double, blinkInterval: Double)
+    open func lightLED(_ flag: DendamaSensingFlag, deciSeconds: UInt8, blinkInterval: UInt8)
+    open func lightLED(_ color: DendamaLEDColor, flag: DendamaSensingFlag, deciSeconds: UInt8, blinkInterval: UInt8)
+    open func lightOffLED(_ flag: DendamaSensingFlag)
+    open func lightOffLED(_ color: DendamaLEDColor, _ flag: DendamaSensingFlag)
+    open func startMotor(_ seconds: UInt8)
+    open func stopMotor()
+}
+</pre
+        >
+        <p></p>
+        <p>BluetoothDevice, BluetoothGatt を電玉用にラップしたクラス</p>
+        <p>Java<br /></p>
+        <pre
+          style="
+            margin: 1em 1em 1em 1.6em;
+            padding: 8px;
+            background-color: #3d3d3d;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: auto;
+          "
+        >
+public class DendamaPeripheral extends Object {
+
+    public final BluetoothDevice mDevice;
+    public final byte[] mDeviceId;
+
+    public DendamaPeripheralDelegate mDelegate;
+
+    public String deviceId();
+    public boolean connected();
+    public BluetoothGattCharacteristic hardwareCharacteristic();
+    public BluetoothGattCharacteristic firmwareCharacteristic();
+    public BluetoothGattCharacteristic sensorCharacteristic();
+    public BluetoothGattCharacteristic batteryCharacteristic();
+    public BluetoothGattCharacteristic ledCharacteristic();
+    public BluetoothGattCharacteristic motorCharacteristic();
+    public boolean sensorNotifying();
+    public boolean batteryNotifying();
+
+    public void discoverServices();
+    public void readHardwareRevision();
+    public void readFirmwareRevision();
+    public void setNotifySensor(boolean enabled);
+    public void readBattery();
+    public void setNotifyBattery(boolean enabled);
+    public void lightLED(DendamaSensingFlag sensingFlag, double seconds, double blinkInterval);
+    public void lightLED(DendamaSensingFlag sensingFlag, int deciSeconds, int blinkInterval);
+    public void lightOff(DendamaSensingFlag sensingFlag);
+    public void startMotor(int seconds);
+    public void stopMotor();
+}
+</pre
+        >
+        <p>​<br /><br /></p>
+        <a name="DendamaPeripheralDelegate"></a>
+        <h3>
+          DendamaPeripheralDelegate<a
+            href="#DendamaPeripheralDelegate"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h3>
+        <p>CBPeripheralDelegate を電玉用にラップしたプロトコル</p>
+        <p>Swift<br /></p>
+        <pre
+          style="
+            margin: 1em 1em 1em 1.6em;
+            padding: 8px;
+            background-color: #3d3d3d;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: auto;
+          "
+        >
+@objc public protocol DendamaPeripheralDelegate {
+    @objc optional func dendamaPeripheral(_ peripheral: DendamaPeripheral, didDiscoverCharacteristicsFor service: CBService, error: NSError?)
+    @objc optional func dendamaPeripheral(_ peripheral: DendamaPeripheral, didUpdateValueForHardwareRevision characteristic: CBCharacteristic, value: UInt8, error: Error?)
+    @objc optional func dendamaPeripheral(_ peripheral: DendamaPeripheral, didUpdateValueForFirmwareRevision characteristic: CBCharacteristic, versionNumber: UInt8, buildNumber: UInt8, error: Error?)
+    @objc optional func dendamaPeripheral(_ peripheral: DendamaPeripheral, didUpdateValueForSensor characteristic: CBCharacteristic, data: NSData, error: Error?)
+    @objc optional func dendamaPeripheral(_ peripheral: DendamaPeripheral, didUpdateValueForBattery characteristic: CBCharacteristic, value: UInt8, error: Error?)
+}
+</pre
+        >
+        <p></p>
+        <p>BluetoothGattCallback を電玉用にラップしたインターフェース</p>
+        <p>Java<br /></p>
+        <pre
+          style="
+            margin: 1em 1em 1em 1.6em;
+            padding: 8px;
+            background-color: #3d3d3d;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: auto;
+          "
+        >
+public interface DendamaPeripheralDelegate {
+    public void didDiscoverCharacteristicsForService(DendamaPeripheral peripheral, BluetoothGattService service);
+    public void didUpdateValueForHardwareRevision(DendamaPeripheral peripheral, BluetoothGattCharacteristic characteristic, byte value);
+    public void didUpdateValueForFirmwareRevision(DendamaPeripheral peripheral, BluetoothGattCharacteristic characteristic, byte versionNumber, byte buildNumber);
+    public void didUpdateValueForSensor(DendamaPeripheral peripheral, BluetoothGattCharacteristic characteristic, byte[] data);
+    public void didUpdateValueForBattery(DendamaPeripheral peripheral, BluetoothGattCharacteristic characteristic, byte value);
+}
+</pre
+        >
+        <p></p>
+      </div>
+    </div>
+  </body>
+</html>

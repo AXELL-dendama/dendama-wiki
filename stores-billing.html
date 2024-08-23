@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>billing</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      a {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <a name="課金"></a>
+      <h1>課金<a href="#%e8%aa%b2%e9%87%91" class="wiki-anchor">¶</a></h1>
+      <a name="年齢確認について"></a>
+      <h2>
+        年齢確認について<a
+          href="#%e5%b9%b4%e9%bd%a2%e7%a2%ba%e8%aa%8d%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <ul>
+        <li>課金時の年齢確認は下記の通りとする</li>
+        <ol>
+          <li>月額課金、個別課金双方課金時に必ず年齢確認画面を表示する</li>
+          <li>
+            年齢（例えば16才など）によって課金できる額はコントロールしない。よって地域別の年齢のだし分けもしない。
+          </li>
+          <li>年齢の裏付けは取らない（本当に20才以上かなど）</li>
+          <li>年齢確認のモーダルイメージは下記<br /></li>
+        </ol>
+      </ul>
+      <div>
+        <img
+          src="./img/check_age.png"
+          alt="check_age.png"
+          data-themekey="#"
+          style="margin: 5px; width: 180px"
+        />
+        <img
+          src="./img/check_modal_en%20(1).png"
+          alt="check_modal_en (1).png"
+          data-themekey="#"
+          style="margin: 5px; width: 215px; height: 106px"
+        />
+        <img
+          src="./img/check_modal_en.png"
+          alt="check_modal_en.png"
+          data-themekey="#"
+          style="margin: 5px; width: 210px; height: 106px"
+        />
+        <img
+          src="./img/check_modal_ja%20(2).png"
+          alt="check_modal_ja (2).png"
+          data-themekey="#"
+          style="margin: 5px; width: 293px; height: 107px"
+        />
+        <br />
+      </div>
+      <a name="商品ID"></a>
+      <h2>
+        商品ID<a href="#%e5%95%86%e5%93%81ID" class="wiki-anchor">¶</a><br />
+      </h2>
+      <ul>
+        <li>
+          iOS の非消耗型の種類は使用しない。消耗/非消耗の管理は電玉側で行う。
+        </li>
+        <li>
+          Android
+          では実装上、アプリ内アイテムと定期購入を分けて行う場面があるため、商品IDで区別できるようにするため、定期購入のSKUのプレフィックスを
+          subs. とする。
+        </li>
+      </ul>
+      <table class="min-w-full bg-white border border-gray-200">
+        <thead>
+          <tr class="bg-gray-200 text-gray-700">
+            <th class="py-3 px-4 border-b border-gray-300">名称</th>
+            <th class="py-3 px-4 border-b border-gray-300">種類 (iOS)</th>
+            <th class="py-3 px-4 border-b border-gray-300">
+              プロダクトID (iOS)
+            </th>
+            <th class="py-3 px-4 border-b border-gray-300">種類 (Android)</th>
+            <th class="py-3 px-4 border-b border-gray-300">SKU (Android)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-gray-800">
+            <td class="py-2 px-4 border-b border-gray-800">
+              ゲーム1回プレイチケット
+            </td>
+            <td class="py-2 px-4 border-b border-gray-800">消耗型</td>
+            <td class="py-2 px-4 border-b border-gray-800">
+              jp.co.dendama.app.ticket1
+            </td>
+            <td class="py-2 px-4 border-b border-gray-800">アプリ内アイテム</td>
+            <td class="py-2 px-4 border-b border-gray-800">ticket1</td>
+          </tr>
+          <tr class="bg-gray-800">
+            <td class="py-2 px-4 border-b border-gray-800">
+              ゲーム3回プレイチケット
+            </td>
+            <td class="py-2 px-4 border-b border-gray-800">消耗型</td>
+            <td class="py-2 px-4 border-b border-gray-800">
+              jp.co.dendama.app.ticket3
+            </td>
+            <td class="py-2 px-4 border-b border-gray-800">アプリ内アイテム</td>
+            <td class="py-2 px-4 border-b border-gray-800">ticket3</td>
+          </tr>
+          <tr class="bg-gray-800">
+            <td class="py-2 px-4 border-b border-gray-800">
+              ゲーム5回プレイチケット
+            </td>
+            <td class="py-2 px-4 border-b border-gray-800">消耗型</td>
+            <td class="py-2 px-4 border-b border-gray-800">
+              jp.co.dendama.app.ticket5
+            </td>
+            <td class="py-2 px-4 border-b border-gray-800">アプリ内アイテム</td>
+            <td class="py-2 px-4 border-b border-gray-800">ticket5</td>
+          </tr>
+          <tr class="bg-gray-800">
+            <td class="py-2 px-4 border-b border-gray-800">HP回復剤</td>
+            <td class="py-2 px-4 border-b border-gray-800">消耗型</td>
+            <td class="py-2 px-4 border-b border-gray-800">
+              jp.co.dendama.app.life
+            </td>
+            <td class="py-2 px-4 border-b border-gray-800">アプリ内アイテム</td>
+            <td class="py-2 px-4 border-b border-gray-800">life</td>
+          </tr>
+          <!-- Continue with the other rows... -->
+        </tbody>
+      </table>
+
+      <a name="Nativeでの商品登録"></a>
+      <h2>
+        Nativeでの商品登録<a
+          href="#Native%e3%81%a7%e3%81%ae%e5%95%86%e5%93%81%e7%99%bb%e9%8c%b2"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <ul>
+        <li>
+          商品の<a
+            href="https://bitbucket.org/dendama/dendamapurchaselist/src/develop/master.json"
+            class="external"
+            >マスタ</a
+          >
+          はbitbucketで管理。
+        </li>
+      </ul>
+      <a name="iOS"></a>
+      <h3>iOS<a href="#iOS" class="wiki-anchor">¶</a></h3>
+      <ul>
+        <li>
+          <a href="https://appstoreconnect.apple.com/" class="external"
+            >App Store Connect</a
+          >
+          から「マイApp」を選択し、「電玉」を選ぶ
+        </li>
+        <li>上タブにある「機能」を押すと課金アイテムの一覧が閲覧可能</li>
+        <li>月額課金は「Monthly Plan1」というグループで管理</li>
+        <li>試用期間は１ヶ月（お試し価格で設定）</li>
+      </ul>
+      <a name="Android"></a>
+      <h3>Android<a href="#Android" class="wiki-anchor">¶</a></h3>
+      <ul>
+        <li>
+          <a
+            href="https://play.google.com/apps/publish/?account=6350594588120752088#AppListPlace"
+            class="external"
+            >Google Play Console</a
+          >
+          を開き、「電玉」を選ぶ
+        </li>
+        <li>
+          「ストアでの表示」から「アプリ内サービス」を選択すると、課金アイテムの一覧が閲覧可能
+        </li>
+        <li>
+          Androidはアイテムのエクスポート・インポートが可能（月額課金以外）。2018/12現在のCSVは添付のkakin_android.csv
+        </li>
+        <li>
+          月額課金設定
+          <ul>
+            <li>
+              アカウントの一時停止
+              <br />
+              <pre>
+アカウントの一時停止を有効にする
+ユーザーの定期購入を 30 日間一時停止し、引き続きお支払いの処理を試みます。この間、正当な理由によりコンテンツへのすべてのアクセスはブロックされ、お支払いの処理が成功した場合のみアクセスは復元されます。
+お支払いの承認後にユーザー アクセスを復元できるよう、アカウントの一時停止を有効にする前にこの機能を実装しておいてください。
+</pre
+              >
+            </li>
+            <li>
+              定期購入の再開
+              <br />
+              <pre>
+ユーザーが Google Play で定期購入を再開することを許可します
+ユーザーが Play ストアで解約した有効期限内の定期購入を再開できるようにします。これにより、ユーザーは有効期限の期日まで待つことなく、もう一度、定期購入できるようになります。
+この機能を実装してから、定期購入の再開を有効にしてください。これにより、ユーザーは Play ストアで解約した有効期限内の定期購入を再開できるようになります。
+</pre
+              >
+            </li>
+            <li>
+              定期購入ごとの無料試用
+              <br />
+              <pre>
+定期購入ごとの無料試用を有効にします
+アプリ内で利用可能な各定期購入の無料試用にユーザーが登録できるようにします。これを設定しない場合、ユーザーはアプリ内で 1 個のみの無料試用に登録できます。
+</pre
+              >
+            </li>
+            <li>無料試用期間は３０日</li>
+            <li>猶予期間は７日</li>
+          </ul>
+        </li>
+      </ul>
+      <a name="iOSのみ課金可能かのチェック"></a>
+      <h2>
+        (iOSのみ)課金可能かのチェック<a
+          href="#iOS%e3%81%ae%e3%81%bf%e8%aa%b2%e9%87%91%e5%8f%af%e8%83%bd%e3%81%8b%e3%81%ae%e3%83%81%e3%82%a7%e3%83%83%e3%82%af"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <ol>
+        <li>
+          Web から Native に問い合わせ
+          <ul>
+            <li>
+              <code> <strong>api-dendama://canMakePayments</strong></code>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Native から Web に回答
+          <ul>
+            <li>
+              <code> <strong>javascript:make_payments(</strong></code
+              ><strong> </strong> <em> <strong>enable</strong></em
+              ><strong> </strong> <code> <strong>)</strong></code>
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <ul>
+        <li>
+          iOS ではファミリー利用向けの課金制限機能がありますが、Android
+          ではそのような機能はありません。
+        </li>
+        <li>
+          互換性のため Android でもこのAPIは用意してありますが、常に true
+          を返します。
+        </li>
+      </ul>
+      <a name="商品情報取得プロセス"></a>
+      <h2>
+        商品情報取得プロセス<a
+          href="#%e5%95%86%e5%93%81%e6%83%85%e5%a0%b1%e5%8f%96%e5%be%97%e3%83%97%e3%83%ad%e3%82%bb%e3%82%b9"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <ol>
+        <li>
+          ユーザーに提示する商品が有効かどうかの Web から Native に問い合わせ
+          <ul>
+            <li>
+              <code>
+                <strong
+                  >api-dendama://requestProducts/ticket1/ticket3/ticket5</strong
+                ></code
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          App Store または Google Play Store
+          でチェックした商品のうち有効なものを Native から Web に回答
+          <ul>
+            <li>
+              <code> <strong>javascript:products([</strong></code
+              ><strong> </strong> <em> <strong>product</strong></em
+              ><strong>, ... </strong> <code> <strong>])</strong></code
+              ><br />
+              <pre>               
+               <strong>(product) = {
+    id: &quot;ticket1&quot;,
+    title: &quot;ゲーム1回チケット&quot;,
+    description: &quot;...&quot;,
+    price: &quot;130円&quot; 
+}</strong></pre>
+              <ul>
+                <li>
+                  iOS
+                  の場合、プロダクトIDからバンドルID部分を省いたもの（Android
+                  におけるSKUに相当）を id として渡します。
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>Web上で商品購入のためのUIを表示</li>
+      </ol>
+      <a name="購入プロセス"></a>
+      <h2>
+        購入プロセス<a
+          href="#%e8%b3%bc%e5%85%a5%e3%83%97%e3%83%ad%e3%82%bb%e3%82%b9"
+          class="wiki-anchor"
+          >¶</a
+        ><br />
+      </h2>
+      <a name="購入成立"></a>
+      <h3>
+        購入成立<a
+          href="#%e8%b3%bc%e5%85%a5%e6%88%90%e7%ab%8b"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h3>
+      <ol>
+        <li>
+          購入する商品のIDとを Web から Native に送信
+          <ul>
+            <li>
+              <code>
+                <strong>api-dendama://requestPayment/ticket1</strong></code
+              >
+            </li>
+          </ul>
+        </li>
+        <li>App Store または Google Play Store 上で購入</li>
+        <li>
+          (iOS)購入に時間がかかっている場合
+          <ul>
+            <li>
+              <code> <strong>javascript:ios_payment_purchasing(</strong></code
+              ><strong> </strong> <em> <strong>sku</strong></em
+              ><strong> </strong> <code> <strong>)</strong></code>
+            </li>
+          </ul>
+        </li>
+        <li>
+          購入が成立したことを Native から Web に伝達
+          <ul>
+            <li>
+              <code> <strong>javascript:ios_update_payment(</strong></code
+              ><strong> </strong> <em> <strong>sku</strong></em
+              ><strong>, </strong> <em> <strong>transactionId</strong></em
+              ><strong>, </strong> <em> <strong>receiptData</strong></em
+              ><strong> </strong> <code> <strong>)</strong></code>
+            </li>
+            <li>
+              <code> <strong>javascript:android_update_payment(</strong></code
+              ><strong> </strong> <em> <strong>sku</strong></em
+              ><strong>, </strong> <em> <strong>purchaseToken</strong></em
+              ><strong>, </strong> <em> <strong>orderId</strong></em
+              ><strong>, </strong> <em> <strong>receiptData</strong></em
+              ><strong>, </strong> <em> <strong>signature</strong></em
+              ><strong> </strong> <code> <strong>)</strong></code>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Web 側で購入したアイテムをユーザーに付与するなどの処理を行った後、Web
+          から Native に購入プロセスの終了を依頼
+          <ul>
+            <li>
+              <code>
+                <strong>api-dendama://finishPayment/transactionId</strong></code
+              >
+            </li>
+            <li>
+              <code>
+                <strong>api-dendama://finishPayment/purchaseToken</strong></code
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          購入プロセス終了
+          <ul>
+            <li>
+              <code>
+                <strong>javascript:ios_success_finish_payment(</strong></code
+              ><strong> </strong> <em> <strong>trasactionId</strong></em
+              ><strong> </strong> <code> <strong>)</strong></code>
+            </li>
+            <li>
+              <code>
+                <strong
+                  >javascript:android_success_finish_payment(</strong
+                ></code
+              ><strong> </strong> <em> <strong>purchaseToken</strong></em
+              ><strong> </strong> <code> <strong>)</strong></code>
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <a name="購入を-Store-上でキャンセル"></a>
+      <h3>
+        購入を Store 上でキャンセル<a
+          href="#%e8%b3%bc%e5%85%a5%e3%82%92-Store-%e4%b8%8a%e3%81%a7%e3%82%ad%e3%83%a3%e3%83%b3%e3%82%bb%e3%83%ab"
+          class="wiki-anchor"
+          >¶</a
+        ><br />
+      </h3>
+      <ol>
+        <li>...</li>
+        <li>App Store または Google Play Store 上で購入をキャンセル</li>
+        <li>
+          購入がキャンセルされたことを Native から Web に伝達
+          <ul>
+            <li>
+              <code> <strong>javascript:ios_cancel_payment(</strong></code
+              ><strong> </strong> <em> <strong>sku</strong></em
+              ><strong> </strong> <code> <strong>)</strong></code>
+            </li>
+            <li>
+              <code> <strong>javascript:android_cancel_payment()</strong></code>
+              <ul>
+                <li>
+                  <strong>Android では <em>sku</em> はなし</strong>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <a name="購入が何らかの理由で-Store-上で失敗"></a>
+      <h3>
+        購入が何らかの理由で Store 上で失敗<a
+          href="#%e8%b3%bc%e5%85%a5%e3%81%8c%e4%bd%95%e3%82%89%e3%81%8b%e3%81%ae%e7%90%86%e7%94%b1%e3%81%a7-Store-%e4%b8%8a%e3%81%a7%e5%a4%b1%e6%95%97"
+          class="wiki-anchor"
+          >¶</a
+        ><br />
+      </h3>
+      <ol>
+        <li>...<br /></li>
+        <li>App Store または Google Play Store 上で購入が失敗</li>
+        <li>
+          購入が失敗したことを Native から Web に伝達
+          <ul>
+            <li>
+              <code>javascript:ios_fail_payment(</code><em>sku</em
+              ><code>)</code>
+            </li>
+            <li>
+              <code>javascript:android_fail_payment()</code>
+              <ul>
+                <li>
+                  <strong>Android では productId はなし</strong>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <a name="iOS購入の許可待ち"></a>
+      <h3>
+        (iOS)購入の許可待ち<a
+          href="#iOS%e8%b3%bc%e5%85%a5%e3%81%ae%e8%a8%b1%e5%8f%af%e5%be%85%e3%81%a1"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h3>
+      <ol>
+        <li>...</li>
+        <li>
+          App Store 上で（ファミリー利用向けにより）購入許可待ち
+          <ul>
+            <li>
+              <code>javascript:ios_payment_deferred(</code><em>sku</em
+              ><code>)</code>
+            </li>
+          </ul>
+        </li>
+        <li>購入許可</li>
+        <li>
+          購入が成立したことを Native から Web
+          に伝達（以降、購入成立の場合と同様）
+          <ul>
+            <li>
+              <code>javascript:ios_update_payment(</code><em>sku</em>,
+              <em>transactionId</em>, <em>receiptData</em><code>)</code>
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <a name="iOSユーザーの支払い情報が未登録"></a>
+      <h3>
+        (iOS)ユーザーの支払い情報が未登録<a
+          href="#iOS%e3%83%a6%e3%83%bc%e3%82%b6%e3%83%bc%e3%81%ae%e6%94%af%e6%89%95%e3%81%84%e6%83%85%e5%a0%b1%e3%81%8c%e6%9c%aa%e7%99%bb%e9%8c%b2"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h3>
+      <ol>
+        <li>...</li>
+        <li>App Store 上でユーザーが支払い情報を登録</li>
+        <li>
+          <strong
+            >何故かキャンセルの場合と同様のレスポンスがアプリ側に渡る</strong
+          >
+          <ul>
+            <li>
+              <code> <strong>javascript:ios_cancel_payment(</strong></code
+              ><strong> </strong> <em> <strong>sku</strong></em
+              ><strong> </strong> <code> <strong>)</strong></code>
+            </li>
+          </ul>
+        </li>
+        <li>支払い情報の登録完了</li>
+        <li>
+          購入が成立したことを Native から Web
+          に伝達（以降、購入成立の場合と同様）
+          <ul>
+            <li>
+              <code>javascript:ios_update_payment(</code><em>sku</em>,
+              <em>transactionId</em>, <em>receiptData</em><code>)</code>
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <a name="Android-2"></a>
+      <h3>Android<a href="#Android-2" class="wiki-anchor">¶</a></h3>
+      <ul>
+        <li>
+          Anroid
+          ではアプリ起動時、およびフォアグラウンドに入ったときに、常に購入状態をチェックしている
+        </li>
+        <li>
+          よって、非消耗型、および定期購入については、その度に Native から Web
+          に以下の呼び出しがある。
+          <ul>
+            <li>
+              <code>javascript:android_update_payment(</code><em>sku</em>,
+              <em>purchaseToken</em>, <em>orderId</em>, <em>receiptData</em>,
+              <em>signature</em><code>)</code>
+            </li>
+          </ul>
+        </li>
+        <li>
+          これは、Google Play Store
+          上で購入処理中にアプリが終了する場合があるためだそうです。
+        </li>
+        <li>
+          <strong
+            >Web 側で購入処理済みの商品に対して、再び android_update_payment
+            が呼ばれた場合は、無視してください。</strong
+          >
+        </li>
+      </ul>
+      <a name="購入のリストア"></a>
+      <h2>
+        購入のリストア<a
+          href="#%e8%b3%bc%e5%85%a5%e3%81%ae%e3%83%aa%e3%82%b9%e3%83%88%e3%82%a2"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <ul>
+        <li>
+          App Store および Google Play Store
+          はアプリごとにユーザーの購入情報を常に保持しているので、いつでも取り出せることができる。
+        </li>
+        <li>
+          iOS における消耗型、Android
+          におけるアプリ内アイテムのうち消費済みにしたものは、購入情報から削除されている。
+          <ul>
+            <li>
+              自動更新登録/定期購入以外は、今のところ全て消耗型/消費済みなので、
+              <strong>月額課金以外は購入情報から削除されている</strong> 。
+            </li>
+          </ul>
+        </li>
+        <li>
+          Android はアプリ内のキャッシュを参照するので、
+          <strong
+            >デバイスを変更した場合などで取得できるかどうかは今のところ不明</strong
+          >
+        </li>
+      </ul>
+      <ol>
+        <li>
+          Web から Native に購入のリストアを依頼
+          <ul>
+            <li>
+              <code>api-dendama://restorePayments</code>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Native から Web に購入情報を回答
+          <ul>
+            <li>
+              <code>javascript:success_restore_payments([</code><em>sku</em>,
+              ... <code>])</code>
+            </li>
+            <li>商品IDの配列が返される。</li>
+          </ul>
+        </li>
+      </ol>
+      <a name="iOS-自動更新登録"></a>
+      <h2>
+        (iOS) 自動更新登録<a
+          href="#iOS-%e8%87%aa%e5%8b%95%e6%9b%b4%e6%96%b0%e7%99%bb%e9%8c%b2"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <ol>
+        <li>月額課金などの自動更新登録が App Store で更新</li>
+        <li>
+          アプリが検知し、Native から Web に伝達
+          <ul>
+            <li>
+              <code>javascript:ios_update_payment(</code><em>sku</em>,
+              <em>transactionId</em>, <em>receiptData</em><code>)</code>
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <a name="Android-定期購入"></a>
+      <h2>
+        (Android) 定期購入<a
+          href="#Android-%e5%ae%9a%e6%9c%9f%e8%b3%bc%e5%85%a5"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <ul>
+        <li>
+          アプリ側ではなく、レシート検証を通じてサーバー側が Google Play Store
+          と通信して更新の確認等を行う。
+        </li>
+      </ul>
+      <a name="レシート検証"></a>
+      <h2>
+        レシート検証<a
+          href="#%e3%83%ac%e3%82%b7%e3%83%bc%e3%83%88%e6%a4%9c%e8%a8%bc"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <ul>
+        <li>
+          不正な購入を防ぐためにサーバー側でレシート検証を行う必要がある、としている。
+          <ul>
+            <li>
+              不正な購入とは、アプリの改竄、脱獄、アプリサーバーへの不正なアクセスなどにより不正に購入を実現すること
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <a name="iOS-2"></a>
+      <h3>iOS<a href="#iOS-2" class="wiki-anchor">¶</a></h3>
+      <ul>
+        <li>ios_update_payment の際に行う。</li>
+      </ul>
+      <ol>
+        <li>
+          商品ID、トランザクションID、レシートデータを Native から Web
+          を経由して、アプリサーバー側に送信する。
+          <ul>
+            <li>
+              <code>javascript:ios_update_payment(</code><em>sku</em>,
+              <em>transactionId</em>, <em>receiptData</em><code>)</code>
+            </li>
+            <li>
+              <em>receiptData</em>
+              はJSONで表現されたレシート情報をBase64エンコードした文字列
+            </li>
+          </ul>
+        </li>
+        <li>
+          アプリサーバーにおいて、「
+          <code>https://buy.itunes.apple.com/verifyReceipt</code> 」
+          に対して、次のJSONデータをPOSTする。
+          <ul>
+            <li>
+              消耗型/非情報型：{&quot;receipt-data&quot;: <em>receiptData</em>}
+            </li>
+            <li>
+              自動更新登録：{&quot;receipt-data&quot;: <em>receiptData</em>,
+              &quot;password&quot;: <em>sharedSecret</em>}
+              <ul>
+                <li>
+                  <em>sharedSecret</em> は App Store Connect
+                  で取得できる「共有シークレット」のこと
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>レスポンスをJSONで受け、status が 0 であればレシートは有効</li>
+        <li>
+          有効/無効に関わらず、Web を経由して Native
+          を呼び出してトランザクションを終了させる。
+          <ul>
+            <li>
+              <code>api-dendama://finishPayment/transactionId</code>
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <ul>
+        <li>
+          参考：
+          <a
+            href="https://developer.apple.com/jp/documentation/General/ValidateAppStoreReceipt/Chapters/ValidateRemotely.html"
+            class="external"
+            >App Storeを使用してレシートを検証する</a
+          >
+        </li>
+      </ul>
+      <a name="Android-3"></a>
+      <h3>Android<a href="#Android-3" class="wiki-anchor">¶</a></h3>
+      <ul>
+        <li>android_update_payment の際に行う。</li>
+      </ul>
+      <ol>
+        <li>
+          商品ID、purchaseToken、orderId、レシートデータ、署名を Native から Web
+          を経由して、アプリサーバー側に送信する。
+          <ul>
+            <li>
+              <code>javascript:android_update_payment(</code><em>sku</em>,
+              <em>purchaseToken</em>, <em>orderId</em>, <em>receiptData</em>,
+              <em>signature</em><code>)</code>
+            </li>
+            <li>
+              <em>receiptData</em>
+              はJSONで表現されたレシート情報をBase64エンコードした文字列
+            </li>
+          </ul>
+        </li>
+        <li>
+          アプリサーバーにおいて、
+          <ul>
+            <li>Google Play Console で取得できる「公開鍵」を使って、</li>
+            <li><em>receiptData</em> をBase64デコードしたものと</li>
+            <li>その署名である <em>signature</em> を検証する。</li>
+          </ul>
+        </li>
+        <li>
+          署名が有効であれば、Web を経由して Native
+          を呼び出してトランザクションを終了させる。
+          <ul>
+            <li>
+              <code>api-dendama://finishPayment/purchaseToken</code>
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <ul>
+        <li>
+          参考：
+          <a
+            href="https://qiita.com/irxground/items/906593e03ff03f7f9c62"
+            class="external"
+            >Android in-app-billing のデータが改ざんされていないかの検証</a
+          ><br />
+        </li>
+      </ul>
+
+      <br />
+    </div>
+  </body>
+</html>

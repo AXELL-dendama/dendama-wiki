@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trick judge</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      a {
+        color: blue;
+      }
+      table,
+      tr,
+      td,
+      th {
+        border: 1px solid gray;
+      }
+      th {
+        background: greenyellow;
+        color: black;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <h2
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 16px;
+        "
+      >
+        概要
+      </h2>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        技判定を行う Cocoa (Touch) Framework 、および Android Librry
+      </p>
+      <div
+        class="contextual heading-2"
+        title="このセクションを編集"
+        style="
+          float: right;
+          white-space: nowrap;
+          line-height: 1.4em;
+          margin-top: 5px;
+          padding-left: 10px;
+          font-size: 0.9em;
+          font-family: verdana, sans-serif;
+        "
+      ></div>
+      <a
+        name="リポジトリ"
+        style="
+          color: #116699;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      ></a
+      ><span style="font-family: verdana, sans-serif; font-size: 12px"></span>
+      <h2
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 16px;
+        "
+      >
+        リポジトリ
+      </h2>
+      <ul
+        style="
+          margin-bottom: 1em;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      >
+        <li>TrickJudge-Swift （Cocoa (Touch) Framework）</li>
+        <li>TrickJudge-Android （Android Library）</li>
+      </ul>
+
+      <a
+        name="準備iOS-macOS-編"
+        style="
+          color: #116699;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      ></a
+      ><span style="font-family: verdana, sans-serif; font-size: 12px"></span>
+      <h2
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 16px;
+        "
+      >
+        準備（iOS, macOS 編）
+      </h2>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        TrickJudge をリンクするアプリの Xcode プロジェクトのルートディレクトリを
+        $(SRCROOT) とする。
+      </p>
+      <ol
+        style="
+          margin-top: 0px;
+          margin-bottom: 1em;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      >
+        <li>
+          <code
+            style="
+              font-family: consolas, menlo, 'liberation mono', courier,
+                monospace;
+            "
+            >cd</code
+          >&#160;$(SRCROOT) を行う。
+        </li>
+        <li>$(SRCROOT)/Cartfile に以下内容を入れる。<br /></li>
+        <li>
+          <code
+            style="
+              font-family: consolas, menlo, 'liberation mono', courier,
+                monospace;
+            "
+            >carthage update --platform iOS</code
+          >&#160;を行う。（もしくは&#160;<code
+            style="
+              font-family: consolas, menlo, 'liberation mono', courier,
+                monospace;
+            "
+            >--platform Mac</code
+          >&#160;、以降 iOS で説明する。）
+        </li>
+        <li>
+          $(SRCROOT)/Carthage/Build/iOS/TrickJudge.framework
+          ができているのを確認する。
+        </li>
+        <li>TrickJudge をリンクするアプリの Xcode プロジェクトを開く。</li>
+        <li>
+          サイドバーの Project Navigator
+          よりプロジェクトを選び、さらにターゲットを選ぶ。
+        </li>
+        <li>
+          General &gt; Link Frameworks and Libraries で
+          +（追加）をクリックし、Add Other... より
+          $(SRCROOT)/Carthage/Build/iOS/TrickJudge.framework を追加する。
+        </li>
+        <li>
+          Build Phases で Run Script を追加し、Script として&#160;<code
+            style="
+              font-family: consolas, menlo, 'liberation mono', courier,
+                monospace;
+            "
+            >/usr/local/bin/carthage copy-frameworks</code
+          >&#160;と記述する。さらに、+（追加）をクリックし&#160;<code
+            style="
+              font-family: consolas, menlo, 'liberation mono', courier,
+                monospace;
+            "
+            >$(SRCROOT)/Carthage/Build/iOS/TrickJudge.framework</code
+          >&#160;を追加する。（&#160;<code
+            style="
+              font-family: consolas, menlo, 'liberation mono', courier,
+                monospace;
+            "
+            >$(SRCROOT)</code
+          >&#160;は中身を展開する必要はなく、そのまま記述すればよい。）
+        </li>
+      </ol>
+      <div
+        class="contextual heading-2"
+        title="このセクションを編集"
+        style="
+          float: right;
+          white-space: nowrap;
+          line-height: 1.4em;
+          margin-top: 5px;
+          padding-left: 10px;
+          font-size: 0.9em;
+          font-family: verdana, sans-serif;
+        "
+      ></div>
+      <a
+        name="準備Android-編"
+        style="
+          color: #116699;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      ></a
+      ><span style="font-family: verdana, sans-serif; font-size: 12px"></span>
+      <h2
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 16px;
+        "
+      >
+        準備（Android 編）
+      </h2>
+      <ol
+        style="
+          margin-top: 0px;
+          margin-bottom: 1em;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      >
+        <li>
+          TrickJudge-Android をダウンロード、もしくはチェックアウトする。
+          <ul style="margin-bottom: 0px">
+            <li>
+              TrickJudge-Android プロジェクトのルートディレクトリを $(LIBROOT)
+              とする。
+            </li>
+          </ul>
+        </li>
+        <li>
+          TrickJudge をリンクするアプリの Android Studio プロジェクトを開く。
+        </li>
+        <li>
+          settings.gradle を以下のように修正する。<br />
+          <pre
+            style="
+              font-family: consolas, menlo, 'liberation mono', courier,
+                monospace;
+              margin: 1em 1em 1em 1.6em;
+              padding: 8px;
+              background-color: #3d3d3d;
+              border: 1px solid #e2e2e2;
+              border-radius: 3px;
+              width: auto;
+            "
+          >
+include &#39;:app&#39;
+</pre
+          >
+          ↓
+          <pre
+            style="
+              font-family: consolas, menlo, 'liberation mono', courier,
+                monospace;
+              margin: 1em 1em 1em 1.6em;
+              padding: 8px;
+              background-color: #3d3d3d;
+              border: 1px solid #e2e2e2;
+              border-radius: 3px;
+              width: auto;
+            "
+          >
+include &#39;:app&#39;, &#39;:trickjudge&#39;
+project(&#39;:trickjudge&#39;).projectDir = new File(&#39;$(LIBROOT)/trickjudge&#39;)
+</pre
+          >
+          $(LIBROOT)
+          の中身は展開しておく（例：&#39;../TrickJudge-Android/trickjudge&#39;）
+        </li>
+        <li>メニューから File &gt; Project Structure... を開く。</li>
+        <li>Modules の app を選択し、Dependencies タブを開く。</li>
+        <li>
+          + をクリックして、Module dependency から :trickjudge を追加する。
+        </li>
+      </ol>
+      <div
+        class="contextual heading-2"
+        title="このセクションを編集"
+        style="
+          float: right;
+          white-space: nowrap;
+          line-height: 1.4em;
+          margin-top: 5px;
+          padding-left: 10px;
+          font-size: 0.9em;
+          font-family: verdana, sans-serif;
+        "
+      >
+        <a
+          class="icon-only icon-edit"
+          href="https://redmine.dendama.co.jp/projects/dendama/wiki/TrickJudge/edit?section=6"
+          style="
+            color: #116699;
+            background-position: 0% 50%;
+            background-repeat: no-repeat;
+            padding-left: 16px;
+            display: inline-block;
+            width: 0px;
+            height: 16px;
+            overflow: hidden;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            font-size: 8px;
+            vertical-align: text-bottom;
+            opacity: 0.4;
+          "
+          >このセクションを編集</a
+        >
+      </div>
+      <a
+        name="利用例"
+        style="
+          color: #116699;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      ></a
+      ><span style="font-family: verdana, sans-serif; font-size: 12px"></span>
+      <h2
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 16px;
+        "
+      >
+        利用例
+      </h2>
+      <ul
+        style="
+          margin-bottom: 1em;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      >
+        <li>TrickJudge-Swift</li>
+        <li>TrickJudge-Android</li>
+      </ul>
+      <div
+        class="contextual heading-2"
+        title="このセクションを編集"
+        style="
+          float: right;
+          white-space: nowrap;
+          line-height: 1.4em;
+          margin-top: 5px;
+          padding-left: 10px;
+          font-size: 0.9em;
+          font-family: verdana, sans-serif;
+        "
+      ></div>
+      <a
+        name="リファレンス"
+        style="
+          color: #116699;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      ></a
+      ><span style="font-family: verdana, sans-serif; font-size: 12px"></span>
+      <h2
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 16px;
+        "
+      >
+        リファレンス
+      </h2>
+      <div
+        class="contextual heading-3"
+        title="このセクションを編集"
+        style="
+          float: right;
+          white-space: nowrap;
+          line-height: 1.4em;
+          margin-top: 5px;
+          padding-left: 10px;
+          font-size: 0.9em;
+          font-family: verdana, sans-serif;
+        "
+      ></div>
+      <a
+        name="DataBuffer"
+        style="
+          color: #116699;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      ></a
+      ><span style="font-family: verdana, sans-serif; font-size: 12px"></span>
+      <h3
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 13px;
+        "
+      >
+        DataBuffer
+      </h3>
+      <ul
+        style="
+          margin-bottom: 1em;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      >
+        <li>Swift: NSData のラッパー</li>
+        <li>Java: ByteBuffer のラッパー</li>
+      </ul>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        Swift<br />
+      </p>
+      <pre
+        style="
+          font-family: consolas, menlo, 'liberation mono', courier, monospace;
+          margin: 1em 1em 1em 1.6em;
+          padding: 8px;
+          background-color: #3d3d3d;
+          border: 1px solid #e2e2e2;
+          border-radius: 3px;
+          width: auto;
+          font-size: 12px;
+        "
+      >
+open class DataBuffer {
+    public init(data: NSData)
+}
+</pre
+      >
+      <p style="font-family: verdana, sans-serif; font-size: 12px"></p>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        Java<br />
+      </p>
+      <pre
+        style="
+          font-family: consolas, menlo, 'liberation mono', courier, monospace;
+          margin: 1em 1em 1em 1.6em;
+          padding: 8px;
+          background-color: #3d3d3d;
+          border: 1px solid #e2e2e2;
+          border-radius: 3px;
+          width: auto;
+          font-size: 12px;
+        "
+      >
+public class DataBuffer {
+    public DataBuffer(byte[] data) 
+}
+</pre
+      >
+      <p style="font-family: verdana, sans-serif; font-size: 12px"></p>
+      <div
+        class="contextual heading-3"
+        title="このセクションを編集"
+        style="
+          float: right;
+          white-space: nowrap;
+          line-height: 1.4em;
+          margin-top: 5px;
+          padding-left: 10px;
+          font-size: 0.9em;
+          font-family: verdana, sans-serif;
+        "
+      ></div>
+      <a
+        name="SensorData"
+        style="
+          color: #116699;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      ></a
+      ><span style="font-family: verdana, sans-serif; font-size: 12px"></span>
+      <h3
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 13px;
+        "
+      >
+        SensorData
+      </h3>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        50Herz で送られてくる電玉のセンサー情報の1回分のデータ
+      </p>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        Swift<br />
+      </p>
+      <pre
+        style="
+          font-family: consolas, menlo, 'liberation mono', courier, monospace;
+          margin: 1em 1em 1em 1.6em;
+          padding: 8px;
+          background-color: #3d3d3d;
+          border: 1px solid #e2e2e2;
+          border-radius: 3px;
+          width: auto;
+          font-size: 12px;
+        "
+      >
+open class SensorData {
+    public init(buf: DataBuffer)
+}
+
+</pre
+      >
+      <p style="font-family: verdana, sans-serif; font-size: 12px"></p>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        Java<br />
+      </p>
+      <pre
+        style="
+          font-family: consolas, menlo, 'liberation mono', courier, monospace;
+          margin: 1em 1em 1em 1.6em;
+          padding: 8px;
+          background-color: #3d3d3d;
+          border: 1px solid #e2e2e2;
+          border-radius: 3px;
+          width: auto;
+          font-size: 12px;
+        "
+      >
+public class SensorData {
+    public SensorData(DataBuffer buf)
+}
+</pre
+      >
+      <p style="font-family: verdana, sans-serif; font-size: 12px"></p>
+      <div
+        class="contextual heading-3"
+        title="このセクションを編集"
+        style="
+          float: right;
+          white-space: nowrap;
+          line-height: 1.4em;
+          margin-top: 5px;
+          padding-left: 10px;
+          font-size: 0.9em;
+          font-family: verdana, sans-serif;
+        "
+      ></div>
+      <a
+        name="JudgeContext"
+        style="
+          color: #116699;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      ></a
+      ><span style="font-family: verdana, sans-serif; font-size: 12px"></span>
+      <h3
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 13px;
+        "
+      >
+        JudgeContext
+      </h3>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        技判定コンテキスト
+      </p>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        Swift<br />
+      </p>
+      <pre
+        style="
+          font-family: consolas, menlo, 'liberation mono', courier, monospace;
+          margin: 1em 1em 1em 1.6em;
+          padding: 8px;
+          background-color: #3d3d3d;
+          border: 1px solid #e2e2e2;
+          border-radius: 3px;
+          width: auto;
+          font-size: 12px;
+        "
+      >
+open class JudgeContext {
+    public init!()
+    public init!(stillSeconds: Int)
+
+    open func judge(_ items: [SensorData]) -&gt; [StateResult]
+    open func judge(_ item: SensorData) -&gt; StateResult?
+}
+</pre
+      >
+      <p style="font-family: verdana, sans-serif; font-size: 12px"></p>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        Java<br />
+      </p>
+      <pre
+        style="
+          font-family: consolas, menlo, 'liberation mono', courier, monospace;
+          margin: 1em 1em 1em 1.6em;
+          padding: 8px;
+          background-color: #3d3d3d;
+          border: 1px solid #e2e2e2;
+          border-radius: 3px;
+          width: auto;
+          font-size: 12px;
+        "
+      >
+public class JudgeContext {
+    public JudgeContext() throws Exception
+    public JudgeContext(int stillSeconds) throws Exception
+
+    public List&lt;StateResult&gt; judge(List&lt;SensorData&gt; items)
+    public StateResult judge(SensorData item)
+}
+</pre
+      >
+      <p style="font-family: verdana, sans-serif; font-size: 12px"></p>
+      <div
+        class="contextual heading-3"
+        title="このセクションを編集"
+        style="
+          float: right;
+          white-space: nowrap;
+          line-height: 1.4em;
+          margin-top: 5px;
+          padding-left: 10px;
+          font-size: 0.9em;
+          font-family: verdana, sans-serif;
+        "
+      ></div>
+      <a
+        name="StateResult"
+        style="
+          color: #116699;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      ></a
+      ><span style="font-family: verdana, sans-serif; font-size: 12px"></span>
+      <h3
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 13px;
+        "
+      >
+        StateResult
+      </h3>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        技判定結果
+      </p>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        Swift<br />
+      </p>
+      <pre
+        style="
+          font-family: consolas, menlo, 'liberation mono', courier, monospace;
+          margin: 1em 1em 1em 1.6em;
+          padding: 8px;
+          background-color: #3d3d3d;
+          border: 1px solid #e2e2e2;
+          border-radius: 3px;
+          width: auto;
+          font-size: 12px;
+        "
+      >
+open class StateResult {
+    open func sensingTrick() -&gt; SensingTrick
+    open func stateTrick() -&gt; StateTrick
+}
+</pre
+      >
+      <p style="font-family: verdana, sans-serif; font-size: 12px"></p>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        Java<br />
+      </p>
+      <pre
+        style="
+          font-family: consolas, menlo, 'liberation mono', courier, monospace;
+          margin: 1em 1em 1em 1.6em;
+          padding: 8px;
+          background-color: #3d3d3d;
+          border: 1px solid #e2e2e2;
+          border-radius: 3px;
+          width: auto;
+          font-size: 12px;
+        "
+      >
+public class StateResult {
+    public SensingTrick sensingTrick()
+    public StateTrick stateTrick()
+}
+</pre
+      >
+      <p style="font-family: verdana, sans-serif; font-size: 12px"></p>
+      <div
+        class="contextual heading-3"
+        title="このセクションを編集"
+        style="
+          float: right;
+          white-space: nowrap;
+          line-height: 1.4em;
+          margin-top: 5px;
+          padding-left: 10px;
+          font-size: 0.9em;
+          font-family: verdana, sans-serif;
+        "
+      ></div>
+      <a
+        name="SensingTrick"
+        style="
+          color: #116699;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      ></a
+      ><span style="font-family: verdana, sans-serif; font-size: 12px"></span>
+      <h3
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 13px;
+        "
+      >
+        SensingTrick
+      </h3>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        センサー情報のみによる予備的な技判定結果
+      </p>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        Swift<br />
+      </p>
+      <pre
+        style="
+          font-family: consolas, menlo, 'liberation mono', courier, monospace;
+          margin: 1em 1em 1em 1.6em;
+          padding: 8px;
+          background-color: #3d3d3d;
+          border: 1px solid #e2e2e2;
+          border-radius: 3px;
+          width: auto;
+          font-size: 12px;
+        "
+      >
+public enum SensingTrick: String {
+    case none
+    case bigCup
+    case smallCup
+    case baseCup
+    case spike
+    case lunar
+    case smallCupLunar
+    case lighthouse
+    case airplane
+
+    case scoopingGoldfishStance
+    case smallCupScoopingGoldfishStance
+    case baseCupScoopingGoldfishStance
+}
+</pre
+      >
+      <p style="font-family: verdana, sans-serif; font-size: 12px"></p>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        Java<br />
+      </p>
+      <pre
+        style="
+          font-family: consolas, menlo, 'liberation mono', courier, monospace;
+          margin: 1em 1em 1em 1.6em;
+          padding: 8px;
+          background-color: #3d3d3d;
+          border: 1px solid #e2e2e2;
+          border-radius: 3px;
+          width: auto;
+          font-size: 12px;
+        "
+      >
+public enum SensingTrick {
+    none,
+    bigCup,
+    smallCup,
+    baseCup,
+    spike,
+    lunar,
+    smallCupLunar,
+    lighthouse,
+    airplane,
+
+    scoopingGoldfishStance,
+    smallCupScoopingGoldfishStance,
+    baseCupScoopingGoldfishStance
+}
+</pre
+      >
+      <p style="font-family: verdana, sans-serif; font-size: 12px"></p>
+
+      <span style="font-family: verdana, sans-serif; font-size: 12px"></span>
+      <h3
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 13px;
+        "
+      >
+        StateTrick
+      </h3>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        前の技からの連続性による技判定
+      </p>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        Swift<br />
+      </p>
+      <pre
+        style="
+          font-family: consolas, menlo, 'liberation mono', courier, monospace;
+          margin: 1em 1em 1em 1.6em;
+          padding: 8px;
+          background-color: #3d3d3d;
+          border: 1px solid #e2e2e2;
+          border-radius: 3px;
+          width: auto;
+          font-size: 12px;
+        "
+      >
+public enum StateTrick: String {
+    case start
+
+    case bigCup
+    case smallCup
+    case baseCup
+    case spike
+    case lunar
+    case smallCupLunar
+    case lighthouse
+    case airplane
+
+    case swingSpike
+
+    case scoopingGoldfishStance
+    case smallCupScoopingGoldfishStance
+    case baseCupScoopingGoldfishStance
+
+    case bigCupSmallCup // Big cup, small cup
+    case smallCupBigCup // Small cup, big cup
+
+    case aroundTheWorldSBM // Small(Big) cup, big(small) cup, base cup
+
+    case aroundEuropeBKS // Big cup, spike, small cup
+    case aroundEuropeSKB // Small cup, spike, big cup
+    case aroundEuropeSKBK // Small(Big) cup, spike, big(small) cup, spike
+    case aroundEuropeSKBKM // Small(Big) cup, spike, big(small) cup, spike, base cup
+
+    case flyingPanSpike
+    case aroundTheCosmosB // Flying pan, spike, big cup
+    case aroundTheCosmosBK // Flying pan, spike, big cup, spike
+    case aroundTheCosmosBKS // Flying pan, spike, big cup, spike, small cup
+    case aroundTheCosmosS // Flying pan, spike, small cup
+    case aroundTheCosmosSK // Flying pan, spike, small cup, spike
+    case aroundTheCosmosSKB // Flying pan, spike, small cup, spike, big cup
+    case aroundTheCosmosSKBK // Flying pan, spike, small(big) cup, spike, big(small) cup, spike
+    case aroundTheCosmosSKBKM // Flying pan, spike, small(big) cup, spike, big(small) cup, spike, base cup
+
+    case aroundTheVillage
+    case aroundTheTown
+    case aroundThePrefecture
+    case aroundJapan
+    case aroundTheWorld
+    case aroundEurope
+    case aroundTheCosmos
+
+    case fallingIn
+    case lighthouseSpike
+    case buildTheLighthouse
+
+    case downspike
+    case stuntplane
+
+    case scoopingGoldfish
+    case smallCupScoopingGoldfish
+    case baseCupScoopingGoldfish
+
+    case earthTurn
+    case jstick
+    case oneTurnAirplane
+    case oneTurnLighthouse
+    case lighthouseFlip
+}
+</pre
+      >
+      <p style="font-family: verdana, sans-serif; font-size: 12px"></p>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        Java<br />
+      </p>
+      <pre
+        style="
+          font-family: consolas, menlo, 'liberation mono', courier, monospace;
+          margin: 1em 1em 1em 1.6em;
+          padding: 8px;
+          background-color: #3d3d3d;
+          border: 1px solid #e2e2e2;
+          border-radius: 3px;
+          width: auto;
+          font-size: 12px;
+        "
+      >public enum StateTrick {
+    start,
+
+    bigCup,
+    smallCup,
+    baseCup,
+    spike,
+    lunar,
+    smallCupLunar,
+    lighthouse,
+    airplane,
+
+    swingSpike,
+
+    scoopingGoldfishStance,
+    smallCupScoopingGoldfishStance,
+    baseCupScoopingGoldfishStance,
+
+    bigCupSmallCup, // Big cup, small cup
+    smallCupBigCup, // Small cup, big cup
+
+    aroundTheWorldSBM, // Small(Big) cup, big(small) cup, base cup
+
+    aroundEuropeBKS, // Big cup, spike, small cup
+    aroundEuropeSKB, // Small cup, spike, big cup
+    aroundEuropeSKBK, // Small(Big) cup, spike, big(small) cup, spike
+    aroundEuropeSKBKM, // Small(Big) cup, spike, big(small) cup, spike, base cup
+
+    flyingPanSpike,
+    aroundTheCosmosB, // Flying pan, spike, big cup
+    aroundTheCosmosBK, // Flying pan, spike, big cup, spike
+    aroundTheCosmosBKS, // Flying pan, spike, big cup, spike, small cup
+    aroundTheCosmosS, // Flying pan, spike, small cup
+    aroundTheCosmosSK, // Flying pan, spike, small cup, spike
+    aroundTheCosmosSKB, // Flying pan, spike, small cup, spike, big cup
+    aroundTheCosmosSKBK, // Flying pan, spike, small(big) cup, spike, big(small) cup, spike
+    aroundTheCosmosSKBKM, // Flying pan, spike, small(big) cup, spike, big(small) cup, spike, base cup
+
+    aroundTheVillage,
+    aroundTheTown,
+    aroundThePrefecture,
+    aroundJapan,
+    aroundTheWorld,
+    aroundEurope,
+    aroundTheCosmos,
+
+    fallingIn,
+    lighthouseSpike,
+    buildTheLighthouse,
+
+    downspike,
+    stuntplane,
+
+    scoopingGoldfish,
+    smallCupScoopingGoldfish,
+    baseCupScoopingGoldfish,
+
+    earthTurn,
+    jstick,
+    oneTurnAirplane,
+    oneTurnLighthouse,
+    lighthouseFlip
+}<br/></pre>
+      <p>
+        <br />
+      </p>
+    </div>
+  </body>
+</html>

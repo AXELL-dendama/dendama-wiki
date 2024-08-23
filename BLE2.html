@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BLE 2</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <div class="wiki wiki-page">
+        <a name="BLE-V2"></a>
+        <h1>BLE V2<br /><br /></h1>
+        <a name="アドバイタイズデータ"></a>
+        <h2>
+          アドバイタイズデータ<a
+            href="#%e3%82%a2%e3%83%89%e3%83%90%e3%82%a4%e3%82%bf%e3%82%a4%e3%82%ba%e3%83%87%e3%83%bc%e3%82%bf"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <ul>
+          <li>
+            デバイス名
+            <ul>
+              <li>
+                <code>Dendama</code>
+              </li>
+            </ul>
+          </li>
+          <li>
+            端末識別子
+            <ul>
+              <li>
+                （デバイスインフォーメーションサービスのデータとして格納）<br /><br />
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <a name="UUID"></a>
+        <h2>UUID<a href="#UUID" class="wiki-anchor">¶</a><br /><br /></h2>
+        <a name="既定のUUID"></a>
+        <h3>
+          既定のUUID<a
+            href="#%e6%97%a2%e5%ae%9a%e3%81%aeUUID"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h3>
+        <ul>
+          <li>
+            DFUサービス（Legacy DFU Service）
+            <ul>
+              <li>
+                <code>00001530-1212-EFDE-1523-785FEABCD123</code>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            デバイス・インフォメーション・サービス
+            <ul>
+              <li>
+                <code>180A</code>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            ファームウェア・リビジョン・ストリング・キャラクタリスティック
+            <ul>
+              <li><code>2A26</code><br /><br /></li>
+            </ul>
+          </li>
+        </ul>
+        <a name="独自生成のUUID-V2"></a>
+        <h3>
+          独自生成のUUID - V2<a
+            href="#%e7%8b%ac%e8%87%aa%e7%94%9f%e6%88%90%e3%81%aeUUID-V2"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h3>
+        <ul>
+          <li>
+            Dendama サービス
+            <ul>
+              <li>487051A4-F8E6-4677-9BE0-681C02232D65</li>
+              <li>
+                [0x48, 0x70, 0x51, 0xA4, 0xF8, 0xE6, 0x46, 0x77, 0x9B, 0xE0,
+                0x68, 0x1C, 0x02, 0x23, 0x2D, 0x65]
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            センサー・キャラクタリスティックス（けん・各皿、加速度、ジャイロ）
+            <ul>
+              <li>DE78BDCF-57FE-4781-9E90-3EE485201279</li>
+              <li>
+                [0xDE, 0x78, 0xBD, 0xCF, 0x57, 0xFE, 0x47, 0x81, 0x9E, 0x90,
+                0x3E, 0xE4, 0x85, 0x20, 0x12, 0x79]
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            電源レベル・キャラクタリスティックス
+            <ul>
+              <li>24E9A706-489E-4EB5-A6EA-96DDF0097A92</li>
+              <li>
+                [0x24, 0xE9, 0xA7, 0x06, 0x48, 0x9E, 0x4E, 0xB5, 0xA6, 0xEA,
+                0x96, 0xDD, 0xF0, 0x09, 0x7A, 0x92]
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            LED キャラクタリスティックス
+            <ul>
+              <li>F6C4AA68-3D49-49EF-AB80-70152F49085C</li>
+              <li>
+                [0xF6, 0xC4, 0xAA, 0x68, 0x3D, 0x49, 0x49, 0xEF, 0xAB, 0x80,
+                0x70, 0x15, 0x2F, 0x49, 0x08, 0x5C]<br /><br />
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <a name="デバイスインフォメーションサービス"></a>
+        <h2>
+          デバイス・インフォメーション・サービス<a
+            href="#%e3%83%87%e3%83%90%e3%82%a4%e3%82%b9%e3%82%a4%e3%83%b3%e3%83%95%e3%82%a9%e3%83%a1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%b5%e3%83%bc%e3%83%93%e3%82%b9"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        以下のキャラクタリスティックスを有する。
+        <ul>
+          <li>
+            ファームウェア・リビジョン・ストリング（Read）<br /><br /><br />
+          </li>
+        </ul>
+        <a name="ファームウェアリビジョンストリングキャラクタリスティック"></a>
+        <h2>
+          ファームウェア・リビジョン・ストリング・キャラクタリスティック<a
+            href="#%e3%83%95%e3%82%a1%e3%83%bc%e3%83%a0%e3%82%a6%e3%82%a7%e3%82%a2%e3%83%aa%e3%83%93%e3%82%b8%e3%83%a7%e3%83%b3%e3%82%b9%e3%83%88%e3%83%aa%e3%83%b3%e3%82%b0%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%aa%e3%82%b9%e3%83%86%e3%82%a3%e3%83%83%e3%82%af"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <ul>
+          <li>
+            読み取り情報
+            <ul>
+              <li>
+                タイプ番号（1 byte）
+                <ul>
+                  <li>2: 通常版</li>
+                  <li>3: SAO版</li>
+                </ul>
+              </li>
+              <li>
+                リビジョン番号（1 byte）
+                <ul>
+                  <li>0〜255<br /><br /></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <a name="Dendama-サービス"></a>
+        <h2>
+          Dendama サービス<a
+            href="#Dendama-%e3%82%b5%e3%83%bc%e3%83%93%e3%82%b9"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        以下のキャラクタリスティックスを有する。
+        <ul>
+          <li>センサー（Notify）</li>
+          <li>電源レベル（Notify | Read）</li>
+          <li>LED（Write）<br /><br /></li>
+        </ul>
+        <a name="センサーキャラクタリスティックス"></a>
+        <h2>
+          センサー・キャラクタリスティックス<a
+            href="#%e3%82%bb%e3%83%b3%e3%82%b5%e3%83%bc%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%aa%e3%82%b9%e3%83%86%e3%82%a3%e3%83%83%e3%82%af%e3%82%b9"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <ul>
+          <li>
+            読み取り情報 （20 bytes）
+            <ul>
+              <li>大皿の状態（2 byte）：unsigned int として使う。</li>
+              <li>小皿の状態（2 byte）：unsigned int として使う。</li>
+              <li>中皿の状態（2 byte）：unsigned int として使う。</li>
+              <li>けんの状態（2 byte）：unsigned int として使う。</li>
+              <li>加速度 x（2 bytes）：1/2048 にして使う。</li>
+              <li>加速度 y（2 bytes）：1/2048 にして使う。</li>
+              <li>加速度 z（2 bytes）：1/2048 にして使う。</li>
+              <li>ジャイロ x（2 bytes）：1/16.4 にして使う。</li>
+              <li>ジャイロ y（2 bytes）：1/16.4 にして使う。</li>
+              <li>ジャイロ z（2 bytes）：1/16.4 にして使う。<br /><br /></li>
+            </ul>
+          </li>
+        </ul>
+        <a name="電源レベルキャラクタリスティックス"></a>
+        <h2>
+          電源レベル・キャラクタリスティックス<a
+            href="#%e9%9b%bb%e6%ba%90%e3%83%ac%e3%83%99%e3%83%ab%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%aa%e3%82%b9%e3%83%86%e3%82%a3%e3%83%83%e3%82%af%e3%82%b9"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <p>1分（60秒）に一度更新される。</p>
+        <ul>
+          <li>
+            読み取り情報
+            <ul>
+              <li>
+                電源レベル（1 byte）
+                <ul>
+                  <li>1〜10ぐらい​<br /><br /></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <a name="LED-キャラクタリスティックス"></a>
+        <h2>
+          LED キャラクタリスティックス<a
+            href="#LED-%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%aa%e3%82%b9%e3%83%86%e3%82%a3%e3%83%83%e3%82%af%e3%82%b9"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <ul>
+          <li>
+            書き込み情報（4 bytes）
+            <ul>
+              <li>
+                1st byte
+                <ul>
+                  <li>[中皿, 小皿, 大皿, R, G, B, 光量1, 光量2]</li>
+                  <li>
+                    3 bits: 点灯箇所
+                    <ul>
+                      <li>1st bit: 中皿</li>
+                      <li>2nd bit: 小皿</li>
+                      <li>3rd bit: 大皿</li>
+                    </ul>
+                  </li>
+                  <li>3 bits: 色 (R, G, B)</li>
+                  <li>
+                    2 bits: 光量
+                    <ul>
+                      <li>0: 消灯, 1: 小, 2: 中, 3: 大</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                2nd byte
+                <ul>
+                  <li>立ち上げ時間</li>
+                  <li>0〜255（単位：:1/10 秒, 0.0 - 25.5秒）</li>
+                </ul>
+              </li>
+              <li>
+                3rd byte
+                <ul>
+                  <li>点灯時間</li>
+                  <li>0〜255（単位：:1/10 秒, 0.0 - 25.5秒）</li>
+                </ul>
+              </li>
+              <li>
+                4th byte
+                <ul>
+                  <li>立ち下げ時間</li>
+                  <li>0〜255（単位：:1/10 秒, 0.0 - 25.5秒）</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            光量と立ち上げ・点灯・立ち下げ時間
+            <ul>
+              <li>
+                光量 &gt; 0
+                <ul>
+                  <li>点灯指示</li>
+                  <li>
+                    点灯時間 <code>==</code> 0
+                    <ul>
+                      <li>立ち上がり後、すぐに立ち下げる。</li>
+                    </ul>
+                  </li>
+                  <li>
+                    立ち上げ時間 <code>==</code> 0
+                    <ul>
+                      <li>即時点灯</li>
+                    </ul>
+                  </li>
+                  <li>
+                    立ち下げ時間 <code>==</code> 0
+                    <ul>
+                      <li>即時消灯</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                光量 <code>==</code> 0
+                <ul>
+                  <li>消灯指示</li>
+                  <li>点灯中でなければ無視される。</li>
+                  <li>立ち上げ時間、点灯時間、立ち下げ時間は無視される。</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <br />
+    </div>
+  </body>
+</html>

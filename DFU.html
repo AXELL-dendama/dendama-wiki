@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>組込ソフトV1</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <div class="wiki wiki-page">
+        <a name="DFU"></a>
+        <h1>DFU<a href="#DFU" class="wiki-anchor">¶</a><br /><br /></h1>
+        <a name="概要"></a>
+        <h2>概要<a href="#%e6%a6%82%e8%a6%81" class="wiki-anchor">¶</a></h2>
+        <ul>
+          <li>DFU とは Device Firmware Update の略</li>
+          <li>
+            FOTA とは Firmware update Over The Air
+            の略。つまり、BLE通信を利用してDFU（ファームウェアのアップデート）を行うというもの<br /><br />
+          </li>
+        </ul>
+        <a name="DFU対応HEXファイルの作成"></a>
+        <h2>
+          DFU対応HEXファイルの作成<a
+            href="#DFU%e5%af%be%e5%bf%9cHEX%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%81%ae%e4%bd%9c%e6%88%90"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <p>
+          ここでいうDFU対応HEXファイルとは、更新前にデバイスに書き込まれているHEXファイルのことを指す。
+        </p>
+        <ol>
+          <li>
+            mbed Compiler 上で、「App with
+            Bootloader」オプションでコンパイルする。
+            <ul>
+              <li>
+                ただし、以下のコンパイル時マクロを設定する必要がある。
+                <ul>
+                  <li>
+                    DEVICE_ANALOGIN=1<br />DEVICE_ERROR_PATTERN=1<br />DEVICE_I2C=1<br />DEVICE_INTERRUPTIN=1<br />DEVICE_PORTIN=1<br />DEVICE_PORTINOUT=1<br />DEVICE_PORTOUT=1<br />DEVICE_PWMOUT=1<br />DEVICE_SERIAL=1<br />DEVICE_SLEEP=1<br />DEVICE_SPI=1<br />DEVICE_SPISLAVE=1
+                  </li>
+                </ul>
+              </li>
+              <li>DFU Bootloader 付きのバイナリが生成される。</li>
+            </ul>
+          </li>
+          <li>
+            USB経由でデバイスに生成されたHEXファイルを書き込む。<br /><br />
+          </li>
+        </ol>
+        <a name="FOTA対応HEXファイルの作成"></a>
+        <h2>
+          FOTA対応HEXファイルの作成<a
+            href="#FOTA%e5%af%be%e5%bf%9cHEX%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%81%ae%e4%bd%9c%e6%88%90"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <p>
+          ここでいうFOTA対応HEXファイルとは、更新後にデバイスに書き込まれているHEXファイルのことを指す。
+        </p>
+        <ol>
+          <li>
+            mbed Compiler 上で、「App for FOTA」オプションでコンパイルする。
+            <ul>
+              <li>
+                ただし、以下のコンパイル時マクロを設定する必要がある。
+                <ul>
+                  <li>
+                    DEVICE_ANALOGIN=1<br />DEVICE_ERROR_PATTERN=1<br />DEVICE_I2C=1<br />DEVICE_INTERRUPTIN=1<br />DEVICE_PORTIN=1<br />DEVICE_PORTINOUT=1<br />DEVICE_PORTOUT=1<br />DEVICE_PWMOUT=1<br />DEVICE_SERIAL=1<br />DEVICE_SLEEP=1<br />DEVICE_SPI=1<br />DEVICE_SPISLAVE=1
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Bootloader および SoftDevice なしの Application
+                のみのバイナリが生成される。
+              </li>
+            </ul>
+          </li>
+          <li>
+            nrftuil を使用して init packet 付きバイナリファイルを生成する。
+            <ul>
+              <li>
+                <a
+                  class="external"
+                  href="https://github.com/NordicSemiconductor/pc-nrfutil"
+                  >https://github.com/NordicSemiconductor/pc-nrfutil</a
+                >
+              </li>
+              <li>
+                <strong
+                  >mbed の現在の DFU packages format は legacy
+                  タイプなので、Version 0.5.1 を利用する。</strong
+                >
+              </li>
+              <li>
+                &gt; sudo nrfutil dfu genpkg --application &lt;hex file name&gt;
+                &lt;zip file name&gt;<br /><br />
+              </li>
+            </ul>
+          </li>
+        </ol>
+        <a name="nRF-Toolbox-for-iOS-を使用したHEXファイルの更新"></a>
+        <h2>
+          nRF Toolbox for iOS を使用したHEXファイルの更新<a
+            href="#nRF-Toolbox-for-iOS-%e3%82%92%e4%bd%bf%e7%94%a8%e3%81%97%e3%81%9fHEX%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%81%ae%e6%9b%b4%e6%96%b0"
+            class="wiki-anchor"
+            >¶</a
+          ><br /><br />
+        </h2>
+        <a name="Nordic-Semiconductor-の-iOS-アプリ"></a>
+        <h3>
+          Nordic Semiconductor の iOS アプリ<a
+            href="#Nordic-Semiconductor-%e3%81%ae-iOS-%e3%82%a2%e3%83%97%e3%83%aa"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h3>
+        <ul>
+          <li>
+            nRF Connect
+            <ul>
+              <li>BLE通信を可視化するツール</li>
+              <li>Complete Local Name の確認が行える。</li>
+              <li>サービス、キャラクタリスティックの確認が行える。</li>
+            </ul>
+          </li>
+          <li>
+            nRF Toolbox
+            <ul>
+              <li>DFU を行えるツール<br /><br /></li>
+            </ul>
+          </li>
+        </ul>
+        <a name="準備"></a>
+        <h3>準備<a href="#%e6%ba%96%e5%82%99" class="wiki-anchor">¶</a></h3>
+        <ul>
+          <li>
+            更新前のアプリの Complete Local Name を例えば DFU_TEST_1 にしておく
+          </li>
+          <li>
+            更新後のアプリの Complete Local Name を例えば DFU_TEST_2
+            にしておく<br /><br />
+          </li>
+        </ul>
+        <a name="更新"></a>
+        <h3>更新<a href="#%e6%9b%b4%e6%96%b0" class="wiki-anchor">¶</a></h3>
+        <ol>
+          <li>
+            nRF Connect で更新前の Complete Local Name を確認（DFU_TEST_1）
+          </li>
+          <li>
+            FOTA対応HEXファイル（zipファイル）をメールで iOS
+            デバイスに送信（DFU_TEST_2）
+          </li>
+          <li>
+            zipファイルを、添付ファイルに対するアクションから、nRF Toolbox
+            にコピー
+          </li>
+          <li>nRF Toolbox で DFU を起動</li>
+          <li>更新対象のデバイスを選択</li>
+          <li>
+            先ほどコピーしたファイルを Select File &gt; User Files &gt; Inbox
+            から選択
+          </li>
+          <li>Upload をタッチ</li>
+          <li>
+            完了後、nRF Connect で更新後の Complete Local Name
+            を確認（DFU_TEST_2）<br /><br />
+          </li>
+        </ol>
+        <a name="DFU-Library-を使用した自作アプリでDFU"></a>
+        <h2>
+          DFU Library を使用した自作アプリでDFU<a
+            href="#DFU-Library-%e3%82%92%e4%bd%bf%e7%94%a8%e3%81%97%e3%81%9f%e8%87%aa%e4%bd%9c%e3%82%a2%e3%83%97%e3%83%aa%e3%81%a7DFU"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <ul>
+          <li>
+            iOS-DFU-Library (deprecated)
+            <ul>
+              <li>Xcode -7, Swift 2.1-2.2, iOS 8-9</li>
+            </ul>
+          </li>
+          <li>iOS-Pods-DFU-Library</li>
+          <li>
+            DFULibrary
+            <ul>
+              <li>Xcode 8-, Swift 3.0-, macOS<br /><br /></li>
+            </ul>
+          </li>
+        </ul>
+        <a name="iOS-DFU-Library-deprecated"></a>
+        <h3>
+          iOS-DFU-Library (deprecated)<a
+            href="#iOS-DFU-Library-deprecated"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h3>
+        <ul>
+          <li>
+            リポジトリ
+            <ul>
+              <li>
+                <a
+                  class="external"
+                  href="https://github.com/NordicSemiconductor/IOS-DFU-Library"
+                  >https://github.com/NordicSemiconductor/IOS-DFU-Library</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            ドキュメント
+            <ul>
+              <li>
+                <a
+                  class="external"
+                  href="https://github.com/NordicSemiconductor/IOS-DFU-Library/tree/master/documentation"
+                  >https://github.com/NordicSemiconductor/IOS-DFU-Library/tree/master/documentation</a
+                ><br /><br />
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <a name="Requirements"></a>
+        <h4>Requirements<a href="#Requirements" class="wiki-anchor">¶</a></h4>
+        <p>iPhone 4S or newer with iOS 8+<br /><br /></p>
+        <a name="Integration"></a>
+        <h4>Integration<a href="#Integration" class="wiki-anchor">¶</a></h4>
+        <p>ドキュメントの Integration の 3 の方法でやるべし。<br /><br /></p>
+        <a name="自作アプリ"></a>
+        <h4>
+          自作アプリ<a
+            href="#%e8%87%aa%e4%bd%9c%e3%82%a2%e3%83%97%e3%83%aa"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h4>
+
+        <a name="iOS-Pods-DFU-Library"></a>
+        <h3>
+          iOS-Pods-DFU-Library<a
+            href="#iOS-Pods-DFU-Library"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h3>
+        <ul>
+          <li>
+            リポジトリ
+            <ul>
+              <li>
+                <a
+                  class="external"
+                  href="https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library"
+                  >https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library</a
+                ><br /><br />
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <a name="Installation"></a>
+        <h4>Installation<a href="#Installation" class="wiki-anchor">¶</a></h4>
+        <p>Cocoapods でやるべし。<br /><br /></p>
+        <a name="DFULibrary"></a>
+        <h3>DFULibrary<a href="#DFULibrary" class="wiki-anchor">¶</a></h3>
+        <p>iOS-Pos-DFU-Library を macOS 向けに移植したもの</p>
+
+        <a name="Integration-2"></a>
+        <h4>Integration<a href="#Integration-2" class="wiki-anchor">¶</a></h4>
+        <p>
+          DFULibrary.xcodeproj
+          をアプリケーションのプロジェクト、またはワークスペースに追加する。​<br /><br />
+        </p>
+        <a name="自作アプリ-2"></a>
+        <h4>
+          自作アプリ<a
+            href="#%e8%87%aa%e4%bd%9c%e3%82%a2%e3%83%97%e3%83%aa-2"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h4>
+        <ul>
+          <li>
+            パス
+            <ul>
+              <li>macOS/DendamaUpdater</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      ​<br />
+    </div>
+  </body>
+</html>

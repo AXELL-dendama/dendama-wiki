@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>native to web</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      a {
+        color: blue;
+      }
+      table,
+      tr,
+      td,
+      th {
+        border: 1px solid gray;
+      }
+      th {
+        background: greenyellow;
+        color: black;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <a name="Native-gt-WebNative-から-Web-の呼び出し"></a>
+      <h2>
+        Native -&gt; Web（Native から Web の呼び出し）<a
+          href="#Native-gt-WebNative-%e3%81%8b%e3%82%89-Web-%e3%81%ae%e5%91%bc%e3%81%b3%e5%87%ba%e3%81%97"
+          >¶</a
+        >
+      </h2>
+      <hr />
+      <a name="ble_on"></a>
+      <h2>ble_on()<a href="#ble_on" class="wiki-anchor">¶</a><br /></h2>
+      <p>端末の Bluetooth が On<br /></p>
+      <hr />
+      <a name="ble_off"></a>
+      <h2>ble_off()<a href="#ble_off" class="wiki-anchor">¶</a></h2>
+      <p>端末の Bluetooth が Off</p>
+      <hr />
+      <a name="complete_delete_account"></a>
+      <h2>
+        complete_delete_account()<a
+          href="#complete_delete_account"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>カウントの削除が完了したことの通知<br /></p>
+      <hr />
+      <a name="device_token_send-deviceTokenString-"></a>
+      <h2>
+        device_token_send( <em>deviceTokenString</em> )<a
+          href="#device_token_send-deviceTokenString-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>プッシュ通知のデバイストークンを送る。</p>
+      <ul>
+        <li>deviceTokenString プッシュ通知のデバイストークン</li>
+      </ul>
+      <hr />
+      <a name="disconnect-deviceId-"></a>
+      <h2>
+        disconnect( <em>deviceId</em> )<a
+          href="#disconnect-deviceId-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>電玉が切断</p>
+      <ul>
+        <li>deviceId 切断した電玉のデバイスID</li>
+      </ul>
+      <hr />
+      <a name="discover_dendama-count-"></a>
+      <h2>
+        discover_dendama( <em>count</em> )<a
+          href="#discover_dendama-count-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>電玉の検出</p>
+      <ul>
+        <li>count 検出された電玉の数</li>
+      </ul>
+      <hr />
+      <a name="fail_connect-deviceId-"></a>
+      <h2>
+        fail_connect( <em>deviceId</em> )<a
+          href="#fail_connect-deviceId-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>電玉の接続に失敗</p>
+      <ul>
+        <li>
+          deviceId
+          接続に失敗した電玉のデバイスID。そもそもスキャンされていない場合は空となる。
+        </li>
+      </ul>
+      <hr />
+      <a name="fail_firmware_revision-device_id-"></a>
+      <h2>
+        fail_firmware_revision( <em>device_id</em> )<a
+          href="#fail_firmware_revision-device_id-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>電玉のファームウェアバージョンの取得失敗</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+      </ul>
+      <hr />
+      <a name="fail_hardware_revision-device_id-"></a>
+      <h2>
+        fail_hardware_revision( <em>device_id</em> )<a
+          href="#fail_hardware_revision-device_id-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>電玉のハードウェアバージョンの取得失敗</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+      </ul>
+      <p>
+        <strong>2.0 以降では呼ばれない。</strong>
+      </p>
+      <hr />
+      <a name="fail_regist"></a>
+      <h2>fail_regist()<a href="#fail_regist" class="wiki-anchor">¶</a></h2>
+      <p>フォーンUUIDの登録失敗</p>
+      <hr />
+      <a name="fail_scan"></a>
+      <h2>fail_scan()<a href="#fail_scan" class="wiki-anchor">¶</a></h2>
+      <p>スキャン失敗</p>
+      <hr />
+      <a name="fail_update_battery_level-device_id-"></a>
+      <h2>
+        fail_update_battery_level( <em>device_id</em> )<a
+          href="#fail_update_battery_level-device_id-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>バッテリー情報の取得失敗</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+      </ul>
+      <hr />
+      <a name="fail_update_notify-deviceId-type-"></a>
+      <h2>
+        fail_update_notify( <em>deviceId</em>, <em>type</em> )<a
+          href="#fail_update_notify-deviceId-type-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>センサー、またはバッテリー情報の通知設定の失敗</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+        <li>
+          type 種類
+          <ul>
+            <li>&quot;sensor&quot; センサー情報</li>
+            <li>&quot;battery&quot; バッテリー情報</li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <a name="firmware_revision-deviceId-version-"></a>
+      <h2>
+        firmware_revision( <em>deviceId</em>, <em>version</em> )<a
+          href="#firmware_revision-deviceId-version-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>電玉のファームウェアバージョン</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+        <li>
+          version バージョン情報（形式：type.revision、例：&quot;2.0&quot;）
+          <ul>
+            <li>
+              type 電玉のタイプ
+              <ul>
+                <li>1: V1</li>
+                <li>2: V2 通常タイプ</li>
+                <li>3: V2 SAOタイプ</li>
+              </ul>
+            </li>
+            <li>revision リビジョン番号</li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <a name="found_uuid-phoneUuid-"></a>
+      <h2>
+        found_uuid( <em>phoneUuid</em> )<a
+          href="#found_uuid-phoneUuid-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>フォーンUUIDの通知</p>
+      <ul>
+        <li>phoneUuid フォーンUUID</li>
+      </ul>
+      <hr />
+      <a name="hardware_revision-deviceId-version-"></a>
+      <h2>
+        hardware_revision( <em>deviceId</em>, <em>version</em> )<a
+          href="#hardware_revision-deviceId-version-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>電玉のハードウェアバージョンの通知</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+        <li>
+          version 電玉のハードウェアバージョン
+          <ul>
+            <li>1: V1</li>
+            <li>2: V2</li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <a name="not_found_uuid"></a>
+      <h2>
+        not_found_uuid()<a href="#not_found_uuid" class="wiki-anchor">¶</a>
+      </h2>
+      <p>フォーンUUIDが登録されていないときの通知</p>
+      <hr />
+      <a name="sensor-device_id-prox-accel-gyro-quat-tama-"></a>
+      <h2>
+        sensor( <em>device_id</em>, <em>prox</em>, <em>accel</em>,
+        <em>gyro</em>, <em>quat</em>, <em>tama</em> )<a
+          href="#sensor-device_id-prox-accel-gyro-quat-tama-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>
+        電玉のセンシング情報（誘電体センサー、加速度、ジャイロ
+        、姿勢、玉の位置）
+      </p>
+      <ul>
+        <li>device_id 電玉のデバイスID</li>
+        <li>
+          prox 誘電体センサー
+          <ul>
+            <li>
+              例：{bigCup: true, smallCup: false, baseCup: false, spike: false}
+              （ <strong>〜1.6</strong> ）
+            </li>
+            <li>
+              例：{bigCup: 861, smallCup: 0, baseCup, 0: spike: 0} （
+              <strong>2.0〜</strong> ）
+            </li>
+          </ul>
+        </li>
+        <li>
+          accel 加速度
+          <ul>
+            <li>例：{x: -0.09, y: 0.11, z: -0.01}</li>
+          </ul>
+        </li>
+        <li>
+          gyro ジャイロ
+          <ul>
+            <li>例：{x: -174.5, y: 17.6, z: 213.1}</li>
+          </ul>
+        </li>
+        <li>
+          quat 姿勢（クォータニオン）
+          <ul>
+            <li>例：{x: -0.5, y: 0.08, z: 0.28, w: 0.81}</li>
+          </ul>
+        </li>
+        <li>
+          tama 玉の位置
+          <ul>
+            <li>
+              <strong>3Dモデルの玉のノード名に対応している</strong> （<a
+                href="https://bitbucket.org/hatashinya/dendamalibrary-swift/src/develop/Tool/res/attitude.dae"
+                class="external"
+                >attitude.dae</a
+              >
+              ：けん玉 3Dモデル）
+              <table>
+                <tbody>
+                  <tr>
+                    <td>null</td>
+                    <td>乗っていない</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-bigCup&quot;</td>
+                    <td>大皿</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-smallCup&quot;</td>
+                    <td>小皿</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-baseCup&quot;</td>
+                    <td>中皿</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-spike&quot;</td>
+                    <td>けん</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-bigCupBird&quot;</td>
+                    <td>大皿うぐいす</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-smallCupBird&quot;</td>
+                    <td>小皿うぐいす</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-bigCupUnderbird&quot;</td>
+                    <td>大皿アンダーバード</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-smallCupUnderbird&quot;</td>
+                    <td>小皿アンダーバード</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-slipStop&quot;</td>
+                    <td>すべり止め</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-backSlipStop&quot;</td>
+                    <td>すべり止め（逆側）</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-handlestall&quot;</td>
+                    <td>中皿の縁</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-backHandlestall&quot;</td>
+                    <td>中皿の縁（逆側）</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-bigWing&quot;</td>
+                    <td>大皿の縁</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-backBigWing&quot;</td>
+                    <td>大皿の縁（逆側）</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-smallWing&quot;</td>
+                    <td>小皿の縁</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-backSmallWing&quot;</td>
+                    <td>小皿の縁（逆側）</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-dragonfly&quot;</td>
+                    <td>とんぼ</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-backDragonfly&quot;</td>
+                    <td>とんぼ（逆側）</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-bodyCatch&quot;</td>
+                    <td>おみこし</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-backBodyCatch&quot;</td>
+                    <td>おみこし（逆側）</td>
+                  </tr>
+                  <tr>
+                    <td>&quot;tama-hanging&quot;</td>
+                    <td>つるし持ち</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <a name="success_connect-deviceId-"></a>
+      <h2>
+        success_connect( <em>deviceId</em> )<a
+          href="#success_connect-deviceId-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>電玉の接続</p>
+      <ul>
+        <li>deviceId 接続された電玉のデバイスID</li>
+      </ul>
+      <hr />
+      <a name="success_regist"></a>
+      <h2>
+        success_regist()<a href="#success_regist" class="wiki-anchor">¶</a>
+      </h2>
+      <p>フォーンUUIDの登録成功</p>
+      <hr />
+      <a name="success_update_notify-deviceId-type-"></a>
+      <h2>
+        success_update_notify( <em>deviceId</em>, <em>type</em> )<a
+          href="#success_update_notify-deviceId-type-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>センサー、またはバッテリー情報の通知設定の成功</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+        <li>
+          type 種類
+          <ul>
+            <li>&quot;sensor&quot; センサー情報</li>
+            <li>&quot;battery&quot; バッテリー情報</li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <a
+        name="trick-deviceId-sensingTrick-finalTrick-seriesTrick-midSeriesTrick-secondTrick-trick-deviceId-trick-"
+      ></a>
+      <h2>
+        <del
+          >trick( <em>deviceId</em>, <em>sensingTrick</em>, <em>finalTrick</em>,
+          <em>seriesTrick</em>, <em>midSeriesTrick</em>,
+          <em>secondTrick</em> )</del
+        ><br />trick( <em>deviceId</em>, <em>trick</em> )<a
+          href="#trick-deviceId-sensingTrick-finalTrick-seriesTrick-midSeriesTrick-secondTrick-trick-deviceId-trick-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>技判定</p>
+      <ul>
+        <li>deviceId 技判定を行った電玉のデバイスID</li>
+        <li>
+          trick 判定した技の情報を格納したオブジェクト、以下各要素
+          <ul>
+            <li>
+              sensingTrick
+              <ul>
+                <li>誘電体センサーと電玉の姿勢から決まる状態</li>
+                <li>
+                  詳細：<a
+                    class="wiki-page"
+                    href="/DendamaAPP_WIKI/V2%E6%8A%80%E5%88%A4%E5%AE%9A_%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0.html#Sensing-trick"
+                    >Sensing trick</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              finalTrick
+              <ul>
+                <li>Sensing trick の状態遷移から決まる最終的な技</li>
+                <li>
+                  詳細：<a
+                    class="wiki-page"
+                    href="/DendamaAPP_WIKI/V2%E6%8A%80%E5%88%A4%E5%AE%9A_%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0.html#Final-trick"
+                    >Final trick</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              seriesTrick
+              <ul>
+                <li>Final trick を技とすると、Series trick は技の配列</li>
+                <li>
+                  詳細：
+                  <a
+                    class="wiki-page"
+                    href="/DendamaAPP_WIKI/V2%E6%8A%80%E5%88%A4%E5%AE%9A_%E8%A7%A3%E8%AA%AC.html#Final-trick-%E3%81%A8-Series-trick"
+                    >Series trick</a
+                  >
+                </li>
+                <li>成立していない場合は undefined</li>
+              </ul>
+            </li>
+            <li>
+              midSeriesTrick
+              <ul>
+                <li>途中の技（例：世界一周、ヨーロッパ一周）</li>
+                <li>技の途中と判別できない場合は undefined</li>
+              </ul>
+            </li>
+            <li>
+              secondTrick
+              <ul>
+                <li>第二候補の技</li>
+                <li>ない場合は undefined</li>
+              </ul>
+            </li>
+            <li>
+              例
+              <ul>
+                <li>
+                  {sensingTrick: &quot;smallCup&quot;, finalTrick:
+                  &quot;smallCup&quot;}
+                </li>
+                <li>
+                  {sensingTrick: &quot;baseCup&quot;, finalTrick:
+                  &quot;baseCup&quot;, midSeriesTrick:
+                  &quot;aroundTheWorld&quot;}
+                </li>
+                <li>
+                  {sensingTrick: &quot;spike&quot;, finalTrick:
+                  &quot;spike&quot;, seriesTrick: &quot;aroundTheWorld&quot;}
+                </li>
+                <li>
+                  {sensingTrick: &quot;spike&quot;, finalTrick:
+                  &quot;pullupSpike&quot;, secondTrick: &quot;swingSpike&quot;}
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <a name="gesture-deviceId-value-20"></a>
+      <h2>
+        gesture( <em>deviceId</em>, <em>value</em> ) （2.0〜）<a
+          href="#gesture-deviceId-value-20"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>ジェスチャー</p>
+      <ul>
+        <li>deviceId ジェスチャーを行った電玉のデバイスID</li>
+        <li>
+          value ジェスチャーの内容
+          <ul>
+            <li>&quot;bigCup&quot; 大皿</li>
+            <li>&quot;smallCup&quot; 小皿</li>
+            <li>&quot;baseCup&quot; 中皿</li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <a name="update_battery_level-deviceId-value-"></a>
+      <h2>
+        update_battery_level( <em>deviceId</em>, <em>value</em> )<a
+          href="#update_battery_level-deviceId-value-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>バッテリー情報</p>
+      <ul>
+        <li>deviceId バッテリー情報を取得した電玉のデバイスID</li>
+        <li>value バッテリー残量、1 〜 10</li>
+      </ul>
+      <hr />
+      <a name="app_pause"></a>
+      <h2>app_pause()<a href="#app_pause" class="wiki-anchor">¶</a></h2>
+      <p>アプリがバックグラウンドに入った際の通知</p>
+      <hr />
+      <a name="app_resume"></a>
+      <h2>app_resume()<a href="#app_resume" class="wiki-anchor">¶</a></h2>
+      <p>アプリがフォアグラウンドに戻った際の通知</p>
+      <hr />
+      <a name="makePayments-enable-"></a>
+      <h2>
+        makePayments( <em>enable</em> )<a
+          href="#makePayments-enable-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>購入可能かどうか</p>
+      <ul>
+        <li>
+          enable
+          <ul>
+            <li>true: 購入可能</li>
+            <li>false: 購入不可</li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <a name="products-product-"></a>
+      <h2>
+        products( [ <em>product</em>, ...] )<a
+          href="#products-product-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>商品情報</p>
+      <ul>
+        <li>
+          product 商品情報
+          <ul>
+            <li>product.id 商品ID</li>
+            <li>product.title 商品名</li>
+            <li>product.descrption 商品説明</li>
+            <li>product.price 価格</li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <a name="fail_request_products"></a>
+      <h2>
+        fail_request_products()<a
+          href="#fail_request_products"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>商品情報の取得失敗</p>
+      <hr />
+      <a name="ios_payment_purchasing-sku-"></a>
+      <h2>
+        ios_payment_purchasing( <em>sku</em> )<a
+          href="#ios_payment_purchasing-sku-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>商品購入の処理中</p>
+      <ul>
+        <li>sku 商品ID</li>
+      </ul>
+      <hr />
+      <a name="ios_payment_deferred-sku-"></a>
+      <h2>
+        ios_payment_deferred( <em>sku</em> )<a
+          href="#ios_payment_deferred-sku-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>商品購入の保留中</p>
+      <p>（支払い方法を設定中の場合など）</p>
+      <ul>
+        <li>sku 商品ID</li>
+      </ul>
+      <hr />
+      <a
+        name="ios_update_payment-sku-transactionId-receiptData-android_update_payment-sku-purchaseToken-orderId-receiptData-signature-"
+      ></a>
+      <h2>
+        ios_update_payment( <em>sku</em>, <em>transactionId</em>,
+        <em>receiptData</em> )<br />android_update_payment( <em>sku</em>,
+        <em>purchaseToken</em>, <em>orderId</em>, <em>receiptData</em>,
+        <em>signature</em> )<a
+          href="#ios_update_payment-sku-transactionId-receiptData-android_update_payment-sku-purchaseToken-orderId-receiptData-signature-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>商品購入の成功</p>
+      <ul>
+        <li>sku 商品ID</li>
+        <li>transactionId トランザクションID</li>
+        <li>receiptData レシートデータ</li>
+      </ul>
+      <ul>
+        <li>sku 商品ID</li>
+        <li>purchaseToken 購入トークン</li>
+        <li>orderId 購入ID</li>
+        <li>receiptData レシートデータ</li>
+        <li>signature 署名</li>
+      </ul>
+      <hr />
+      <a name="ios_cancel_payment-sku-message-android_cancel_payment"></a>
+      <h2>
+        ios_cancel_payment( <em>sku</em>,
+        <em>message</em> )<br />android_cancel_payment()<a
+          href="#ios_cancel_payment-sku-message-android_cancel_payment"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>商品購入のキャンセル</p>
+      <ul>
+        <li>sku 商品ID</li>
+        <li>message キャンセル理由</li>
+      </ul>
+      <hr />
+      <a name="ios_fail_payment-sku-messageandroid_fail_payment"></a>
+      <h2>
+        ios_fail_payment( <em>sku</em>,
+        <em>message</em>)<br />android_fail_payment()<a
+          href="#ios_fail_payment-sku-messageandroid_fail_payment"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>商品購入の失敗</p>
+      <ul>
+        <li>sku 商品ID</li>
+        <li>message 失敗理由（省略あり）</li>
+      </ul>
+      <hr />
+      <a
+        name="ios_fail_request_payment-message-android_fail_request_payment-message-"
+      ></a>
+      <h2>
+        ios_fail_request_payment(
+        <em>message</em> )<br />android_fail_request_payment(
+        <em>message</em> )<a
+          href="#ios_fail_request_payment-message-android_fail_request_payment-message-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>商品購入の要求失敗</p>
+      <ul>
+        <li>message 失敗理由</li>
+      </ul>
+      <hr />
+      <a
+        name="ios_success_finish_payment-transactionId-android_success_finish_payment-purchaseToken-"
+      ></a>
+      <h2>
+        ios_success_finish_payment(
+        <em>transactionId</em> )<br />android_success_finish_payment(
+        <em>purchaseToken</em> )<a
+          href="#ios_success_finish_payment-transactionId-android_success_finish_payment-purchaseToken-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>商品購入の完了成功</p>
+      <ul>
+        <li>transactionId トランザクションID</li>
+      </ul>
+      <ul>
+        <li>purchaseToken 購入トークン</li>
+      </ul>
+      <hr />
+      <a
+        name="ios_fail_finish_payment-transactionId-android_fail_finish_payment-purchaseToken-"
+      ></a>
+      <h2>
+        ios_fail_finish_payment(
+        <em>transactionId</em> )<br />android_fail_finish_payment(
+        <em>purchaseToken</em> )<a
+          href="#ios_fail_finish_payment-transactionId-android_fail_finish_payment-purchaseToken-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>商品購入の完了失敗</p>
+      <ul>
+        <li>transactionId トランザクションID</li>
+      </ul>
+      <ul>
+        <li>purchaseToken 購入トークン</li>
+      </ul>
+      <hr />
+      <a name="success_restore_payments-sku-"></a>
+      <h2>
+        success_restore_payments( [ <em>sku</em>, ... ])<a
+          href="#success_restore_payments-sku-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>商品購入のリストア成功</p>
+      <ul>
+        <li>sku 購入済み商品の商品ID</li>
+      </ul>
+      <hr />
+      <a name="fail_restore_payments-message-"></a>
+      <h2>
+        fail_restore_payments( <em>message</em> )<a
+          href="#fail_restore_payments-message-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>商品購入のリストア失敗</p>
+      <ul>
+        <li>message 失敗理由（省略あり）</li>
+      </ul>
+      <br />
+    </div>
+  </body>
+</html>

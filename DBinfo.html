@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DBinfo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <div class="wiki wiki-page">
+        <a name="DB-Info"></a>
+        <h1>DB Info<br /></h1>
+        <ul>
+          <li>
+            iOS
+            <ul>
+              <li>UserDefaultsを利用</li>
+              <li>
+                DB構造<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+[lastDeviceId]                最後に接続した電玉のUUID
+[phoneUuid]                   スマホのUUID
+[deviceTokenString]           push通知用の識別子
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            Android
+            <ul>
+              <li>SharedPreferencesを利用</li>
+              <li>
+                DB構造<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+​[lastDeviceId]                最後に接続した電玉のUUID
+[phoneUuid]                   スマホのUUID
+[deviceTokenString]           push通知用の識別子
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>Web</li>
+        </ul>
+        <div>
+          <img
+            src="./img/diagram_dendamav1.png"
+            alt="diagram.png"
+            data-themekey="#"
+            style="margin: 5px; width: 1500px; height: 708px"
+          />
+          <br />
+          <br />
+        </div>
+        <hr />
+        <ul>
+          <li>
+            DB補足
+            <ul>
+              <li>
+                解放技
+                <ul>
+                  <li>
+                    DBとしては持たず、ロジック内にもつ（settingsファイル）
+                  </li>
+                  <li>解放されるとuser_trickレコードが作られる</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <br />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BLE</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <div class="wiki wiki-page">
+        <a name="BLE"></a>
+        <h1>BLE<br /><br /></h1>
+        <a name="アドバイタイズデータ"></a>
+        <h2>
+          アドバイタイズデータ<a
+            href="#%e3%82%a2%e3%83%89%e3%83%90%e3%82%a4%e3%82%bf%e3%82%a4%e3%82%ba%e3%83%87%e3%83%bc%e3%82%bf"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <ul>
+          <li>
+            デバイス名
+            <ul>
+              <li>
+                <code>Dendama</code>
+              </li>
+            </ul>
+          </li>
+          <li>
+            端末識別子
+            <ul>
+              <li>
+                （デバイスインフォーメーションサービスのデータとして格納）
+              </li>
+            </ul>
+          </li>
+          <li>
+            例：iOS の CoreBluetooth
+            でのデバイス名による識別、および端末識別子の取得<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >
+func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
+    if let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
+        if name == &quot;Dendama&quot; {
+            if let serviceData = advertisementData[CBAdvertisementDataServiceDataKey] as? [CBUUID: NSData] {
+                let deviceInformationKey = CBUUID(string: &quot;180A&quot;)
+                if let deviceId = serviceData[deviceInformationKey] {
+                    self.deviceId = deviceId
+                }
+            }
+            self.peripheral = peripheral
+            self.centralManager.stopScan()
+            self.centralManager.connectPeripheral(peripheral, options: nil)
+        }
+    }
+}
+</pre
+            >
+          </li>
+          <li>
+            例: androidでのデバイス名、端末識別子の取得<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >
+  private void startScanByBleScanner() {
+    mBleScanner = mBleAdapter.getBluetoothLeScanner();
+    mBleScanner.startScan(null, mScanSettings, new ScanCallback() {
+
+      @Override
+      public void onScanResult(int callbackType, ScanResult result) {
+        super.onScanResult(callbackType, result);
+
+        BluetoothDevice bluetoothDevice = result.getDevice();
+        String name = result.getScanRecord().getDeviceName();
+        String scanRecord = result.getScanRecord().toString();
+
+        if(name != null &amp;&amp; name.contains(DendamaName)){
+          String ServiceDataTemp = scanRecord.split(&quot;mServiceData=\\{&quot;,0)[1];
+          String ServiceData = ServiceDataTemp.split(&quot;\\[&quot;,0)[1].split(&quot;\\]&quot;,0)[0];
+          Log.d(&quot;custom/onScanResult&quot;, &quot;ServiceData:&quot;+ServiceData);
+
+          // 符号つき10進数から16進数1byteへ変換
+          String peripheral_uuid = convertUUID(ServiceData);
+
+        }else{
+
+        }
+      }
+</pre
+            >
+          </li>
+        </ul>
+        <ul>
+          <li>
+            peripheral.name にはデバイス名が入ってこない場合があるので注意<br /><br />
+          </li>
+        </ul>
+        <a name="UUID"></a>
+        <h2>UUID<a href="#UUID" class="wiki-anchor">¶</a><br /><br /></h2>
+        <a name="既定のUUID"></a>
+        <h3>
+          既定のUUID<a
+            href="#%e6%97%a2%e5%ae%9a%e3%81%aeUUID"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h3>
+        <ul>
+          <li>
+            DFUサービス（Legacy DFU Service）
+            <ul>
+              <li>
+                <code>00001530-1212-EFDE-1523-785FEABCD123</code>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            デバイス・インフォメーション・サービス
+            <ul>
+              <li>
+                <code>180A</code>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            ファームウェア・リビジョン・ストリング・キャラクタリスティック
+            <ul>
+              <li><code>2A26</code><br /><br /></li>
+            </ul>
+          </li>
+        </ul>
+        <a name="独自生成のUUID-V1"></a>
+        <h3>
+          独自生成のUUID - V1<a
+            href="#%e7%8b%ac%e8%87%aa%e7%94%9f%e6%88%90%e3%81%aeUUID-V1"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h3>
+        <ul>
+          <li>
+            Dendama サービス
+            <ul>
+              <li>
+                <code>6395A3AE-D833-4B30-9682-C6E8111EB3BD</code>
+              </li>
+              <li>
+                <code
+                  >[0x63, 0x95, 0xA3, 0xAE, 0xD8, 0x33, 0x4B, 0x30, 0x96, 0x82,
+                  0xC6, 0xE8, 0x11, 0x1E, 0xB3, 0xBD]</code
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            センサー・キャラクタリスティックス（けん・各皿、加速度、ジャイロ、クォータニオン）
+            <ul>
+              <li>
+                <code>F5F21424-815F-45F5-A52C-BBDED0C21E35</code>
+              </li>
+              <li>
+                <code
+                  >[0xF5, 0xF2, 0x14, 0x24, 0x81, 0x5F, 0x45, 0xF5, 0xA5, 0x2C,
+                  0xBB, 0xDE, 0xD0, 0xC2, 0x1E, 0x35]</code
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            電源レベル・キャラクタリスティックス
+            <ul>
+              <li>
+                <code>EAFB0B00-AA1D-45DD-8CE6-C0C0247F04E3</code>
+              </li>
+              <li>
+                <code
+                  >[0xEA, 0xFB, 0x0B, 0x00, 0xAA, 0x1D, 0x45, 0xDD, 0x8C, 0xE6,
+                  0xC0, 0xC0, 0x24, 0x7F, 0x04, 0xE3]</code
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            LED キャラクタリスティックス
+            <ul>
+              <li>
+                <code>100CE418-BE57-4FEA-8AB2-9B6EA3A8FEC4</code>
+              </li>
+              <li>
+                <code
+                  >[0x10, 0x0C, 0xE4, 0x18, 0xBE, 0x57, 0x4F, 0xEA, 0x8A, 0xB2,
+                  0x9B, 0x6E, 0xA3, 0xA8, 0xFE, 0xC4]</code
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <del>赤LED キャラクタリスティックス（動作確認用）</del>
+            <ul>
+              <li>
+                <del> <code>538EFAE5-1F3A-45AD-8017-803E7392CE63</code></del>
+              </li>
+              <li>
+                <del
+                  ><code
+                    >[0x53, 0x8E, 0xFA, 0xE5, 0x1F, 0x3A, 0x45, 0xAD, 0x80,
+                    0x17, 0x80, 0x3E, 0x73, 0x92, 0xCE, 0x63]</code
+                  ></del
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            モーター・キャラクタリスティックス
+            <ul>
+              <li>
+                <code>43F5FCD5-EC56-4F95-88FE-EAE87CDFD997</code>
+              </li>
+              <li>
+                <code
+                  >[0x43, 0xF5, 0xFC, 0xD5, 0xEC, 0x56, 0x4F, 0x95, 0x88, 0xFE,
+                  0xEA, 0xE8, 0x7C, 0xDF, 0xD9, 0x97]</code
+                ><br /><br />
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <a name="サービス"></a>
+        <h2>
+          サービス<a
+            href="#%e3%82%b5%e3%83%bc%e3%83%93%e3%82%b9"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        以下のサービスを有する。
+        <ul>
+          <li>DFUサービス（Legacy DFU Service）</li>
+          <li>デバイス・インフォメーション・サービス</li>
+          <li>Dendamaサービス<br /><br /></li>
+        </ul>
+        <a name="デバイスインフォメーションサービス"></a>
+        <h2>
+          デバイス・インフォメーション・サービス<a
+            href="#%e3%83%87%e3%83%90%e3%82%a4%e3%82%b9%e3%82%a4%e3%83%b3%e3%83%95%e3%82%a9%e3%83%a1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%b5%e3%83%bc%e3%83%93%e3%82%b9"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        以下のキャラクタリスティックスを有する。
+        <ul>
+          <li>ハードウェア・リビジョン・ストリング（Read）</li>
+          <li>ファームウェア・リビジョン・ストリング（Read）​<br /><br /></li>
+        </ul>
+        <a name="ハードウェアリビジョンストリングキャラクタリスティック"></a>
+        <h2>
+          ハードウェア・リビジョン・ストリング・キャラクタリスティック<a
+            href="#%e3%83%8f%e3%83%bc%e3%83%89%e3%82%a6%e3%82%a7%e3%82%a2%e3%83%aa%e3%83%93%e3%82%b8%e3%83%a7%e3%83%b3%e3%82%b9%e3%83%88%e3%83%aa%e3%83%b3%e3%82%b0%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%aa%e3%82%b9%e3%83%86%e3%82%a3%e3%83%83%e3%82%af"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <ul>
+          <li>
+            読み取り情報
+            <ul>
+              <li>
+                リビジョン番号（1 byte）
+                <ul>
+                  <li>1（初代電玉）</li>
+                  <li>2（2代目電玉）</li>
+                  <li>：</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            例：読み取り開始<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >
+peripheral.readValueForCharacteristic(hardwareRevisionCharacteristic)
+</pre
+            >
+          </li>
+          <li>
+            例：読み取り<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+    :
+    var revisionValue: UInt8 = 0
+    let length = sizeof(UInt8)
+    characteristic.value.getBytes(&amp;revisionValue, length: length)
+    :
+}
+<br/><br/></pre>
+          </li>
+        </ul>
+        <a name="ファームウェアリビジョンストリングキャラクタリスティック"></a>
+        <h2>
+          ファームウェア・リビジョン・ストリング・キャラクタリスティック<a
+            href="#%e3%83%95%e3%82%a1%e3%83%bc%e3%83%a0%e3%82%a6%e3%82%a7%e3%82%a2%e3%83%aa%e3%83%93%e3%82%b8%e3%83%a7%e3%83%b3%e3%82%b9%e3%83%88%e3%83%aa%e3%83%b3%e3%82%b0%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%aa%e3%82%b9%e3%83%86%e3%82%a3%e3%83%83%e3%82%af"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <ul>
+          <li>
+            読み取り情報
+            <ul>
+              <li>
+                バージョン番号（1 byte）
+                <ul>
+                  <li>0〜255</li>
+                </ul>
+              </li>
+              <li>
+                ビルド番号（1 byte）
+                <ul>
+                  <li>0〜255</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            例：読み取り開始<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >
+peripheral.readValueForCharacteristic(softwareRevisionCharacteristic)
+</pre
+            >
+          </li>
+          <li>
+            例：読み取り<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+    :
+    var revisionValue: [UInt8] = [0, 0]
+    let length = sizeof(UInt8) * 2
+    characteristic.value.getBytes(&amp;revisionValue, length: length)
+    :
+}
+<br/><br/></pre>
+          </li>
+        </ul>
+        <a name="Dendama-サービス"></a>
+        <h2>
+          Dendama サービス<a
+            href="#Dendama-%e3%82%b5%e3%83%bc%e3%83%93%e3%82%b9"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        以下のキャラクタリスティックスを有する。
+        <ul>
+          <li>センサー（Notify）</li>
+          <li>電源レベル（Notify | Read）</li>
+          <li>LED（Write）</li>
+          <li>モーター（Write）<br /><br /></li>
+        </ul>
+        <a name="各皿けん"></a>
+        <h2>
+          各皿・けん<a
+            href="#%e5%90%84%e7%9a%bf%e3%81%91%e3%82%93"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <p>
+          センサー・キャラクタリスティックスの読み取り、LED
+          キャラクタリスティックスの書き込みで使用するビットフラグは以下の通りとする。
+        </p>
+        <ul>
+          <li>大皿：0x01 (0b0001)</li>
+          <li>小皿：0x02 (0b0010)</li>
+          <li>中皿：0x04 (0b0100)</li>
+          <li>けん：0x08 (0b1000)</li>
+        </ul>
+        <ul>
+          <li>
+            例：大皿、小皿、中皿のLEDを同時に光らせるような場合
+            <ul>
+              <li><code>0x01 | 0x02 | 0x04</code><br /><br /></li>
+            </ul>
+          </li>
+        </ul>
+        <a name="センサーキャラクタリスティックス"></a>
+        <h2>
+          センサー・キャラクタリスティックス<a
+            href="#%e3%82%bb%e3%83%b3%e3%82%b5%e3%83%bc%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%aa%e3%82%b9%e3%83%86%e3%82%a3%e3%83%83%e3%82%af%e3%82%b9"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <ul>
+          <li>
+            読み取り情報
+            <ul>
+              <li>各皿・けんの状態（1 byte、ただし下位 4 bits のみ使用）</li>
+              <li>加速度 x（2 bytes）：1/100 にして使う。</li>
+              <li>加速度 y（2 bytes）：1/100 にして使う。</li>
+              <li>加速度 z（2 bytes）：1/100 にして使う。</li>
+              <li>ジャイロ x（2 bytes）：1/10 にして使う。</li>
+              <li>ジャイロ y（2 bytes）：1/10 にして使う。</li>
+              <li>ジャイロ z（2 bytes）：1/10 にして使う。</li>
+              <li>クォータニオン x（1 byte）：1/100 にして使う。</li>
+              <li>クォータニオン y（1 byte）：1/100 にして使う。</li>
+              <li>クォータニオン z（1 byte）：1/100 にして使う。</li>
+              <li>クォータニオン w（1 byte）：1/100 にして使う。</li>
+            </ul>
+          </li>
+          <li>
+            例：読み取り開始<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >
+peripheral.setNotifyValue(true, forCharacteristic: sensorCharacteristic)
+</pre
+            >
+          </li>
+          <li>
+            例：読み取り<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >
+func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+    :
+    let value = characteristic.value
+
+    var sensing: UInt8 = 0
+    let sensingValueLength = sizeof(UInt8)
+    value.getBytes(&amp;sensing, length: sensingValueLength)
+
+    let MotionCount: Int = 6
+    let motionValueLength = sizeof(Int16) * MotionCount
+    let motionValue = value.subdataWithRange(NSMakeRange(sensingValueLength, motionValueLength))
+    var motions = [Int16](count: MotionCount, repeatedValue: 0)
+    motionValue.getBytes(&amp;motions, length: motionValue.length)
+    let accelX = Float(motions[0]) / 100
+    let accelY = Float(motions[1]) / 100
+    let accelZ = Float(motions[2]) / 100
+    let gyroX = Float(motions[3]) / 10
+    let gyroY = Float(motions[4]) / 10
+    let gyroZ = Float(motions[5]) / 10
+
+    let QuaternionCount: Int = 4
+    let quaternionValue = value.subdataWithRange(NSMakeRange(sensingValueLength + motionValueLength, sizeof(Int8) * QuaternionCount))
+    var quaternions = [Int8](count: QuaternionCount, repeatedValue: 0)
+    quaternionValue.getBytes(&amp;quaternions, length: quaternionValue.length)
+    let quatX = Float(quaternions[0]) / 100
+    let quatY = Float(quaternions[1]) / 100
+    let quatZ = Float(quaternions[2]) / 100
+    let quatW = Float(quaternions[3]) / 100
+    :
+}
+</pre
+            >
+          </li>
+          <li>
+            例：読み取り（SensorData クラスを使用）<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >
+func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+    :
+    let value = characteristic.value
+    let data = SensorData(data: value)
+    let sensing = data.sensing // センシング
+    let accel = data.accel // 加速度
+    let gyro = data.gyro // ジャイロ
+    let quat = data.quat // クォータニオン
+    :
+}
+</pre
+            >
+          </li>
+          <li>
+            例：読み取り終了<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >peripheral.setNotifyValue(false, forCharacteristic: sensorCharacteristic)
+<br/><br/></pre>
+          </li>
+        </ul>
+        <a name="電源レベルキャラクタリスティックス"></a>
+        <h2>
+          電源レベル・キャラクタリスティックス<a
+            href="#%e9%9b%bb%e6%ba%90%e3%83%ac%e3%83%99%e3%83%ab%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%aa%e3%82%b9%e3%83%86%e3%82%a3%e3%83%83%e3%82%af%e3%82%b9"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <p>1分（60秒）に一度更新される。</p>
+        <ul>
+          <li>
+            読み取り情報
+            <ul>
+              <li>
+                電源レベル（1 byte）
+                <ul>
+                  <li>1〜10ぐらい</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            例：読み取り開始<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >
+// Notify として
+peripheral.setNotifyValue(true: forCharacteristic: batteryCharacteristic)
+
+// Read として
+peripheral.readValueForCharacteristic(batteryCharacteristic)
+</pre
+            >
+          </li>
+          <li>
+            例：読み取り<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >
+func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+    :
+    var batteryLevel: UInt8 = 0
+    characteristic.value.getBytes(&amp;batteryLevel, length: sizeof(UInt8))
+    :
+}
+</pre
+            >
+          </li>
+          <li>
+            例：読み取り終了<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >// Notify として
+peripheral.setNotifyValue(false, forCharacteristic: batteryCharacteristic)
+<br/><br/></pre>
+          </li>
+        </ul>
+        <a name="LED-キャラクタリスティックス"></a>
+        <h2>
+          LED キャラクタリスティックス<a
+            href="#LED-%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%aa%e3%82%b9%e3%83%86%e3%82%a3%e3%83%83%e3%82%af%e3%82%b9"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <ul>
+          <li>
+            書き込み情報（2 bytes）, 2016/4/28 修正
+            <ul>
+              <li>
+                光らせる皿・点灯方法（1 byte）
+                <ul>
+                  <li>
+                    光らせるLED（1 bit）
+                    <ul>
+                      <li>0 : 緑、1 : 赤</li>
+                    </ul>
+                  </li>
+                  <li>光らせる皿（3 bits）</li>
+                  <li>
+                    点灯方法（下位 4 bits）
+                    <ul>
+                      <li>0：点灯</li>
+                      <li>
+                        1〜10（α）：α/10秒ごとに点滅（例：1 → 0.1秒ごとに点滅、5
+                        → 0.5秒ごとに点滅 10 → 1秒ごとに点滅）
+                      </li>
+                      <li>注） <strong>点滅は緑LEDのみ対応</strong></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                光らせる秒数（1 byte）
+                <ul>
+                  <li>0：消灯</li>
+                  <li>
+                    1〜255（β）：β/10秒間点灯（例：1 → 0.1秒、10 → 1秒、255 →
+                    25.5秒）
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            例：中皿の緑LEDを2.5秒間点灯させる。<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >
+let flags: UInt8 = 0x04 &lt;&lt; 4
+let type: UInt8 = 0
+let deciSeconds: UInt8 = 25
+let values = [flags | type, deciSeconds]
+let data = NSData(bytes: values, length: values.count)
+peripheral.writeValue(data, forCharacteristic: ledCharacteristic, type: .WithoutResponse)
+</pre
+            >
+          </li>
+          <li>
+            例：大皿の赤LEDを0.5秒間隔で5秒間点滅させる。<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >
+led flags: UInt8 = (0x08 | 0x01) &lt;&lt; 4
+let type: UInt8 = 5
+let deciSeconds: UInt8 = 50
+let values = [flags | type, deciSeconds]
+let data = NSData(bytes: values, length: values.count)
+peripheral.writeValue(data, forCharacteristic: ledCharacteristic, type: .WithoutResponse)
+</pre
+            >
+          </li>
+          <li>
+            例：小皿の緑LEDを消灯させる。<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >
+let flags: UInt8 = 0x02 &lt;&lt; 4
+led values = [flags, 0]
+let data = NSData(bytes: values, length: values.count)
+peripheral.writeValue(data, forCharacteristic: ledCharacteristic, type: .WithoutResponse)
+</pre
+            >
+          </li>
+        </ul>
+        <ul>
+          <li>
+            書き込み情報（1 byte）
+            <ul>
+              <li>振動させる秒数（1 byte）</li>
+            </ul>
+          </li>
+          <li>
+            制限
+            <ul>
+              <li>最大10秒（暫定）</li>
+            </ul>
+          </li>
+          <li>
+            例：5秒の振動<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >
+let values: [UInt8] = [5]
+let data = NSData(bytes: values, length: values.count)
+peripheral.writeValue(data, forCharacteristic: motorCharacteristic, type: .WithoutResponse)
+</pre
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

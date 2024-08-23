@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v3 Django How to Create a Game</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto">
+      <h1 class="text-3xl font-bold mb-4">
+        How to Create a Game for Django App - V3
+      </h1>
+
+      <p class="mb-4">
+        <span class="text-green-400 font-semibold">Step 1:</span>
+      </p>
+      <p class="mb-4">
+        Add the game name, which will be used for the whole backend, in the
+        <code class="bg-gray-800 text-yellow-400">Game.py</code> model. It is
+        necessary to add the game name in the
+        <code class="bg-gray-800 text-yellow-400">GameName</code> and
+        <code class="bg-gray-800 text-yellow-400">GameNameJp</code>.
+      </p>
+      <p class="mb-4">
+        <strong class="text-blue-300 italic"
+          >path: dendama/apps/room/models/game.py</strong
+        >
+      </p>
+
+      <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto">
+        <code class="text-pink-400">
+            from datetime import datetime
+            from dendama.apps.users.models import Client
+            from django.db import models
+            from django.utils.translation import gettext_lazy as _
+            from model_utils.models import TimeStampedModel
+        </code>
+        <code class="text-blue-300 italic">
+            class GameBaseModel(TimeStampedModel):
+        </code>
+        <code class="text-green-300">
+            class GameName(models.IntegerChoices):
+        </code>
+        <code class="text-purple-400">
+            AFTER_DARK = 0, "After Dark"
+            ATTACK_OR_CURE = 1, "Attack or Cure"
+            COUNTUP6 = 2, "Countup6"
+            DENDAMA01 = 3, "Dendama01"
+            KENGAME = 4, "Ken Game"
+            KENTEI = 5, "Kentei"
+            ONETRY = 6, "One Try Challenge"
+            RUSHHOUR = 7, "Rush Hour"
+            SPEEDTRICKD = 8, "Speed Trick D"
+            TIMEATTACK = 9, "Time Attack"
+            GRAND_BATTLE = 10, "Grand Battle"
+        </code>
+        <code class="text-blue-300 italic">
+            class GameNameJp(models.IntegerChoices):
+        </code>
+        <code class="text-purple-400">
+            AFTER_DARK = 0, "アフターダーク"
+            ATTACK_OR_CURE = 1, "アタックorキュア"
+            COUNTUP6 = 2, "Countup6"
+            DENDAMA01 = 3, "Dendama01"
+            KENGAME = 4, "Ken Game"
+            KENTEI = 5, "Kentei"
+            ONETRY = 6, "一発チャレンジ"
+            RUSHHOUR = 7, "Rush Hour"
+            SPEEDTRICKD = 8, "タイム競技D"
+            TIMEATTACK = 9, "タイムアタック"
+            GRAND_BATTLE = 10, "Grand Battle"
+        </code>
+    </pre>
+
+      <p><span class="text-lg text-blue-600 font-bold">Step 2:</span><br /></p>
+      <p>
+        Add the game details to the gamebase JSON file. This file is used to
+        reset and create the default games for the app.<br />
+      </p>
+      <p>
+        In the configuration key, fill with an object with all the default
+        values for the game. This should be passed to the template (actually
+        it's not passed, need to confirm this 2021/11/17)<br />
+      </p>
+      <div class="my-4">
+        <br />
+      </div>
+      <p>
+        <strong class="text-blue-600 text-sm underline"
+          >path: dendama/fixtures/gamebasemodel.json</strong
+        ><br />
+      </p>
+      <div class="bg-gray-800 text-gray-100 font-mono text-sm p-4 rounded-md">
+        <div>&#160; {</div>
+        <div>
+          &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;model&quot;</span>:
+          <span class="text-gray-300">&quot;room.gamebasemodel&quot;</span>,
+        </div>
+        <div>
+          &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;pk&quot;</span>:
+          <span class="text-purple-400">11</span>,
+        </div>
+        <div>
+          &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;fields&quot;</span>: {
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;created&quot;</span>:
+          <span class="text-gray-300">&quot;2021-11-17T11:30:03.832&quot;</span
+          >,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;modified&quot;</span>:
+          <span class="text-gray-300">&quot;2021-11-17T11:41:01.105&quot;</span
+          >,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;description&quot;</span>:
+          <span class="text-gray-300"
+            >&quot;Battle game between players.&quot;</span
+          >,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;description_jp&quot;</span>:
+          <span class="text-gray-300">&quot;バトルロワイアル&quot;</span>,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;name_en&quot;</span>:
+          <span class="text-purple-400">10</span>,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;name_jp&quot;</span>:
+          <span class="text-gray-300">&quot;Grand Battle&quot;</span>,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;game_img&quot;</span>:
+          <span class="text-gray-300">&quot;games/time_attack.png&quot;</span>,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;is_rating&quot;</span>:
+          <span class="text-purple-400">true</span>,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;is_online&quot;</span>:
+          <span class="text-purple-400">false</span>,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;is_kentei&quot;</span>:
+          <span class="text-purple-400">false</span>,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;configuration&quot;</span>: [
+        </div>
+        <div>&#160; &#160; &#160; &#160; {</div>
+        <div>
+          &#160; &#160; &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;time_limit&quot;</span>:
+          <span class="text-purple-400">60</span>
+        </div>
+        <div>&#160; &#160; &#160; &#160; }<br /></div>
+        <div>&#160; &#160; &#160; ],</div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic"
+            >&quot;event_exclude_tricks&quot;</span
+          >: [{}]
+        </div>
+        <div>&#160; &#160; }</div>
+        <div>&#160; }<br /></div>
+      </div>
+      <p>
+        <br />
+      </p>
+      <p><span class="text-lg text-blue-600 font-bold">Step 3:</span><br /></p>
+      <p>
+        Connect to the server using the command line and create the base model
+        using the following commands<br />
+      </p>
+      <div class="bg-gray-800 text-gray-100 font-mono text-sm p-4 rounded-md">
+        <div>
+          <span class="text-pink-600">sudo</span> docker-compose run dendama
+          python manage.py loaddata dendama/fixtures/gamebasemodel.json<br />
+        </div>
+        <div>
+          <span class="text-pink-600">sudo</span> docker-compose run dendama
+          python manage.py makemigrations<br />
+          <span class="text-pink-600">sudo</span> docker-compose run dendama
+          python manage.py migrate<br />
+        </div>
+      </div>
+      <p>
+        <br />
+      </p>
+      <p>
+        After this, the game should appear in the gamebase tab at the
+        administrator panel<br />
+      </p>
+      <p>
+        <strong
+          >Make sure to add to the games_response.dart in Flutter any new
+          keys/values to be used in Flutter<br
+        /></strong>
+      </p>
+      <p>FLUTTER<br /></p>
+      <p>flutter-dama/lib/models/api/game_response.dart<br /></p>
+      <p>
+        <br />
+      </p>
+      <p>
+        <img src="#" alt="" class="my-1" />
+        <strong class="text-cyan-400 text-2xl">Step 4:</strong><br />
+      </p>
+      <p>Add a new constant to the rooms to be used in the views.py<br /></p>
+      <p>
+        <strong class="text-blue-600 text-sm underline"
+          >path: dendama/apps/room/constanst.py</strong
+        ><br />
+      </p>
+      <div class="bg-gray-800 text-gray-100 font-mono text-sm p-4 rounded-md">
+        <div>
+          <span class="text-purple-400">_AFTER_DARK</span>
+          <span class="text-pink-600">=</span>
+          <span class="text-purple-400">0</span>
+        </div>
+        <div>
+          <span class="text-purple-400">_ATTACK_OR_CURE</span>
+          <span class="text-pink-600">=</span>
+          <span class="text-purple-400">1</span>
+        </div>
+        <div>
+          <span class="text-purple-400">_COUNTUP6</span>
+          <span class="text-pink-600">=</span>
+          <span class="text-purple-400">2</span>
+        </div>
+        <div>
+          <span class="text-purple-400">_DENDAMA01</span>
+          <span class="text-pink-600">=</span>
+          <span class="text-purple-400">3</span>
+        </div>
+        <div>
+          <span class="text-purple-400">_KENGAME</span>
+          <span class="text-pink-600">=</span>
+          <span class="text-purple-400">4</span>
+        </div>
+        <div>
+          <span class="text-purple-400">_KENTEI</span>
+          <span class="text-pink-600">=</span>
+          <span class="text-purple-400">5</span>
+        </div>
+        <div>
+          <span class="text-purple-400">_ONETRY</span>
+          <span class="text-pink-600">=</span>
+          <span class="text-purple-400">6</span>
+        </div>
+        <div>
+          <span class="text-purple-400">_RUSHHOUR</span>
+          <span class="text-pink-600">=</span>
+          <span class="text-purple-400">7</span>
+        </div>
+        <div>
+          <span class="text-purple-400">_SPEEDTRICKD</span>
+          <span class="text-pink-600">=</span>
+          <span class="text-purple-400">8</span>
+        </div>
+        <div>
+          <span class="text-purple-400">_TIME_ATTACK</span>
+          <span class="text-pink-600">=</span>
+          <span class="text-purple-400">9</span>
+        </div>
+      </div>
+      <p>
+        <br />
+      </p>
+      <p>
+        After adding, you need to add to the room types in the JSON file<br />
+      </p>
+      <p>
+        <strong class="text-blue-600 text-sm underline"
+          >path: dendama/fixtures/roomtypes.json</strong
+        ><br />
+      </p>
+      <div class="bg-gray-800 text-gray-100 font-mono text-sm p-4 rounded-md">
+        <div>&#160; {</div>
+        <div>
+          &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;model&quot;</span>:
+          <span class="text-gray-300">&quot;room.roomtypes&quot;</span>,
+        </div>
+        <div>
+          &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;pk&quot;</span>:
+          <span class="text-purple-400">9</span>,
+        </div>
+        <div>
+          &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;fields&quot;</span>: {
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;type&quot;</span>:
+          <span class="text-gray-300">&quot;Game&quot;</span>,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;description&quot;</span>:
+          <span class="text-gray-300"
+            >&quot;A fast-paced game where you compete against each
+            other.&quot;</span
+          >,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;description_jp&quot;</span>:
+          <span class="text-gray-300"
+            >&quot;速いペースのゲームで、対戦します。&quot;</span
+          >,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;name_en&quot;</span>:
+          <span class="text-purple-400">3</span>,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;name_jp&quot;</span>:
+          <span class="text-gray-300">&quot;スピードゲーム&quot;</span>,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;game_img&quot;</span>:
+          <span class="text-gray-300">&quot;games/speed_game.png&quot;</span>,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;is_rating&quot;</span>:
+          <span class="text-purple-400">true</span>,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;is_online&quot;</span>:
+          <span class="text-purple-400">false</span>,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;is_kentei&quot;</span>:
+          <span class="text-purple-400">false</span>,
+        </div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;configuration&quot;</span>: [
+        </div>
+        <div>&#160; &#160; &#160; &#160; {</div>
+        <div>
+          &#160; &#160; &#160; &#160; &#160;
+          <span class="text-cyan-400 italic">&quot;time_limit&quot;</span>:
+          <span class="text-purple-400">30</span>
+        </div>
+        <div>&#160; &#160; &#160; &#160; }<br /></div>
+        <div>&#160; &#160; &#160; ],</div>
+        <div>
+          &#160; &#160; &#160;
+          <span class="text-cyan-400 italic"
+            >&quot;event_exclude_tricks&quot;</span
+          >: [{}]
+        </div>
+        <div>&#160; &#160; }</div>
+        <div>&#160; }<br /></div>
+      </div>
+      <p>
+        <br />
+      </p>
+    </div>
+  </body>
+</html>

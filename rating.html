@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rating</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <div class="wiki wiki-page">
+        <a name="レーティング"></a>
+        <h1>
+          レーティング<a
+            href="#%e3%83%ac%e3%83%bc%e3%83%86%e3%82%a3%e3%83%b3%e3%82%b0"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h1>
+        <ul>
+          <li>
+            レーティングは下記三つのゲームから算出
+            <ul>
+              <li>TIME ATTACK</li>
+              <li>ATTACK OR CURE</li>
+              <li>KEN GAME</li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>それぞれ <ins>最新30回の平均</ins> で決定される</li>
+          <li>
+            <ins>各ゲーム10回ずつ以上</ins>
+            するとレーティングが算出され始める（KEN GAMEを30回やってもTIME
+            ATTACKを一回もやってなければレーティングはつかない）
+          </li>
+          <li>1人プレイ,1:1, 1:1:1, 1:1:1:1のみレーティングがつく</li>
+          <li>
+            自分のレーティングではないレーティングでのゲームの場合はつかない
+          </li>
+        </ul>
+        <ul>
+          <li>
+            レーティング点数算出方法(計算後、小数点以下四捨五入)
+            <ul>
+              <li>
+                TIME ATTACK
+                <ul>
+                  <li>
+                    <ins>成功技の平均×33+残り時間</ins>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                ATTACK OR CURE
+                <ul>
+                  <li>
+                    <ins>ダメージ&amp;回復の和*4(ターン数)*2.7</ins>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                KEN GAME
+                <ul>
+                  <li>
+                    <ins>成功技の平均×33</ins>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div
+          style="
+            background: #3d3d3d;
+            overflow: auto;
+            width: auto;
+            border-style: solid;
+            border-color: gray;
+            border-width: 0.1em 0.1em 0.1em 0.8em;
+            padding: 0.2em 0.6em;
+          "
+        >
+          <pre style="margin: 0px; line-height: 125%">
+         <span style="color: #05e2ff; font-weight: bold;">const</span> RATING_DATA 
+         <span style="color: #ff40bf;">=</span> {
+    
+         <span style="color: #b6ff57;">&#39;I1&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;I&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">0</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">49</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">1</span>},
+    
+         <span style="color: #b6ff57;">&#39;H1&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;H&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">50</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">99</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">2</span>},
+    
+         <span style="color: #b6ff57;">&#39;H2&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;H&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">100</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">149</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">3</span>},
+    
+         <span style="color: #b6ff57;">&#39;G1&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;G&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">150</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">199</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">4</span>},
+    
+         <span style="color: #b6ff57;">&#39;G2&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;G&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">200</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">249</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">5</span>},
+    
+         <span style="color: #b6ff57;">&#39;F1&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;F&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">250</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">299</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">6</span>},
+    
+         <span style="color: #b6ff57;">&#39;F2&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;F&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">300</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">349</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">7</span>},
+    
+         <span style="color: #b6ff57;">&#39;F3&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;F&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">350</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">399</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">8</span>},
+    
+         <span style="color: #b6ff57;">&#39;E1&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;E&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">400</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">449</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">9</span>},
+    
+         <span style="color: #b6ff57;">&#39;E2&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;E&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">450</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">499</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">10</span>},
+    
+         <span style="color: #b6ff57;">&#39;E3&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;E&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">500</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">549</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">11</span>},
+    
+         <span style="color: #b6ff57;">&#39;D1&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;D&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">550</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">599</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">12</span>},
+    
+         <span style="color: #b6ff57;">&#39;D2&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;D&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">600</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">649</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">13</span>},
+    
+         <span style="color: #b6ff57;">&#39;D3&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;D&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">650</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">699</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">14</span>},
+    
+         <span style="color: #b6ff57;">&#39;C1&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;C&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">700</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">749</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">15</span>},
+    
+         <span style="color: #b6ff57;">&#39;C2&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;C&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">750</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">799</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">16</span>},
+    
+         <span style="color: #b6ff57;">&#39;B1&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;B&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">800</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">849</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">16</span>},
+    
+         <span style="color: #b6ff57;">&#39;B2&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;B&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">850</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">899</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">16</span>},
+    
+         <span style="color: #b6ff57;">&#39;A1&#39;</span><span style="color: #ff40bf;">:</span> {<span style="color: #05e2ff; font-weight: bold;">class</span><span style="color: #ff40bf;">:</span> 
+         <span style="color: #b6ff57;">&#39;A&#39;</span>, under<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">900</span>, upper<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">1000000</span>, trick_level<span style="color: #ff40bf;">:</span> 
+         <span style="color: #ff40bf;">16</span>}
+};
+​<br/><br/></pre>
+        </div>
+        <a name="NEW-RATING-process"></a>
+        <h2>NEW RATING process<br /></h2>
+        1. Arcade &amp; mobile data will be linked.<br />2. The old process and
+        how you make the calculations are listed and found in the following
+        files:<br />MOBILE APP:
+        <ul>
+          <li>
+            app/controller/game_controller.rb : here you will find the main
+            calculation at the end of the def ajax_post_game_result. At this
+            time you will find 3 games only which are going to be calulated.
+          </li>
+          <li>
+            app/assets/javascripts/ajax.js.erb : this is the main ajax function
+            that call for the ajax requeset which goes to the game_controller.rb
+          </li>
+          <li>
+            config/routes.rb : here you will find the route used by the games
+            files to request the ajax.js , usually there are two game and
+            game_results , both are converted in variables/routes which makes
+            work the ajax.js.erb
+          </li>
+          <li>
+            app/assets/javascripts/game/somegame.js : this is actually where in
+            the post_game() you will send the request for the route---&gt; ajax
+            --&gt; save in db (game controller).
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

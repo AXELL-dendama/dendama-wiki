@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Judge v1 and v2</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      a {
+        color: blue;
+      }
+      table,
+      tr,
+      td,
+      th {
+        border: 1px solid gray;
+      }
+      th {
+        background: greenyellow;
+        color: black;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <h1
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          font-size: 20px;
+          color: #555555;
+        "
+      >
+        V1とV2の差分
+      </h1>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        ここで言う V1 とは、電玉V1のみのときの技判定（TrickJudge）を指す。<br />また、V2とは、電玉V1と電玉V2の両方に対応した技判定（DendamaLibrary）を指す。<br />
+      </p>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        <br />
+      </p>
+      <h2
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 16px;
+        "
+      >
+        V2 でnative変数名が変更した技（分岐も含む）<br />
+      </h2>
+      <p>
+        <br />
+      </p>
+      <table class="ms-rteTable-5">
+        <tbody>
+          <tr class="ms-rteTableHeaderRow-5">
+            <th class="ms-rteTableHeaderEvenCol-5">V2 native変数名（新）</th>
+            <th class="ms-rteTableHeaderOddCol-5">V1 native変数名（旧）</th>
+            <th class="ms-rteTableHeaderEvenCol-5">日本語名</th>
+            <th class="ms-rteTableHeaderOddCol-5">英語名</th>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">fasthandBaseCup</td>
+            <td class="ms-rteTableOddCol-5">
+              <del>fastHandBaseCup</del>
+            </td>
+            <td class="ms-rteTableEvenCol-5">はやて中皿</td>
+            <td class="ms-rteTableOddCol-5">Fasthand base cup</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">pullupSpike</td>
+            <td class="ms-rteTableOddCol-5">
+              <del>spike</del>
+            </td>
+            <td class="ms-rteTableEvenCol-5">とめけん</td>
+            <td class="ms-rteTableOddCol-5">Spike</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">spike</td>
+            <td rowspan="2" class="ms-rteTableOddCol-5">
+              <del>directSpike</del>
+            </td>
+            <td class="ms-rteTableEvenCol-5">〜けん</td>
+            <td class="ms-rteTableOddCol-5">, Spike</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">tradespike</td>
+            <td class="ms-rteTableOddCol-5">〜けん</td>
+            <td class="ms-rteTableEvenCol-5">, Tradespike</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">fasthandAirplane</td>
+            <td class="ms-rteTableOddCol-5">
+              <del>fastHandAirplane</del>
+            </td>
+            <td class="ms-rteTableEvenCol-5">さか落とし (回転おとしけん)</td>
+            <td class="ms-rteTableOddCol-5">Falling in (Fasthand airplane)</td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <div>
+        <h2
+          style="
+            font-family: 'trebuchet ms', verdana, sans-serif;
+            padding: 2px 10px 1px 0px;
+            margin: 0px 0px 10px;
+            color: #555555;
+            font-size: 16px;
+          "
+        >
+          V2 で Series trick から Final trick に変更した技<br />
+        </h2>
+        <br />
+      </div>
+      <table class="ms-rteTable-5">
+        <tbody>
+          <tr class="ms-rteTableHeaderRow-5">
+            <th class="ms-rteTableHeaderEvenCol-5">native変数名</th>
+            <th class="ms-rteTableHeaderOddCol-5">V1 native変数名（旧）</th>
+            <th class="ms-rteTableHeaderEvenCol-5">日本語名</th>
+            <th class="ms-rteTableHeaderOddCol-5">英語名</th>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">bigCupJump</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">大皿ジャンプ</td>
+            <td class="ms-rteTableOddCol-5">Big cup jump</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">smallCupJump</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">小皿ジャンプ</td>
+            <td class="ms-rteTableOddCol-5">Small cup jump</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">baseCupJump</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">中皿ジャンプ</td>
+            <td class="ms-rteTableOddCol-5">Base cup jump</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">fasthandBaseCup</td>
+            <td class="ms-rteTableOddCol-5">
+              <del>fastHandBaseCup</del>
+            </td>
+            <td class="ms-rteTableEvenCol-5">はやて中皿</td>
+            <td class="ms-rteTableOddCol-5">Fasthand base cup</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">spike</td>
+            <td rowspan="2" class="ms-rteTableOddCol-5">
+              <del>directSpike</del>
+            </td>
+            <td class="ms-rteTableEvenCol-5">〜けん</td>
+            <td class="ms-rteTableOddCol-5">, Spike</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">tradespike</td>
+            <td class="ms-rteTableOddCol-5">〜けん</td>
+            <td class="ms-rteTableEvenCol-5">, Tradespike</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">fasthandAirplane</td>
+            <td class="ms-rteTableOddCol-5">
+              <del>fastHandAirplane</del>
+            </td>
+            <td class="ms-rteTableEvenCol-5">さか落とし (回転おとしけん)</td>
+            <td class="ms-rteTableOddCol-5">Falling in (Fasthand airplane)</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">fallingIn</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">さか落とし</td>
+            <td class="ms-rteTableOddCol-5">Falling in</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">buildTheLighthouse</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">灯立</td>
+            <td class="ms-rteTableOddCol-5">Build the lighthouse</td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <h2
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 16px;
+        "
+      >
+        V2 で（Series trick としては）廃止された技
+      </h2>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        ただし、Final trick の組み合わせで実現可能<br />
+      </p>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        <br />
+      </p>
+      <br />
+      <table class="ms-rteTable-5">
+        <tbody>
+          <tr class="ms-rteTableHeaderRow-5">
+            <th class="ms-rteTableHeaderEvenCol-5">V2 での組み合わせ</th>
+            <th class="ms-rteTableHeaderOddCol-5">V1 native変数名（旧）</th>
+            <th class="ms-rteTableHeaderEvenCol-5">日本語名</th>
+            <th class="ms-rteTableHeaderOddCol-5">英語名</th>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">lighthouse, tradespike</td>
+            <td class="ms-rteTableOddCol-5">
+              <del>lighthouseSpike</del>
+            </td>
+            <td class="ms-rteTableEvenCol-5">灯台〜けん</td>
+            <td class="ms-rteTableOddCol-5">Lighthouse, Tradespike</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">lunar, fallingIn</td>
+            <td class="ms-rteTableOddCol-5">
+              <del>lunarFallingIn</del>
+            </td>
+            <td class="ms-rteTableEvenCol-5">月面着陸〜さか落とし</td>
+            <td class="ms-rteTableOddCol-5">Lunar, Falling in</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">smallCupLunar, fallingIn</td>
+            <td class="ms-rteTableOddCol-5">
+              <del>smallCupLunarFallingIn</del>
+            </td>
+            <td class="ms-rteTableEvenCol-5">小皿月面着陸〜さか落とし</td>
+            <td class="ms-rteTableOddCol-5">Small cup lunar, Falling in</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">bigCup, fasthandAirplane</td>
+            <td class="ms-rteTableOddCol-5">
+              <del>bigCupFastHandAirplane</del>
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              大皿〜さか落とし (回転おとしけん)
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              Big cup, Falling in (Fastshand airplane)
+            </td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">smallCup, fasthandAirplane</td>
+            <td class="ms-rteTableOddCol-5">
+              <del>smallCapFastHandAirplane</del>
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              小皿〜さか落とし (回転おとしけん)
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              Small cup, Falling in (Fasthand airplane)
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">baseCup, downspike</td>
+            <td class="ms-rteTableOddCol-5">
+              <del>baseCupDownspike</del>
+            </td>
+            <td class="ms-rteTableEvenCol-5">中皿〜ダウンスパイク</td>
+            <td class="ms-rteTableOddCol-5">Base cup, Downspike</td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+    </div>
+  </body>
+</html>

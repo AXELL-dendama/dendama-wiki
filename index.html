@@ -4,6 +4,794 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DENDAMA WIKI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html,
+      body {
+        width: 100%;
+      }
+      body a {
+        color: blue;
+      }
+    </style>
   </head>
-  <body></body>
+  <body class="bg-gray-100 text-gray-900">
+    <!-- Header -->
+    <header class="bg-pink-500 p-6 flex justify-between">
+      <h1 class="text-white text-3xl font-bold text-center">
+        DENDAMAMA WIKI:
+        <span class="text-xl"
+          >documentation, reference code and development</span
+        >
+      </h1>
+      <figure class="w-10">
+        <img src="img/dendama_logo.png" alt="" />
+      </figure>
+    </header>
+    <!-- Main Content -->
+    <article
+      class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-6 mx-auto"
+    >
+      <h2 class="text-xl font-bold mb-2">ATTENTION:</h2>
+      <p class="mb-2">
+        This documentation is for references for other similar projects. Feel
+        free to check and use the code/ideas.
+      </p>
+      <p class="mb-2">
+        The original version 1 and 2 documentation were written in Japanese and
+        some of them were merged with this documentation, which mainly covers
+        version 3.
+      </p>
+      <p class="mb-2">
+        The original version 1 and 2 were made using Ruby on Rails with jQuery
+        and WebView as the base for the whole structure using AWS cloud
+        services.
+      </p>
+      <p class="mb-2">
+        In this latest version, version 3, we moved the whole backend to use
+        Python and Django for all the APIs to connect with the UI (still made in
+        jQuery) and all other features of the mobile app.
+      </p>
+      <p>
+        The mobile app source is not explained here. The mobile app was made
+        using Java (for Android) and Swift (for iPhone), which used custom
+        firmwares made by DENDAMAMA inc. and connected all the features of the
+        mobile to this architecture, which mainly uses WebView.
+      </p>
+    </article>
+
+    <main class="container mx-auto p-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- First Column -->
+        <div class="bg-white p-4 rounded shadow">
+          <h2 class="text-xl font-semibold mb-4">Table of content</h2>
+          <article style="background: #efeeee; padding: 10px">
+            <div>
+              <strong class="ms-rteFontSize-4">V3 DENDAMA APP</strong><br />
+            </div>
+            <div>
+              <strong class="ms-rteFontSize-4"></strong>
+            </div>
+            <div><span class="ms-rteFontSize-2"></span>Technologies<br /></div>
+            <div>
+              <br />
+            </div>
+            <div class="w-full">
+              <span class="border-b-2 border-dotted border-gray-500 block"
+                ><strong class="ms-rteForeColor-8"
+                  ><em>BACKEND:</em></strong
+                ></span
+              ><br />
+            </div>
+            <div>
+              <a
+                href="data/APPV2-BACKEND-DjangoPython-structure.pdf"
+                target="_blank"
+                ><strong>BACKEND documentation and Infrastructure</strong></a
+              >&#160;(PDF)<br />
+            </div>
+            <div class="border-b-2 border-dotted border-gray-500 block pt-4">
+              BACKEND - Database<br />
+            </div>
+            <div>
+              <ul>
+                <li>
+                  <a href="data/DB_RDS-django-pyhton-2021-11-19.pdf">
+                    <img
+                      class="ms-asset-icon ms-rtePosition-4"
+                      src="/_layouts/15/images/icpdf.png"
+                      alt=""
+                    />DB RDS-django-pyhton-2021-11-19.pdf </a
+                  ><br />
+                </li>
+              </ul>
+            </div>
+            <div class="border-b-2 border-dotted border-gray-500 block pt-4">
+              BACKEND - GAMES<br />
+            </div>
+            <div>
+              <ul>
+                <li>
+                  <a href="./v3_django_how_create_game.html"
+                    ><span class="ms-rteThemeForeColor-6-4"
+                      >How to create a game</span
+                    ></a
+                  >
+                </li>
+                <li>
+                  <a href="./connection-aws-server.html"
+                    ><span class="ms-rteThemeForeColor-6-4"
+                      ><strong
+                        >How to connect to AWS and commands aws</strong
+                      ></span
+                    ></a
+                  ><br />
+                </li>
+              </ul>
+            </div>
+            <div class="border-b-2 border-dotted border-gray-500 block pt-4">
+              FRONTEND:<br />
+            </div>
+            <div>
+              <ul>
+                <li>
+                  <a href="./rating-system.html"
+                    ><span class="ms-rteThemeForeColor-6-4"
+                      >Games: rating system (excel, graphic)</span
+                    ></a
+                  ><br />
+                </li>
+                <li>
+                  <span class="ms-rteThemeForeColor-6-4"
+                    >List of tricks with names, levels, etc</span
+                  >&#160;(DENDAMA対応技見直し version3) --- DELETED<br />
+                </li>
+                <li>
+                  <a href="/img/architecture-dendama-iot-frontend.png"
+                    ><span class="ms-rteThemeForeColor-6-4"
+                      >Process of connection of a DENDAMA from web to
+                      Native</span
+                    ></a
+                  ><br />
+                </li>
+              </ul>
+            </div>
+            <div class="border-b-2 border-dotted border-gray-500 block pt-4">
+              ARCADE DASHBOARD:<br />
+            </div>
+            <ul>
+              <li>
+                <a href="./arcade-dashboard.html"
+                  ><span class="ms-rteThemeForeColor-6-4"
+                    >Arcade dashboard UI</span
+                  ></a
+                ><br />
+              </li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- Second Column -->
+        <div class="bg-white p-4 rounded shadow">
+          <article style="background: #efeeee; padding: 10px">
+            <ol>
+              <li>​​組み込みソフト​​​​<br /></li>
+              <ol>
+                <li>
+                  <span class="ms-rteForeColor-2">​</span
+                  ><a href="./logic-software-sensors.html"
+                    ><span class="ms-rteForeColor-2">V1</span></a
+                  ><br class="ms-rteForeColor-2" />
+                </li>
+                <ol>
+                  <li>
+                    <a href="./DFU.html">
+                      <span class="ms-rteForeColor-2">DFU​</span></a
+                    ><br />
+                  </li>
+                  <li>
+                    <span class="ms-rteForeColor-2"
+                      >DENDAMA updater&#160; (CLASSIFIED)</span
+                    ><span
+                      class="ms-rteForeColor-2"
+                      style="font-family: verdana, sans-serif; font-size: 12px"
+                      >ファームウェア・アップデート・ツール）</span
+                    >
+                  </li>
+                </ol>
+                <li>
+                  <a href="./BLE.html">
+                    <span class="ms-rteForeColor-2">BLE​</span></a
+                  ><br />
+                </li>
+                <ol>
+                  <li>
+                    <a href="./libraryBle.html">
+                      <span class="ms-rteForeColor-2">
+                        <span>DendamaBle&#160;</span
+                        ><span
+                          style="
+                            font-family: verdana, sans-serif;
+                            font-size: 12px;
+                          "
+                          >（BLE接続ライブラリ）</span
+                        ></span
+                      ></a
+                    ><br />
+                  </li>
+                  <li>
+                    <span
+                      style="font-family: verdana, sans-serif; font-size: 12px"
+                    >
+                      <a
+                        class="wiki-page"
+                        href="./bluetooth.html"
+                        style="
+                          font-family: verdana, sans-serif;
+                          font-size: 12px;
+                        "
+                      >
+                        <span class="ms-rteForeColor-2"
+                          >端末のBluetoothと電玉の関係</span
+                        ></a
+                      ><span
+                        class="ms-rteForeColor-2"
+                        style="
+                          font-family: verdana, sans-serif;
+                          font-size: 12px;
+                        "
+                        >​​</span
+                      ><br
+                    /></span>
+                  </li>
+                </ol>
+                <li>
+                  <a href="./BLE2.html">
+                    <span class="ms-rteForeColor-2">BLE V2​</span></a
+                  ><br />
+                </li>
+                <ol>
+                  <li>
+                    <a href="./libraryBle2.html">
+                      <span class="ms-rteForeColor-2"
+                        >DendamaLibrary&#160;（BLE接続 &amp;
+                        技判定ライブラリ）</span
+                      >​<br />​</a
+                    >
+                  </li>
+                </ol>
+                <li>V3<br /></li>
+                <ol>
+                  <li>
+                    <span class="ms-rteForeColor-2">​​</span
+                    ><a href="./DFU3.html"
+                      ><span class="ms-rteForeColor-2">DFU V3​​</span></a
+                    >
+                  </li>
+                </ol>
+              </ol>
+            </ol>
+
+            <ul>
+              <li>
+                <div>
+                  <h2
+                    style="
+                      font-family: 'trebuchet ms', verdana, sans-serif;
+                      padding: 2px 10px 1px 0px;
+                      margin: 0px 0px 10px;
+                      color: #555555;
+                      font-size: 16px;
+                    "
+                  >
+                    <strong>DB</strong>
+                  </h2>
+                </div>
+              </li>
+            </ul>
+            <ol>
+              <ol>
+                <li>
+                  <a class="wiki-page" href="./DBinfo.html"
+                    ><span class="ms-rteForeColor-2">DB Info</span></a
+                  >
+                  <ul>
+                    <li>
+                      <a class="wiki-page" href="./seeds.html"
+                        ><span class="ms-rteForeColor-2">Seeds</span></a
+                      ><span class="ms-rteForeColor-2">​​</span><br />
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a class="wiki-page" href="./dbv2info.html">
+                    <span class="ms-rteForeColor-2"
+                      >DB v2 Info and Rubyで保持するデータ</span
+                    ></a
+                  >
+                  <ul>
+                    <li>
+                      <a class="wiki-page" href="./jsdb.html">
+                        <span class="ms-rteForeColor-2"
+                          >JSで保持するデータ</span
+                        ></a
+                      >
+                    </li>
+                  </ul>
+                </li>
+              </ol>
+            </ol>
+            <ul>
+              <li>
+                <div>
+                  <h2
+                    style="
+                      font-family: 'trebuchet ms', verdana, sans-serif;
+                      padding: 2px 10px 1px 0px;
+                      margin: 0px 0px 10px;
+                      color: #555555;
+                      font-size: 16px;
+                    "
+                  >
+                    <strong>Web App Info</strong><br />
+                  </h2>
+                </div>
+              </li>
+            </ul>
+            <ol>
+              <ol>
+                <li>
+                  <a class="wiki-page" href="./login.html">
+                    <span class="ms-rteForeColor-2">Login方法</span></a
+                  ><span class="ms-rteForeColor-2">​​</span><br />
+                </li>
+                <li>
+                  <a class="wiki-page" href="./translations.html">
+                    <span class="ms-rteForeColor-2"
+                      >多言語化 (all translations and text for games and
+                      app)</span
+                    ></a
+                  >
+                  ​​<br />
+                </li>
+                <li>
+                  <a class="wiki-page" href="./youtube_movies.html">
+                    <span class="ms-rteForeColor-2">Youtube動画ID</span></a
+                  >
+                </li>
+                <li>
+                  <a class="wiki-page" href="./rating.html">
+                    <span class="ms-rteForeColor-2">レーティング</span></a
+                  >
+                </li>
+
+                <li>
+                  <a class="wiki-page" href="./music-resources.html">
+                    <span class="ms-rteForeColor-2">音素材​</span></a
+                  ><br />
+                </li>
+
+                <li>
+                  <a class="wiki-page" href="./online-battle.html">
+                    <span class="ms-rteForeColor-2">Online対戦</span></a
+                  >
+                </li>
+              </ol>
+            </ol>
+            <ul>
+              <li>
+                <div>
+                  <h2
+                    style="
+                      font-family: 'trebuchet ms', verdana, sans-serif;
+                      padding: 2px 10px 1px 0px;
+                      margin: 0px 0px 10px;
+                      color: #555555;
+                      font-size: 16px;
+                    "
+                  >
+                    Native App Info​<br />
+                  </h2>
+                </div>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <div>
+                  <h2
+                    style="
+                      font-family: 'trebuchet ms', verdana, sans-serif;
+                      padding: 2px 10px 1px 0px;
+                      margin: 0px 0px 10px;
+                      color: #555555;
+                      font-size: 16px;
+                    "
+                  >
+                    Web Native 共通<br />
+                  </h2>
+                </div>
+              </li>
+            </ul>
+            <ol>
+              <li>
+                <a href="./stores-billing.html"
+                  ><span class="ms-rteForeColor-2">課金</span></a
+                ><br class="ms-rteForeColor-2" />
+              </li>
+              <li>
+                <a href="./flow.html"
+                  ><span class="ms-rteForeColor-2">フロー</span></a
+                ><br class="ms-rteForeColor-2" />
+              </li>
+              <li>
+                <a href="./native-to-web.html"
+                  ><span class="ms-rteForeColor-2">Native_to_Web</span></a
+                ><br class="ms-rteForeColor-2" />
+              </li>
+              <li>
+                <a href="./web-to-native.html"
+                  ><span class="ms-rteForeColor-2">Web_to_native</span></a
+                ><br class="ms-rteForeColor-2" />
+              </li>
+            </ol>
+            <ul>
+              <li>
+                <div>
+                  <h2
+                    style="
+                      font-family: 'trebuchet ms', verdana, sans-serif;
+                      padding: 2px 10px 1px 0px;
+                      margin: 0px 0px 10px;
+                      color: #555555;
+                      font-size: 16px;
+                    "
+                  >
+                    Game
+                  </h2>
+                </div>
+                <div>
+                  <a href="./setting-for-games.html">設定値</a>
+                </div>
+                <div>JIN DASH</div>
+                <div>RUSH HOUR</div>
+                <div>OTO DAMA<br /></div>
+                <div>
+                  <a href="./img/mini_game.png">
+                    <span class="ms-rteForeColor-2">MINI GAME</span></a
+                  >
+                </div>
+                <div>
+                  <a href="./img/janken.png">
+                    <span class="ms-rteForeColor-2">DENDAMA JANKEN</span></a
+                  >
+                </div>
+                <div>
+                  <a href="./img/moshikame.png">
+                    <span class="ms-rteForeColor-2">MOSHIKAME</span></a
+                  >
+                </div>
+                <div>
+                  <a href="./img/close_call.png">
+                    <span class="ms-rteForeColor-2">CLOSE CALL</span></a
+                  ><br />
+                </div>
+                <div>
+                  <a href="./img/time_attack2.png">
+                    <span class="ms-rteForeColor-2">TIME ATTACK</span></a
+                  ><br />
+                </div>
+                <div>
+                  <a href="./img/ken_game2.png">
+                    <span class="ms-rteForeColor-2">KEN GAME</span></a
+                  ><br />
+                </div>
+                <div>
+                  <a href="./img/attack_or_cure2.png">
+                    <span class="ms-rteForeColor-2">ATTACK OR CURE</span></a
+                  >
+                </div>
+                <div>
+                  <a href="./img/zombie_attack2.png">
+                    <span class="ms-rteForeColor-2">ZOMBIE ATTACK</span></a
+                  ><br />
+                </div>
+                <br />
+              </li>
+              <li>
+                <div>
+                  <h2
+                    style="
+                      font-family: 'trebuchet ms', verdana, sans-serif;
+                      padding: 2px 10px 1px 0px;
+                      margin: 0px 0px 10px;
+                      color: #555555;
+                      font-size: 16px;
+                    "
+                  >
+                    Quest<br />
+                  </h2>
+                  <br />
+                </div>
+                <div>
+                  <a href="./quest-tree.html"
+                    ><span class="ms-rteForeColor-2">Quest Tree</span></a
+                  >
+                </div>
+                <div>
+                  <a href="./quest.html">
+                    <span class="ms-rteForeColor-2">Quest</span></a
+                  >
+                </div>
+              </li>
+            </ul>
+            <div>
+              <ul>
+                <li>
+                  <div>
+                    <h2
+                      style="
+                        margin: 0px 0px 10px;
+                        font-family: 'trebuchet ms', verdana, sans-serif;
+                        color: #555555;
+                        font-size: 16px;
+                        padding: 2px 10px 1px 0px;
+                      "
+                    >
+                      けん玉検定<br />
+                    </h2>
+                  </div>
+                  <div>
+                    <p>
+                      <a href="./kentei-rules.html"
+                        ><span class="ms-rteForeColor-2">検定ルール</span></a
+                      ><br />
+                    </p>
+                    <p>
+                      <a href="./kentei.html"
+                        ><span class="ms-rteForeColor-2">検定技</span></a
+                      ><br />
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <ul>
+              <li>
+                <h2
+                  style="
+                    font-family: 'trebuchet ms', verdana, sans-serif;
+                    padding: 2px 10px 1px 0px;
+                    margin: 0px 0px 10px;
+                    color: #555555;
+                    font-size: 16px;
+                  "
+                >
+                  Shop/Item<br />
+                </h2>
+                <div>
+                  <p>
+                    <a href="./item.html"
+                      ><span class="ms-rteForeColor-2">Item</span></a
+                    ><br />
+                  </p>
+                </div>
+              </li>
+              <li>
+                <h2
+                  style="
+                    font-family: 'trebuchet ms', verdana, sans-serif;
+                    padding: 2px 10px 1px 0px;
+                    margin: 0px 0px 10px;
+                    color: #555555;
+                    font-size: 16px;
+                  "
+                >
+                  Infrastructure<br />
+                </h2>
+                <div>
+                  <p>
+                    <a href="./item.html"
+                      ><span class="ms-rteForeColor-2">Item</span></a
+                    ><br />
+                  </p>
+                </div>
+              </li>
+            </ul>
+            <div>
+              <br />
+            </div>
+            <ul>
+              <li>
+                <div>
+                  <h2
+                    style="
+                      font-family: 'trebuchet ms', verdana, sans-serif;
+                      padding: 2px 10px 1px 0px;
+                      margin: 0px 0px 10px;
+                      color: #555555;
+                      font-size: 16px;
+                    "
+                  >
+                    アーケードゲーム開発
+                  </h2>
+                  <div>
+                    <div>
+                      <a href="./img/infra-alerts.png"
+                        ><span class="ms-rteForeColor-2">監視</span></a
+                      ><br />
+                    </div>
+                  </div>
+                  <br />
+                </div>
+              </li>
+            </ul>
+
+            <ul>
+              <li>
+                <div>
+                  <h2
+                    style="
+                      font-family: 'trebuchet ms', verdana, sans-serif;
+                      padding: 2px 10px 1px 0px;
+                      margin: 0px 0px 10px;
+                      color: #555555;
+                      font-size: 16px;
+                    "
+                  >
+                    技判定<br />
+                  </h2>
+                  <div>
+                    <a href="./how-to-get-tricks.html"
+                      ><span class="ms-rteForeColor-2">-&#160;V1技判定</span></a
+                    >
+
+                    <ul>
+                      <li>
+                        <span class="ms-rteForeColor-2">V1技判定</span>
+                        <ul>
+                          <li>
+                            <a class="wiki-page" href="./list-of-tricks.html">
+                              <span class="ms-rteForeColor-2"
+                                >判定技一覧</span
+                              ></a
+                            ><br />
+                          </li>
+                          <li>
+                            <a
+                              class="wiki-page"
+                              href="./recognition-alogarith.html"
+                            >
+                              <span class="ms-rteForeColor-2"
+                                >技判定アルゴリズム</span
+                              ></a
+                            ><br />
+                          </li>
+                          <li>
+                            <a class="wiki-page" href="./trick-judge.html">
+                              <span class="ms-rteForeColor-2">
+                                <span>Trick</span><span>Judge</span></span
+                              ></a
+                            >（技判定ライブラリ）
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                    V2技判定
+                    <ul>
+                      <li>
+                        <ul>
+                          <li>
+                            <a class="wiki-page" href="./judge-category.html">
+                              <span class="ms-rteForeColor-2"
+                                >カテゴリ別</span
+                              ></a
+                            ><br />
+                          </li>
+                          <li>
+                            <a
+                              class="wiki-page"
+                              href="./judge-combination.html"
+                            >
+                              <span class="ms-rteForeColor-2">組合せ技</span></a
+                            >
+                          </li>
+                          <li>
+                            <a class="wiki-page" href="./judge-level.html">
+                              <span class="ms-rteForeColor-2">レベル別</span></a
+                            >
+                          </li>
+                          <li>
+                            <a class="wiki-page" href="./judge-v2.html">
+                              <span class="ms-rteForeColor-2"
+                                >アルゴリズム</span
+                              ></a
+                            ><br />
+                          </li>
+                          <li>
+                            <a
+                              class="wiki-page"
+                              href="./judge_v2explanation.html"
+                            >
+                              <span class="ms-rteForeColor-2">解説</span></a
+                            >
+                          </li>
+                          <li>
+                            <a class="wiki-page" href="./judge_v1_v2.html">
+                              <span class="ms-rteForeColor-2"
+                                >V1とV2の差分</span
+                              ></a
+                            ><br />
+                          </li>
+                          <li>
+                            <a class="wiki-page" href="./judge_v2_code.html">
+                              <span class="ms-rteForeColor-2"
+                                >関連コード</span
+                              ></a
+                            ><br />
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <div>
+              <br />
+            </div>
+            <ul>
+              <li>
+                <div>
+                  <h2
+                    style="
+                      font-family: 'trebuchet ms', verdana, sans-serif;
+                      padding: 2px 10px 1px 0px;
+                      margin: 0px 0px 10px;
+                      color: #555555;
+                      font-size: 16px;
+                    "
+                  >
+                    ツール/ライブラリ<br />
+                  </h2>
+                  <div>
+                    <p>
+                      <a href="./dendama_blev2.html"
+                        ><span class="ms-rteForeColor-2"
+                          >DendamaBLE（BLE接続ライブラリ）</span
+                        ></a
+                      >
+                    </p>
+                    <p>
+                      <a href="./trick-judge.html"
+                        ><span class="ms-rteForeColor-2"
+                          >TrickJudge（技判定ライブラリ）</span
+                        ></a
+                      ><br />
+                    </p>
+                  </div>
+                  <br />
+                </div>
+              </li>
+              <li>
+                <div>
+                  <h2
+                    style="
+                      font-family: 'trebuchet ms', verdana, sans-serif;
+                      padding: 2px 10px 1px 0px;
+                      margin: 0px 0px 10px;
+                      color: #555555;
+                      font-size: 16px;
+                    "
+                  >
+                    経理<br />
+                  </h2>
+                </div>
+              </li>
+            </ul>
+          </article>
+          ​<br />​<br />
+        </div>
+      </div>
+    </main>
+  </body>
 </html>

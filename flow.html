@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flow</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      a {
+        color: blue;
+      }
+      table,
+      tr,
+      td,
+      th {
+        border: 1px solid gray;
+      }
+      th {
+        background: greenyellow;
+        color: black;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <a name="フロー"></a>
+      <h1>
+        フロー<a href="#%e3%83%95%e3%83%ad%e3%83%bc" class="wiki-anchor">¶</a>
+      </h1>
+      <table class="ms-rteTable-5">
+        <tbody>
+          <tr class="ms-rteTableHeaderRow-5">
+            <th class="ms-rteTableHeaderEvenCol-5" style="width: 188px">
+              Native
+            </th>
+            <th class="ms-rteTableHeaderOddCol-5">Native &lt;- Web</th>
+            <th class="ms-rteTableHeaderEvenCol-5">Native -&gt; Web</th>
+            <th class="ms-rteTableHeaderOddCol-5">Web</th>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="4" class="ms-rteTableEvenCol-5">
+              <strong>1台接続（未登録電玉）</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5">scanDendama</td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">
+              didDiscover
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">
+              discover_dendama(1): 一台の電玉検出を通知
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5">
+              例「電玉が検出されました。接続します。」の案内
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5">OKボタン押下</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5">connectDendama</td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">
+              didConnect
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">
+              didDiscoverCharacteristicsFor
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">
+              success_connect(uuid): 電玉接続を通知
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">
+              最終接続電玉としてスマホに記録
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">:</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">
+              didUpdateValueForBattery
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">
+              update_battery_level(uuid, value)
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">
+              didUpdateValueForSensor
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">
+              trick(uuid, sensingTrick, stateTrick, seriesTrick, midSeriesTrick)
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">sensor(uuid, ...)</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">:</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="4" class="ms-rteTableEvenCol-5">
+              <strong>1台接続（最終接続電玉）</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5">scanDendama</td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">
+              didDiscover
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">自動接続</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">
+              didConnect
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">
+              didDiscoverCharacteristicsFor
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">
+              success_connect(uuid): 電玉接続を通知
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">:</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="4" class="ms-rteTableEvenCol-5">
+              <strong>1台接続（複数検出）</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5">scanDendama</td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">
+              didDiscover
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">
+              discover_dendama(2): 複数台の電玉複数検出を通知<br />3台の場合は、引数に3が入る。
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5">
+              例「複数の電玉が検出されました。<br />接続する電玉を近づけて下さい。」の案内
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5">OKボタン押下</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5">connectDendama</td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">
+              RSSIの高い方に接続
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">
+              didConnect
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">
+              didDiscoverCharacteristicsFor
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">
+              success_connect(uuid): 電玉接続を通知
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">:</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="4" class="ms-rteTableEvenCol-5">
+              <strong>2台目接続（1台目は接続済み）</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5">scanDendama/1</td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">
+              didDiscover
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">
+              discover_dendama(1 or N): 電玉検出を通知
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5">
+              例「2台目の電玉が検出されました。<br />接続します。」の案内
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5">OKボタン押下</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5">connectDendama</td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">
+              didConnect
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">
+              didDiscoverCharacteristicsFor
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">
+              success_connect(uuid): 電玉接続を通知
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5" style="width: 188px">:</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+    </div>
+  </body>
+</html>

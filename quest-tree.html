@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>setting for games</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      a {
+        color: blue;
+      }
+      table,
+      tr,
+      td,
+      th {
+        border: 1px solid gray;
+      }
+      th {
+        background: greenyellow;
+        color: black;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <p>
+        <img
+          src="./img/quest_tree.png"
+          alt="quest_tree.png"
+          data-themekey="#"
+          style="margin: 5px"
+        />
+        <br />
+      </p>
+      <p>
+        <br />
+      </p>
+      <div
+        style="
+          background: #3d3d3d;
+          overflow: auto;
+          width: auto;
+          border-style: solid;
+          border-color: gray;
+          border-width: 0.1em 0.1em 0.1em 0.8em;
+          padding: 0.2em 0.6em;
+        "
+      >
+        <pre
+          style="margin: 0px; line-height: 125%"
+        >quest_tree<span style="color: #666666;">:</span> {
+        Initial<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;Cup&#39;</span>, 
+      
+      
+      <span style="color: #ff1ebb;">&#39;Moshikame&#39;</span>, 
+      
+      
+      <span style="color: #ff1ebb;">&#39;Kensaki&#39;</span>],
+        Cup<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;Sarado&#39;</span>, 
+      
+      
+      <span style="color: #ff1ebb;">&#39;Jump&#39;</span>, 
+      
+      
+      <span style="color: #ff1ebb;">&#39;CurlSpike&#39;</span>],
+        Sarado<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;Slip&#39;</span>],
+        Slip<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;Hanging&#39;</span>],
+        Jump<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;FreeFall&#39;</span>],
+        FreeFall<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;Lighthouse&#39;</span>],
+        Lighthouse<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;FallingIn&#39;</span>, 
+      
+      
+      <span style="color: #ff1ebb;">&#39;Bird&#39;</span>],
+        FallingIn<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;Luner&#39;</span>],
+        Bird<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;UnderBird&#39;</span>, 
+      
+      
+      <span style="color: #ff1ebb;">&#39;Wing&#39;</span>, 
+      
+      
+      <span style="color: #ff1ebb;">&#39;Axe&#39;</span>],
+        CurlSpike<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;CentrifugalForce&#39;</span>],
+        CentrifugalForce<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;TurnTable&#39;</span>],
+        Moshikame<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;Baseball&#39;</span>],
+        Baseball<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;ScoopingGoldfish&#39;</span>, 
+      
+      
+      <span style="color: #ff1ebb;">&#39;ThumbTrap&#39;</span>],
+        Kensaki<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;Spike&#39;</span>, 
+      
+      
+      <span style="color: #ff1ebb;">&#39;Turnover&#39;</span>],
+        Spike<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;Airplane&#39;</span>, 
+      
+      
+      <span style="color: #ff1ebb;">&#39;SwingSpike&#39;</span>, 
+      
+      
+      <span style="color: #ff1ebb;">&#39;Around&#39;</span>],
+        Airplane<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;JStick&#39;</span>],
+        JStick<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;Stilt&#39;</span>],
+        SwingSpike<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;EarthTurn&#39;</span>, 
+      
+      
+      <span style="color: #ff1ebb;">&#39;Gunslinger&#39;</span>, 
+      
+      
+      <span style="color: #ff1ebb;">&#39;Downspike&#39;</span>],
+        EarthTurn<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;Flip&#39;</span>],
+        Flip<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;Aerial&#39;</span>],
+        Downspike<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;Stuntplane&#39;</span>],
+        Stuntplane<span style="color: #666666;">:</span> [<span style="color: #ff1ebb;">&#39;Juggling&#39;</span>],
+    },<br/></pre>
+      </div>
+      <br />
+      <div>
+        <ul
+          style="
+            margin-bottom: 1em;
+            font-family: verdana, sans-serif;
+            font-size: 12px;
+          "
+        >
+          <li>
+            最終的に下記のような形式で&#160;言語ファイル&#160;にマージする<br />
+          </li>
+        </ul>
+        <div>
+          <font face="verdana, sans-serif">
+            <span style="font-size: 12px"> <br /></span
+          ></font>
+        </div>
+        <br />
+      </div>
+      <div
+        style="
+          background: #3d3d3d;
+          overflow: auto;
+          width: auto;
+          border-style: solid;
+          border-color: gray;
+          border-width: 0.1em 0.1em 0.1em 0.8em;
+          padding: 0.2em 0.6em;
+        "
+      >
+        <pre
+          style="margin: 0px; line-height: 125%"
+        >ja<span style="color: #666666;">:</span>
+  model<span style="color: #666666;">:</span>
+    quest_tree<span style="color: #666666;">:</span>
+      Aerial<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;空中技系&#39;</span>
+      Airplane<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;飛行機系&#39;</span>
+      Around<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;一周系&#39;</span>
+      Axe<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;まさかり系&#39;</span>
+      Baseball<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;野球けん系&#39;</span>
+      Bird<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;うぐいす系&#39;</span>
+      CentrifugalForce<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;遠心力系&#39;</span>
+      Cup<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;皿系&#39;</span>
+      CurlSpike<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;秘竜のぼりけん系&#39;</span>
+      Downspike<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;ダウンスパイク系&#39;</span>
+      EarthTurn<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;地球まわし系&#39;</span>
+      FallingIn<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;さか落とし系&#39;</span>
+      Flip<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;けんフリップ系&#39;</span>
+      FreeFall<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;自由落下系&#39;</span>
+      Gunslinger<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;ガンマン系&#39;</span>
+      Hanging<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;つるし系&#39;</span>
+      JStick<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;はねけん系&#39;</span>
+      Juggling<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;ジャグル系&#39;</span>
+      Jump<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;ジャンプ系&#39;</span>
+      Kensaki<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;けん先系&#39;</span>
+      Lighthouse<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;灯台系&#39;</span>
+      Luner<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;月面系&#39;</span>
+      Moshikame<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;もしかめ系&#39;</span>
+      Sarado<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;皿胴系&#39;</span>
+      ScoopingGoldfish<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;金魚すくい系&#39;</span>
+      Slip<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;すべり系&#39;</span>
+      Spike<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;とめけん系&#39;</span>
+      Stilt<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;たけうま系&#39;</span>
+      Stuntplane<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;すくいけん系&#39;</span>
+      SwingSpike<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;ふりけん系&#39;</span>
+      ThumbTrap<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;ひっつき虫系&#39;</span>
+      TurnTable<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;ターンテーブル系&#39;</span>
+      Turnover<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;もちかえ系&#39;</span>
+      UnderBird<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;アンダーバード系&#39;</span>
+      Wing<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;極意系&#39;</span>
+
+en<span style="color: #666666;">:</span>
+  model<span style="color: #666666;">:</span>
+    quest_tree<span style="color: #666666;">:</span>
+      Aerial<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Aerial&#39;</span>
+      Airplane<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Airplane&#39;</span>
+      Around<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Around&#39;</span>
+      Axe<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Axe&#39;</span>
+      Baseball<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Baseball&#39;</span>
+      Bird<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Bird&#39;</span>
+      CentrifugalForce<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Centrifugal force&#39;</span>
+      Cup<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Cup&#39;</span>
+      CurlSpike<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Curl Spike&#39;</span>
+      Downspike<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Downspike&#39;</span>
+      EarthTurn<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Earth Turn&#39;</span>
+      FallingIn<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Falling In&#39;</span>
+      Flip<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Flip&#39;</span>
+      FreeFall<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Free Fall&#39;</span>
+      Gunslinger<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Gunslinger&#39;</span>
+      Hanging<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Hanging&#39;</span>
+      JStick<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;J Stick&#39;</span>
+      Juggling<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Juggling&#39;</span>
+      Jump<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Jump&#39;</span>
+      Kensaki<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Kensaki&#39;</span>
+      Lighthouse<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Lighthouse&#39;</span>
+      Luner<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Luner&#39;</span>
+      Moshikame<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Moshikame&#39;</span>
+      Sarado<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Sarado&#39;</span>
+      ScoopingGoldfish<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Scooping Goldfish&#39;</span>
+      Slip<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Slip&#39;</span>
+      Spike<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Spike&#39;</span>
+      Stilt<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Stilt&#39;</span>
+      Stuntplane<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Stuntplane&#39;</span>
+      SwingSpike<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Swing Spike&#39;</span>
+      ThumbTrap<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Thumb Trap&#39;</span>
+      TurnTable<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Turn Table&#39;</span>
+      Turnover<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Turnover&#39;</span>
+      UnderBird<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Under Bird&#39;</span>
+      Wing<span style="color: #666666;">:</span> 
+      <span style="color: #ff1ebb;">&#39;Wing&#39;</span>
+</pre>
+      </div>
+      <br />
+    </div>
+  </body>
+</html>

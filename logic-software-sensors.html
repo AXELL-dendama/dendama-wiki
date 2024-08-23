@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>組込ソフトV1</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <div class="wiki wiki-page">
+        ​​
+       
+        <h1>
+          組込ソフトV1
+          >​<br />
+        </h1>
+        <div
+          class="contextual heading-2"
+          title="このセクションを編集"
+          id="section-2"
+        >
+        </div>
+        <h2>定数</h2>
+        <ul>
+          <li>
+            SendingSensorInterval: センサー情報をBLE経由で送る間隔
+            <ul>
+              <li>
+                0.02秒（50Hz）<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+const float SendingSensorInterval = 0.02;
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            SensingLEDInterval: センシングに応じてLED赤が点灯する時間
+            <ul>
+              <li>
+                0.2秒（暫定、量産プロトタイプで実験して決める）<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+const float SensingLEDInterval = 0.2;
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div
+          class="contextual heading-2"
+          title="このセクションを編集"
+          id="section-3"
+        >
+          
+        <h2>
+          ビットフラグ
+        </h2>
+        <ul>
+          <li>
+            各皿・けん
+            <ul>
+              <li>大皿: 0x01</li>
+              <li>小皿: 0x02</li>
+              <li>中皿: 0x04</li>
+              <li>
+                けん: 0x08<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+const uint8_t flagBigCup = 0x01;
+const uint8_t flagSmallCup = 0x02;
+const uint8_t flagBaseCup = 0x04;
+const uint8_t flagSpike = 0x08;
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div
+          class="contextual heading-2"
+          title="このセクションを編集"
+          id="section-4"
+        >
+         
+        <h2>
+          PinName（Demo Day）
+          >
+        </h2>
+        <ul>
+          <li>
+            各皿・けん（コイル）
+            <ul>
+              <li>大皿: P0_2</li>
+              <li>小皿: P0_4</li>
+              <li>中皿: P0_6</li>
+              <li>けん: P0_1</li>
+            </ul>
+          </li>
+          <li>
+            MPU6050（加速度・ジャイロセンサー）
+            <ul>
+              <li>SDA: P0_25</li>
+              <li>SCL: P0_26</li>
+            </ul>
+          </li>
+          <li>
+            LED
+            <ul>
+              <li>大皿: P0_11</li>
+              <li>小皿: P0_13</li>
+              <li>中皿: P0_12</li>
+              <li>けん: P0_15</li>
+            </ul>
+          </li>
+        </ul>
+        <div
+          class="contextual heading-2"
+          title="このセクションを編集"
+          id="section-5"
+        >
+         
+        <h2>
+          PinName（量産プロトタイプ）
+        </h2>
+        <ul>
+          <li>
+            参照
+            <ul>
+              <li>
+                HRM1017/NRF51822 の
+               
+              </li>
+              <li>
+                電玉の
+                回路図
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            各皿・けん（コイル）
+            <ul>
+              <li>大皿（coil1）: P0_2</li>
+              <li>小皿（coil2）: P0_1</li>
+              <li>中皿（coil3）: P0_4</li>
+              <li>
+                けん（coil1）: P0_6<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+Sensing sensingBigCup(P0_2, flagBigCup);
+Sensing sensingSmallCup(P0_1, flagSmallCup);
+Sensing sensingBaseCup(P0_4, flagBaseCup);
+Sensing sensingSpike(P0_6, flagSpike);
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            MPU6050（加速度・ジャイロセンサー）
+            <ul>
+              <li>SDA: P0_22</li>
+              <li>
+                SCL: P0_20<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+MPU6050 mpu(P0_22, P0_20);
+剣先：X軸＋、大皿：Y軸＋
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            LED 赤
+            <ul>
+              <li>大皿（LED1_R）: P0_13</li>
+              <li>小皿（LED2_R）: P0_12</li>
+              <li>中皿（LED3_R）: P0_14</li>
+            </ul>
+          </li>
+          <li>
+            LED 緑
+            <ul>
+              <li>大皿（LED1_G）: P0_18</li>
+              <li>小皿（LED2_G）: P0_17</li>
+              <li>
+                中皿（LED3_G）: P0_19<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+DoubleLED ledBigCup(P0_13, P0_18);
+DoubleLED ledSmallCup(P0_12, P0_17);
+DoubleLED ledBaseCup(P0_14, P0_19);
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            モーター
+            <ul>
+              <li>
+                motor: P0_25<br />
+                <pre>
+Motor motor(P0_25);
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            バッテリー
+            <ul>
+              <li>BATT: P0_5</li>
+              <li>
+                シャットダウン（PM）: P0_7<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+AnalogIn battery(P0_5);
+DigialOut shutdown(P0_7);
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div
+          class="contextual heading-2"
+          title="このセクションを編集"
+          id="section-6"
+        >
+         
+        </div>
+       
+        <h2>
+          PinName（V2_rev.1）
+        </h2>
+        <ul>
+          <li>
+            参照
+            <ul>
+              <li>
+                電玉の
+               回路図
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            LDC1X14（各皿・けん）
+            <ul>
+              <li>SDA: P0_16</li>
+              <li>SCL: P0_15</li>
+              <li>
+                LDC_INT: P0_13
+                <ul>
+                  <li>けん: IN0A-IN0B</li>
+                  <li>大皿: IN1A-IN1B</li>
+                  <li>小皿: IN2A-IN2B</li>
+                  <li>
+                    中皿: IN3A-IN3B<br />
+                    <pre
+                      style="
+                        margin: 1em 1em 1em 1.6em;
+                        padding: 8px;
+                        background-color: #3d3d3d;
+                        border: 1px solid #e2e2e2;
+                        border-radius: 3px;
+                        width: auto;
+                      "
+                    >
+//
+</pre
+                    >
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            MPU9250（加速度・ジャイロ・地磁気センサー）
+            <ul>
+              <li>SDA: P0_12</li>
+              <li>SCL: P0_11</li>
+              <li>
+                MPU_INT: P0_09<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+//
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            74HC595（LED赤・緑）
+            <ul>
+              <li>SER: P0_21</li>
+              <li>SRCLK: P0_26</li>
+              <li>
+                RCLK: P0_27
+                <ul>
+                  <li>
+                    LED 赤
+                    <ul>
+                      <li>大皿: QE</li>
+                      <li>小皿: QC</li>
+                      <li>中皿: QA</li>
+                    </ul>
+                  </li>
+                  <li>
+                    LED 緑
+                    <ul>
+                      <li>大皿: QF</li>
+                      <li>小皿: QD</li>
+                      <li>
+                        中皿: QB<br />
+                        <pre
+                          style="
+                            margin: 1em 1em 1em 1.6em;
+                            padding: 8px;
+                            background-color: #3d3d3d;
+                            border: 1px solid #e2e2e2;
+                            border-radius: 3px;
+                            width: auto;
+                          "
+                        >
+//
+</pre
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            モーター
+            <ul>
+              <li>
+                motor: P0_08<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+//
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            バッテリー
+            <ul>
+              <li>BATT: P0_05</li>
+              <li>
+                シャットダウン（PM）: P0_19<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+//
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div
+          class="contextual heading-2"
+          title="このセクションを編集"
+          id="section-7"
+        >
+         
+        </div>
+       
+        <h2>
+          PinName（V2_rev.2）
+        </h2>
+        <ul>
+          <li>
+            参照
+            <ul>
+              <li>
+                電玉の
+               回路図
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            LDC1X14（各皿・けん）
+            <ul>
+              <li>SDA: P0_16</li>
+              <li>SCL: P0_15</li>
+              <li>LDC_INT: P0_13</li>
+              <li>
+                LDC_SD: P0_19
+                <ul>
+                  <li>けん: IN0A-IN0B</li>
+                  <li>中皿: IN1A-IN1B</li>
+                  <li>小皿: IN2A-IN2B</li>
+                  <li>
+                    大皿: IN3A-IN3B<br />
+                    <pre
+                      style="
+                        margin: 1em 1em 1em 1.6em;
+                        padding: 8px;
+                        background-color: #3d3d3d;
+                        border: 1px solid #e2e2e2;
+                        border-radius: 3px;
+                        width: auto;
+                      "
+                    >
+//
+</pre
+                    >
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            MPU9250（加速度・ジャイロ・地磁気センサー）
+            <ul>
+              <li>SDA: P0_12</li>
+              <li>SCL: P0_11</li>
+              <li>
+                MPU_INT: P0_09<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+剣先：Y軸＋、大皿：X軸＋
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>74HC595（LED赤・緑・青）</li>
+          <li>
+            データシート：http://akizukidenshi.com/download/ds/ti/sn74hc595.pdf
+            <ul>
+              <li>SER: P0_21</li>
+              <li>SRCLK: P0_26</li>
+              <li>
+                RCLK: P0_27
+                <ul>
+                  <li>
+                    LED 赤
+                    <ul>
+                      <li>大皿: QG</li>
+                      <li>小皿: QD</li>
+                      <li>中皿: QA</li>
+                    </ul>
+                  </li>
+                  <li>
+                    LED 緑
+                    <ul>
+                      <li>大皿: QH</li>
+                      <li>小皿: QE</li>
+                      <li>中皿: QB</li>
+                    </ul>
+                  </li>
+                  <li>
+                    LED 青
+                    <ul>
+                      <li>大皿: P0_0</li>
+                      <li>小皿: QF</li>
+                      <li>
+                        中皿: QC<br />
+                        <pre
+                          style="
+                            margin: 1em 1em 1em 1.6em;
+                            padding: 8px;
+                            background-color: #3d3d3d;
+                            border: 1px solid #e2e2e2;
+                            border-radius: 3px;
+                            width: auto;
+                          "
+                        >
+74HC595にLED青大皿以外の8bitデータをまとめて送信
+</pre
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            モーター
+            <ul>
+              <li>
+                motor: P0_08<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+//
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            バッテリー
+            <ul>
+              <li>BATT: P0_05</li>
+              <li>
+                シャットダウン（PM）: P0_03<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+//
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            Cortex-Swd(デバッガポート)
+            <ul>
+              <li>SWDCLK: W3</li>
+              <li>
+                SWDIO: W2<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+//
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            シリアル通信
+            <ul>
+              <li>TX: P0_1(W5)</li>
+              <li>
+                RX: P0_2(W6)<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+//
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            電源
+            <ul>
+              <li>Vdd(+3.3V): W4</li>
+              <li>GND: W1</li>
+            </ul>
+          </li>
+        </ul>
+        <div
+          class="contextual heading-2"
+          title="このセクションを編集"
+          id="section-8"
+        >
+         
+        </div>
+       
+        <h2>
+          PinName（V2_rev.3）
+        </h2>
+        <ul>
+          <li>
+            参照
+            <ul>
+              <li>
+                電玉の
+              回路図
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            LDC1X14（各皿・けん）
+            <ul>
+              <li>SDA: P0_26</li>
+              <li>SCL: P0_21</li>
+              <li>LDC_INT: P0_27</li>
+              <li>
+                LDC_SD: P0_0
+                <ul>
+                  <li>けん: IN2A-IN2B</li>
+                  <li>中皿: IN3A-IN3B</li>
+                  <li>小皿: IN1A-IN1B</li>
+                  <li>
+                    大皿: IN0A-IN0B<br />
+                    <pre
+                      style="
+                        margin: 1em 1em 1em 1.6em;
+                        padding: 8px;
+                        background-color: #3d3d3d;
+                        border: 1px solid #e2e2e2;
+                        border-radius: 3px;
+                        width: auto;
+                      "
+                    >
+//
+</pre
+                    >
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            ICM-20602（加速度・ジャイロ）
+            <ul>
+              <li>SDA: P0_3</li>
+              <li>SCL: P0_1</li>
+              <li>
+                MPU_INT: P0_2<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+剣先：Y軸＋、大皿：X軸＋
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>74HC595（LED赤・緑・青）</li>
+          <li>
+            データシート：http://akizukidenshi.com/download/ds/ti/sn74hc595.pdf
+            <ul>
+              <li>SER: P0_8</li>
+              <li>SRCLK: P0_9</li>
+              <li>
+                RCLK: P0_11
+                <ul>
+                  <li>
+                    LED 赤
+                    <ul>
+                      <li>大皿: QD</li>
+                      <li>小皿: QA</li>
+                      <li>中皿: QG</li>
+                    </ul>
+                  </li>
+                  <li>
+                    LED 緑
+                    <ul>
+                      <li>大皿: QE</li>
+                      <li>小皿: QB</li>
+                      <li>中皿: QH</li>
+                    </ul>
+                  </li>
+                  <li>
+                    LED 青
+                    <ul>
+                      <li>大皿: QF</li>
+                      <li>小皿: QC</li>
+                      <li>
+                        中皿: P0_12<br />
+                        <pre
+                          style="
+                            margin: 1em 1em 1em 1.6em;
+                            padding: 8px;
+                            background-color: #3d3d3d;
+                            border: 1px solid #e2e2e2;
+                            border-radius: 3px;
+                            width: auto;
+                          "
+                        >
+74HC595にLED青中皿以外の8bitデータをまとめて送信
+</pre
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            バッテリー
+            <ul>
+              <li>BATT: P0_05</li>
+              <li>
+                シャットダウン（PM）: P0_13<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+//
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            Cortex-Swd(デバッガポート)
+            <ul>
+              <li>SWDCLK: W3</li>
+              <li>
+                SWDIO: W2<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+//
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            シリアル通信
+            <ul>
+              <li>TX: P0_16(W5)</li>
+              <li>
+                RX: P0_15(W6)<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+//
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            電源
+            <ul>
+              <li>Vdd(+3.3V): W4</li>
+              <li>GND: W1</li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            その他
+            <ul>
+              <li>空きポート: P0_19(W7)</li>
+            </ul>
+          </li>
+        </ul>
+        <div
+          class="contextual heading-2"
+          title="このセクションを編集"
+          id="section-9"
+        >
+         
+        </div>
+       
+        <h2>
+          PinName（V2_rev.4）
+        </h2>
+        <ul>
+          <li>
+            参照
+            <ul>
+              <li>
+                電玉の
+                回路図
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            LDC1314（各皿・けん）
+            <ul>
+              <li>SDA: P0_26</li>
+              <li>SCL: P0_21</li>
+              <li>LDC_INT: P0_27</li>
+              <li>
+                LDC_SD: P0_0
+                <ul>
+                  <li>けん: IN2A-IN2B</li>
+                  <li>中皿: IN3A-IN3B</li>
+                  <li>小皿: IN1A-IN1B</li>
+                  <li>
+                    大皿: IN0A-IN0B<br />
+                    <pre
+                      style="
+                        margin: 1em 1em 1em 1.6em;
+                        padding: 8px;
+                        background-color: #3d3d3d;
+                        border: 1px solid #e2e2e2;
+                        border-radius: 3px;
+                        width: auto;
+                      "
+                    >
+//
+</pre
+                    >
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            ICM-20602（加速度・ジャイロ）
+            <ul>
+              <li>SDA: P0_1</li>
+              <li>SCL: P0_2</li>
+              <li>
+                MPU_INT: P0_3<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+剣先：Y軸＋、大皿：X軸＋
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            LED色選択
+            <ul>
+              <li>赤: P0_16</li>
+              <li>緑: P0_15</li>
+              <li>青: P0_13</li>
+            </ul>
+          </li>
+          <li>
+            LED皿選択
+            <ul>
+              <li>大皿: P0_11</li>
+              <li>小皿: P0_9</li>
+              <li>
+                中皿: P0_8<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+色選択部は正論理（HIGHで点灯），皿選択部は不論理（LOWで光る皿を指定）
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            バッテリー
+            <ul>
+              <li>
+                BATT: P0_05<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+//
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            Cortex-Swd(デバッガポート)
+            <ul>
+              <li>SWDCLK: W2</li>
+              <li>
+                SWDIO: W3<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+//
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            シリアル通信
+            <ul>
+              <li>
+                TX: P0_19(W6)<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+//
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            電源
+            <ul>
+              <li>Vdd(+3.3V): W4</li>
+              <li>GND: W1</li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            その他
+            <ul>
+              <li>空きポート: P0_12(W5)</li>
+            </ul>
+          </li>
+        </ul>
+        <div
+          class="contextual heading-2"
+          title="このセクションを編集"
+          id="section-10"
+        >
+         
+        </div>
+       
+        <h2>
+          コールバック
+        </h2>
+        <p>
+          mbed のプログラムはイベント駆動型プログラム<br />各イベントに対するコールバックは以下の通り
+        </p>
+        <ul>
+          <li>
+            電源起動時
+            <ul>
+              <li>
+                main()
+                <ul>
+                  <li>BLEのアドバタイジングの開始</li>
+                  <li>Ticker による定期的コールバックの開始</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            BLE接続時
+            <ul>
+              <li>
+                onConnectionCallback()
+                <ul>
+                  <li>BLEのアドバタイジングの停止</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            BLE切断時
+            <ul>
+              <li>
+                onDisconnectionCallback()
+                <ul>
+                  <li>BLEのアドバタイジングの再開</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            BLE書き込み時
+            <ul>
+              <li>
+                onDataWrittenCallback()
+                <ul>
+                  <li>LEDの点灯</li>
+                  <li>モーターの起動</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            BLE通知有効化時
+            <ul>
+              <li>
+                onUpdatesEnabledCallback()
+                <ul>
+                  <li>カルマンフィルタの開始</li>
+                  <li>センサー情報の送信フラグOn</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            BLE通知無効化時
+            <ul>
+              <li>
+                onUpdatesDisabledCallback()
+                <ul>
+                  <li>カルマンフィルタの停止</li>
+                  <li>センサー情報の送信フラグOff</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Ticker による定期的コールバック
+            <ul>
+              <li>
+                updateServiceValues()
+                <ul>
+                  <li>LEDのステータス変更（消灯 or 継続）</li>
+                  <li>モーターのステータス変更（停止 or 継続）</li>
+                  <li>（フラグがOnの場合）センサー情報の送信</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div
+          class="contextual heading-2"
+          title="このセクションを編集"
+          id="section-11"
+        >
+         
+        </div>
+       
+        <h2>
+          起動時のフロー
+        </h2>
+        <ol>
+          <li>
+            <del>電源のチェック</del>
+            <ul>
+              <li>
+                <del>電圧レベルが一定値より低ければシャットダウン</del>
+              </li>
+            </ul>
+          </li>
+          <li>加速度・ジャイロセンサーの初期化</li>
+          <li>ジャイロセンサーのキャリブレーション</li>
+          <li>
+            <del>モーターの動作チェック</del>
+          </li>
+          <li>
+            <del>コイルのチェック</del>
+          </li>
+          <li>
+            <del>加速度センサーのチェック</del>
+          </li>
+          <li>BLEの初期化</li>
+          <li>BLEのアドバタイジングの開始</li>
+          <li>
+            メインループ
+            <ul>
+              <li>
+                定期的に電圧レベルのチェック
+                <ul>
+                  <li>
+                    一定値より低くなれば、
+                    <del>BLE経由で接続先に対して通知して</del> シャットダウン
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+      ​<br />
+    </div>
+  </body>
+</html>

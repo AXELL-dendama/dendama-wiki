@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Judge tricks</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      a {
+        color: blue;
+      }
+      table,
+      tr,
+      td,
+      th {
+        border: 1px solid gray;
+      }
+      th {
+        background: greenyellow;
+        color: black;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <h2
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 16px;
+        "
+      >
+        基本
+      </h2>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        以下のステップで技が判定されていく。
+      </p>
+      <ol
+        style="
+          margin-top: 0px;
+          margin-bottom: 1em;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      >
+        <li>Sensing combo</li>
+        <li>Sensing trick</li>
+        <li>Final trick</li>
+      </ol>
+      <div
+        class="contextual heading-2"
+        title="このセクションを編集"
+        style="
+          float: right;
+          white-space: nowrap;
+          line-height: 1.4em;
+          margin-top: 5px;
+          padding-left: 10px;
+          font-size: 0.9em;
+          font-family: verdana, sans-serif;
+        "
+      >
+        <a
+          class="icon-only icon-edit"
+          href="https://redmine.dendama.co.jp/projects/dendama/wiki/V2%e6%8a%80%e5%88%a4%e5%ae%9a_%e3%82%a2%e3%83%ab%e3%82%b4%e3%83%aa%e3%82%ba%e3%83%a0/edit?section=3"
+          style="
+            color: #116699;
+            background-position: 0% 50%;
+            background-repeat: no-repeat;
+            padding-left: 16px;
+            display: inline-block;
+            width: 0px;
+            height: 16px;
+            overflow: hidden;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            font-size: 8px;
+            vertical-align: text-bottom;
+            opacity: 0.4;
+          "
+          >このセクションを編集</a
+        >
+      </div>
+      <a
+        name="Sensing-combo"
+        style="
+          color: #116699;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      ></a
+      ><span style="font-family: verdana, sans-serif; font-size: 12px"></span>
+      <h2
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 16px;
+        "
+      >
+        Sensing combo
+      </h2>
+      <ul
+        style="
+          margin-bottom: 1em;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      >
+        <li>誘電体センサからの値の組み合わせで決まる状態</li>
+      </ul>
+      <div
+        class="contextual heading-3"
+        title="このセクションを編集"
+        style="
+          float: right;
+          white-space: nowrap;
+          line-height: 1.4em;
+          margin-top: 5px;
+          padding-left: 10px;
+          font-size: 0.9em;
+          font-family: verdana, sans-serif;
+        "
+      >
+        <a
+          class="icon-only icon-edit"
+          href="https://redmine.dendama.co.jp/projects/dendama/wiki/V2%e6%8a%80%e5%88%a4%e5%ae%9a_%e3%82%a2%e3%83%ab%e3%82%b4%e3%83%aa%e3%82%ba%e3%83%a0/edit?section=4"
+          style="
+            color: #116699;
+            background-position: 0% 50%;
+            background-repeat: no-repeat;
+            padding-left: 16px;
+            display: inline-block;
+            width: 0px;
+            height: 16px;
+            overflow: hidden;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            font-size: 8px;
+            vertical-align: text-bottom;
+            opacity: 0.4;
+          "
+          >このセクションを編集</a
+        >
+      </div>
+      <a
+        name="値の分類"
+        style="
+          color: #116699;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      ></a
+      ><span style="font-family: verdana, sans-serif; font-size: 12px"></span>
+      <h3
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 13px;
+        "
+      >
+        値の分類
+      </h3>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">（仮）</p>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        (kHz value) = 40000.0 * (Raw value) / 65536.0<br />
+      </p>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        <br />
+      </p>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        <br />
+      </p>
+      <table class="ms-rteTable-5">
+        <tbody>
+          <tr class="ms-rteTableEvenRow-5">
+            <td rowspan="2" class="ms-rteTableEvenCol-5">Sensor</td>
+            <td rowspan="2" class="ms-rteTableOddCol-5">L/M/S</td>
+            <td colspan="2" class="ms-rteTableEvenCol-5">Raw value</td>
+            <td colspan="2" class="ms-rteTableOddCol-5">kHz value</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">min</td>
+            <td class="ms-rteTableOddCol-5">max</td>
+            <td class="ms-rteTableEvenCol-5">min</td>
+            <td class="ms-rteTableOddCol-5">max</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td rowspan="3" class="ms-rteTableEvenCol-5">大皿<br />小皿</td>
+            <td class="ms-rteTableOddCol-5">Large</td>
+            <td class="ms-rteTableEvenCol-5">
+              <strong>500</strong>
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">305</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">Small</td>
+            <td class="ms-rteTableOddCol-5">
+              <strong>10</strong>
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              <strong>60</strong>
+            </td>
+            <td class="ms-rteTableOddCol-5">6</td>
+            <td class="ms-rteTableEvenCol-5">36</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">None</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">
+              <strong>9</strong>
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">5</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td rowspan="4" class="ms-rteTableEvenCol-5">中皿</td>
+            <td class="ms-rteTableOddCol-5">Large</td>
+            <td class="ms-rteTableEvenCol-5">
+              <strong>500</strong>
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">305</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">Medium</td>
+            <td class="ms-rteTableOddCol-5">
+              <strong>20</strong>
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              <strong>60</strong>
+            </td>
+            <td class="ms-rteTableOddCol-5">12</td>
+            <td class="ms-rteTableEvenCol-5">36</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">Small</td>
+            <td class="ms-rteTableOddCol-5">
+              <strong>8</strong>
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              <strong>60</strong>
+            </td>
+            <td class="ms-rteTableOddCol-5">5</td>
+            <td class="ms-rteTableEvenCol-5">36</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">None</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">
+              <strong>7</strong>
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">4</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td rowspan="3" class="ms-rteTableEvenCol-5">けん</td>
+            <td class="ms-rteTableOddCol-5">Large</td>
+            <td class="ms-rteTableEvenCol-5">
+              <strong>250</strong>
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">152</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">Small</td>
+            <td class="ms-rteTableOddCol-5">
+              <strong>10</strong>
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              <strong>80</strong>
+            </td>
+            <td class="ms-rteTableOddCol-5">6</td>
+            <td class="ms-rteTableEvenCol-5">48</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">None</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">
+              <strong>9</strong>
+            </td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">5</td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <div>
+        <h3
+          style="
+            font-family: 'trebuchet ms', verdana, sans-serif;
+            padding: 2px 10px 1px 0px;
+            margin: 0px 0px 10px;
+            color: #555555;
+            font-size: 13px;
+          "
+        >
+          値の組み合わせ<br />
+        </h3>
+        <p>
+          <br />
+        </p>
+        <br />
+      </div>
+      <table class="ms-rteTable-5">
+        <tbody>
+          <tr class="ms-rteTableHeaderRow-5">
+            <th class="ms-rteTableHeaderEvenCol-5">Sensing combo</th>
+            <th class="ms-rteTableHeaderOddCol-5">大皿</th>
+            <th class="ms-rteTableHeaderEvenCol-5">小皿</th>
+            <th class="ms-rteTableHeaderOddCol-5">中皿</th>
+            <th class="ms-rteTableHeaderEvenCol-5">けん</th>
+            <th class="ms-rteTableHeaderOddCol-5">備考</th>
+            <th class="ms-rteTableHeaderEvenCol-5">画像</th>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">bigCup</td>
+            <td class="ms-rteTableOddCol-5">Large</td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5">大皿</td>
+            <td class="ms-rteTableEvenCol-5">
+              <img src="./img/bigCup100.png" data-themekey="#" alt="" />
+              <img
+                src="./img/bigCup100.png"
+                alt="bigCup100.png"
+                data-themekey="#"
+                style="margin: 5px"
+              />
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">smallCup</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">Large</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5">小皿</td>
+            <td class="ms-rteTableEvenCol-5">
+              <img src="./img/smallCup100.png" data-themekey="#" alt="" />
+              <img
+                src="./img/smallCup100.png"
+                alt="smallCup100.png"
+                data-themekey="#"
+                style="margin: 5px"
+              />
+            </td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">baseCup</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5">Large</td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5">中皿</td>
+            <td class="ms-rteTableEvenCol-5">
+              <img src="./img/baseCup100.png" data-themekey="#" alt="" />
+              <img
+                src="./img/baseCup100.png"
+                alt="baseCup100.png"
+                data-themekey="#"
+                style="margin: 5px"
+              />
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">spike</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">Large</td>
+            <td class="ms-rteTableOddCol-5">けんに刺さる</td>
+            <td class="ms-rteTableEvenCol-5">
+              <img src="./img/spike100.png" data-themekey="#" alt="" />
+              <img
+                src="./img/spike100.png"
+                alt="spike100.png"
+                data-themekey="#"
+                style="margin: 5px"
+              />
+            </td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">spikeSide</td>
+            <td class="ms-rteTableOddCol-5">Small</td>
+            <td class="ms-rteTableEvenCol-5">Small</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">Small</td>
+            <td class="ms-rteTableOddCol-5">けんに触れる</td>
+            <td class="ms-rteTableEvenCol-5">
+              <img src="./img/spikeSideHole100.png" data-themekey="#" alt="" />
+              <img
+                src="./img/spikeSideHole100.png"
+                alt="spikeSideHole100.png"
+                data-themekey="#"
+                style="margin: 5px"
+              />
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">crosspiece</td>
+            <td class="ms-rteTableOddCol-5">Small</td>
+            <td class="ms-rteTableEvenCol-5">Small</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">None</td>
+            <td class="ms-rteTableOddCol-5">皿胴</td>
+            <td class="ms-rteTableEvenCol-5">
+              <img src="./img/crosspiece100.png" data-themekey="#" alt="" />
+              <img
+                src="./img/crosspiece100.png"
+                alt="crosspiece100.png"
+                data-themekey="#"
+                style="margin: 5px"
+              />
+            </td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">bird</td>
+            <td class="ms-rteTableOddCol-5">Small</td>
+            <td class="ms-rteTableEvenCol-5">None</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">Small</td>
+            <td class="ms-rteTableOddCol-5">うぐいす</td>
+            <td class="ms-rteTableEvenCol-5">
+              <img src="./img/bigCupBird100.png" data-themekey="#" alt="" />
+              <img
+                src="./img/bigCupBird100.png"
+                alt="bigCupBird100.png"
+                data-themekey="#"
+                style="margin: 5px"
+              />
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">smallCupBird</td>
+            <td class="ms-rteTableOddCol-5">None</td>
+            <td class="ms-rteTableEvenCol-5">Small</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">Small</td>
+            <td class="ms-rteTableOddCol-5">小皿うぐいす</td>
+            <td class="ms-rteTableEvenCol-5">
+              <img src="./img/smallCupBird100.png" data-themekey="#" alt="" />
+              <img
+                src="./img/smallCupBird100.png"
+                alt="smallCupBird100.png"
+                data-themekey="#"
+                style="margin: 5px"
+              />
+            </td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">bigWing</td>
+            <td class="ms-rteTableOddCol-5">Small</td>
+            <td class="ms-rteTableEvenCol-5">None</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">None</td>
+            <td class="ms-rteTableOddCol-5">大皿の縁</td>
+            <td class="ms-rteTableEvenCol-5">
+              <img src="./img/bigWing100.png" data-themekey="#" alt="" />
+              <img
+                src="./img/bigWing100.png"
+                alt="bigWing100.png"
+                data-themekey="#"
+                style="margin: 5px"
+              />
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">smallWing</td>
+            <td class="ms-rteTableOddCol-5">None</td>
+            <td class="ms-rteTableEvenCol-5">Small</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">None</td>
+            <td class="ms-rteTableOddCol-5">小皿の縁</td>
+            <td class="ms-rteTableEvenCol-5">
+              <img src="./img/smallWing100.png" data-themekey="#" alt="" />
+              <img
+                src="./img/smallWing100.png"
+                alt="smallWing100.png"
+                data-themekey="#"
+                style="margin: 5px"
+              />
+            </td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">handlestall</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5">Medium</td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5">中皿の縁</td>
+            <td class="ms-rteTableEvenCol-5">
+              <img
+                src="/attachments/download/59/handlestall100.png"
+                data-themekey="#"
+                alt=""
+              />
+              <img
+                src="./img/handlestall100.png"
+                alt="handlestall100.png"
+                data-themekey="#"
+                style="margin: 5px"
+              />
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">slipStop</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5">Small</td>
+            <td class="ms-rteTableEvenCol-5"></td>
+            <td class="ms-rteTableOddCol-5">すべり止め</td>
+            <td class="ms-rteTableEvenCol-5">
+              <img src="./img/slipStop100.png" data-themekey="#" alt="" />
+              <img
+                src="./img/slipStop100.png"
+                alt="slipStop100.png"
+                data-themekey="#"
+                style="margin: 5px"
+              />
+            </td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">spikeHead</td>
+            <td class="ms-rteTableOddCol-5">None</td>
+            <td class="ms-rteTableEvenCol-5">None</td>
+            <td class="ms-rteTableOddCol-5"></td>
+            <td class="ms-rteTableEvenCol-5">Small</td>
+            <td class="ms-rteTableOddCol-5">けん先に触れる</td>
+            <td class="ms-rteTableEvenCol-5"></td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <br />
+      <div>
+        空欄は、識別においてセンサー値を直接診ていないことを意味するが、None
+        であることを想定している。
+      </div>
+      <div>
+        <br />
+      </div>
+      <div>このセクションを編集</div>
+      <div>Sensing trick</div>
+      <div>Sensing combo と、けんの姿勢から決まる状態</div>
+      <div>
+        けんの姿勢は、加速度、ジャイロ から算出されるクォータニオンで決まる。<br />
+      </div>
+      <div>
+        <br />
+      </div>
+      <div>
+        <br />
+      </div>
+      <br />
+      <div>
+        <br />
+      </div>
+      <table class="ms-rteTable-5">
+        <tbody>
+          <tr class="ms-rteTableHeaderRow-5">
+            <th class="ms-rteTableHeaderEvenCol-5">Sensing combo</th>
+            <th class="ms-rteTableHeaderOddCol-5">姿勢</th>
+            <th class="ms-rteTableHeaderEvenCol-5">Sensing trick</th>
+            <th class="ms-rteTableHeaderOddCol-5">日本語技名</th>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td rowspan="2" class="ms-rteTableEvenCol-5">bigCup</td>
+            <td class="ms-rteTableOddCol-5">bigCup</td>
+            <td class="ms-rteTableEvenCol-5">bigCup</td>
+            <td class="ms-rteTableOddCol-5">大皿</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">smallCup</td>
+            <td class="ms-rteTableOddCol-5">lunar</td>
+            <td class="ms-rteTableEvenCol-5">月面着陸</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td rowspan="2" class="ms-rteTableEvenCol-5">smallCup</td>
+            <td class="ms-rteTableOddCol-5">smallCup</td>
+            <td class="ms-rteTableEvenCol-5">smallCup</td>
+            <td class="ms-rteTableOddCol-5">小皿</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">bigCup</td>
+            <td class="ms-rteTableOddCol-5">smallCupLunar</td>
+            <td class="ms-rteTableEvenCol-5">小皿月面着陸</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td rowspan="2" class="ms-rteTableEvenCol-5">baseCup</td>
+            <td class="ms-rteTableOddCol-5">baseCup</td>
+            <td class="ms-rteTableEvenCol-5">baseCup</td>
+            <td class="ms-rteTableOddCol-5">中皿</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">spike</td>
+            <td class="ms-rteTableOddCol-5">lighthouse</td>
+            <td class="ms-rteTableEvenCol-5">灯台</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td rowspan="2" class="ms-rteTableEvenCol-5">spike</td>
+            <td class="ms-rteTableOddCol-5">spike</td>
+            <td class="ms-rteTableEvenCol-5">spike</td>
+            <td class="ms-rteTableOddCol-5">けん</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">baseCup</td>
+            <td class="ms-rteTableOddCol-5">airplane</td>
+            <td class="ms-rteTableEvenCol-5">飛行機</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td rowspan="2" class="ms-rteTableEvenCol-5">spikeSide</td>
+            <td class="ms-rteTableOddCol-5">horizontal</td>
+            <td class="ms-rteTableEvenCol-5">dragonfly</td>
+            <td class="ms-rteTableOddCol-5">とんぼ (フライパン)</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">spike</td>
+            <td class="ms-rteTableOddCol-5">hanging</td>
+            <td class="ms-rteTableEvenCol-5">つるし持ち</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td rowspan="2" class="ms-rteTableEvenCol-5">crosspiece</td>
+            <td class="ms-rteTableOddCol-5">horizontal</td>
+            <td class="ms-rteTableEvenCol-5">bodyCatch</td>
+            <td class="ms-rteTableOddCol-5">おみこし</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">spike</td>
+            <td class="ms-rteTableOddCol-5">hanging</td>
+            <td class="ms-rteTableEvenCol-5">つるし持ち</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td rowspan="2" class="ms-rteTableEvenCol-5">bird</td>
+            <td class="ms-rteTableOddCol-5">spike</td>
+            <td class="ms-rteTableEvenCol-5">bird</td>
+            <td class="ms-rteTableOddCol-5">うぐいす</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">baseCup</td>
+            <td class="ms-rteTableOddCol-5">stilt</td>
+            <td class="ms-rteTableEvenCol-5">たけうま</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td rowspan="2" class="ms-rteTableEvenCol-5">smallCupBird</td>
+            <td class="ms-rteTableOddCol-5">spike</td>
+            <td class="ms-rteTableEvenCol-5">smallCupBird</td>
+            <td class="ms-rteTableOddCol-5">小皿うぐいす</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">baseCup</td>
+            <td class="ms-rteTableOddCol-5">smallCupStilt</td>
+            <td class="ms-rteTableEvenCol-5">小皿たけうま</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td rowspan="3" class="ms-rteTableEvenCol-5">bigWing</td>
+            <td class="ms-rteTableOddCol-5">horizontal</td>
+            <td class="ms-rteTableEvenCol-5">bigWing</td>
+            <td class="ms-rteTableOddCol-5">大皿極意</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">bigCup, baseCup</td>
+            <td class="ms-rteTableOddCol-5">underbird</td>
+            <td class="ms-rteTableEvenCol-5">アンダーバード</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">smallCup, spike</td>
+            <td class="ms-rteTableOddCol-5">axe</td>
+            <td class="ms-rteTableEvenCol-5">まさかり</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td rowspan="3" class="ms-rteTableEvenCol-5">smallWing</td>
+            <td class="ms-rteTableOddCol-5">horizontal</td>
+            <td class="ms-rteTableEvenCol-5">smallWing</td>
+            <td class="ms-rteTableOddCol-5">小皿極意</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">smallCup, baseCup</td>
+            <td class="ms-rteTableOddCol-5">smallCupUnderbird</td>
+            <td class="ms-rteTableEvenCol-5">小皿アンダーバード</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">bigCup, spike</td>
+            <td class="ms-rteTableOddCol-5">smallCupAxe</td>
+            <td class="ms-rteTableEvenCol-5">小皿まさかり</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">handlestall</td>
+            <td class="ms-rteTableOddCol-5">!baseCup</td>
+            <td class="ms-rteTableEvenCol-5">handlestall</td>
+            <td class="ms-rteTableOddCol-5">中皿極意</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">slipStop</td>
+            <td class="ms-rteTableOddCol-5">!(baseCup, spike)</td>
+            <td class="ms-rteTableEvenCol-5">slipStopSpecial</td>
+            <td class="ms-rteTableOddCol-5">すべり止め極意</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">spikeHead</td>
+            <td class="ms-rteTableOddCol-5">spike</td>
+            <td class="ms-rteTableEvenCol-5">spikeTap</td>
+            <td class="ms-rteTableOddCol-5">
+              けん先たたき<br />（対応する Final trick はない）
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        （Sensing trick は一部）
+      </p>
+      <div
+        class="contextual heading-2"
+        title="このセクションを編集"
+        style="
+          float: right;
+          white-space: nowrap;
+          line-height: 1.4em;
+          margin-top: 5px;
+          padding-left: 10px;
+          font-size: 0.9em;
+          font-family: verdana, sans-serif;
+        "
+      ></div>
+      <a
+        name="Final-trick"
+        style="
+          color: #116699;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      ></a
+      ><span style="font-family: verdana, sans-serif; font-size: 12px"></span>
+      <h2
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          color: #555555;
+          font-size: 16px;
+        "
+      >
+        Final trick
+      </h2>
+      <ul
+        style="
+          margin-bottom: 1em;
+          font-family: verdana, sans-serif;
+          font-size: 12px;
+        "
+      >
+        <li>Sensing trick の状態遷移から決まる最終的な技</li>
+        <li>
+          <a
+            class="wiki-page"
+            href="./judge_v2explanation.html"
+            style="color: #116699"
+            >Final trick と Series trick</a
+          ><br />
+        </li>
+      </ul>
+      <div>
+        <br />
+      </div>
+    </div>
+  </body>
+</html>

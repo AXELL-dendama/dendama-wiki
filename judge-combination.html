@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Judge combination tricks</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      a {
+        color: blue;
+      }
+      table,
+      tr,
+      td,
+      th {
+        border: 1px solid gray;
+      }
+      th {
+        background: greenyellow;
+        color: black;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <h1
+        style="
+          font-family: 'trebuchet ms', verdana, sans-serif;
+          padding: 2px 10px 1px 0px;
+          margin: 0px 0px 10px;
+          font-size: 20px;
+          color: #555555;
+        "
+      >
+        V2技判定 組合せ技
+      </h1>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        <strong>自動生成のため編集不可</strong>
+      </p>
+      <p style="font-family: verdana, sans-serif; font-size: 12px">
+        (2018-10-22 更新)<br />
+      </p>
+      <table class="ms-rteTable-5">
+        <tbody>
+          <tr class="ms-rteTableHeaderRow-5">
+            <th class="ms-rteTableHeaderEvenCol-5">native変数名</th>
+            <th class="ms-rteTableHeaderOddCol-5">日本語名</th>
+            <th class="ms-rteTableHeaderEvenCol-5">英語名</th>
+            <th class="ms-rteTableHeaderOddCol-5">Lv</th>
+            <th class="ms-rteTableHeaderEvenCol-5">Cl</th>
+            <th class="ms-rteTableHeaderOddCol-5">V2</th>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>大皿系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">bigCup, smallCup</td>
+            <td class="ms-rteTableOddCol-5">大皿〜小皿</td>
+            <td class="ms-rteTableEvenCol-5">Big cup, Small cup</td>
+            <td class="ms-rteTableOddCol-5">1</td>
+            <td class="ms-rteTableEvenCol-5">K1</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">bigCup, baseCup</td>
+            <td class="ms-rteTableOddCol-5">大皿〜中皿</td>
+            <td class="ms-rteTableEvenCol-5">Big cup, Base cup</td>
+            <td class="ms-rteTableOddCol-5">1</td>
+            <td class="ms-rteTableEvenCol-5">K1</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>小皿系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">smallCup, bigCup</td>
+            <td class="ms-rteTableOddCol-5">小皿〜大皿</td>
+            <td class="ms-rteTableEvenCol-5">Small cup, Big cup</td>
+            <td class="ms-rteTableOddCol-5">1</td>
+            <td class="ms-rteTableEvenCol-5">K1</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>中皿系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">baseCup, bigCup</td>
+            <td class="ms-rteTableOddCol-5">中皿〜大皿</td>
+            <td class="ms-rteTableEvenCol-5">Base cup, Big cup</td>
+            <td class="ms-rteTableOddCol-5">1</td>
+            <td class="ms-rteTableEvenCol-5">K1</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">baseCup, lighthouse</td>
+            <td class="ms-rteTableOddCol-5">中皿〜灯台</td>
+            <td class="ms-rteTableEvenCol-5">Base cup, Lighthouse</td>
+            <td class="ms-rteTableOddCol-5">8</td>
+            <td class="ms-rteTableEvenCol-5">D4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>飛行機系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">airplane, fasthandBaseCup</td>
+            <td class="ms-rteTableOddCol-5">飛行機〜はやて中皿</td>
+            <td class="ms-rteTableEvenCol-5">Airplane, Fasthand base cup</td>
+            <td class="ms-rteTableOddCol-5">(4)</td>
+            <td class="ms-rteTableEvenCol-5">(K4)</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              oneTurnAirplane, fasthandBaseCup
+            </td>
+            <td class="ms-rteTableOddCol-5">1回転飛行機〜はやて中皿</td>
+            <td class="ms-rteTableEvenCol-5">
+              1 turn airplane, Fasthand base cup
+            </td>
+            <td class="ms-rteTableOddCol-5">(7)</td>
+            <td class="ms-rteTableEvenCol-5">(D3)</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">oneTurnAirplane, jstick</td>
+            <td class="ms-rteTableOddCol-5">1回転飛行機〜はねけん</td>
+            <td class="ms-rteTableEvenCol-5">1 turn airplane, J-stick</td>
+            <td class="ms-rteTableOddCol-5">8</td>
+            <td class="ms-rteTableEvenCol-5">D4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              oneTurnAirplane, buildTheLighthouse
+            </td>
+            <td class="ms-rteTableOddCol-5">1回転飛行機〜灯立</td>
+            <td class="ms-rteTableEvenCol-5">
+              1 turn airplane, Build the lighthouse
+            </td>
+            <td class="ms-rteTableOddCol-5">8</td>
+            <td class="ms-rteTableEvenCol-5">D4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">twoTurnAirplane, doubleJstick</td>
+            <td class="ms-rteTableOddCol-5">2回転飛行機〜2回転はねけん</td>
+            <td class="ms-rteTableEvenCol-5">
+              2 turn airplane, Double j-stick
+            </td>
+            <td class="ms-rteTableOddCol-5">12</td>
+            <td class="ms-rteTableEvenCol-5">L6</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>threeTurnAirplane, tripleJstick</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">3回転飛行機〜3回転はねけん</td>
+            <td class="ms-rteTableEvenCol-5">
+              3 turn airplane, Triple j-stick
+            </td>
+            <td class="ms-rteTableOddCol-5">14</td>
+            <td class="ms-rteTableEvenCol-5">L8</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>とめけん系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">airplane, halfTurnSwapSpike</td>
+            <td class="ms-rteTableOddCol-5">飛行機〜0.5回転スワップとめけん</td>
+            <td class="ms-rteTableEvenCol-5">Airplane, 0.5 turn swap spike</td>
+            <td class="ms-rteTableOddCol-5">8</td>
+            <td class="ms-rteTableEvenCol-5">D4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">airplane, oneHalfTurnSwapSpike</td>
+            <td class="ms-rteTableOddCol-5">飛行機〜1.5回転スワップとめけん</td>
+            <td class="ms-rteTableEvenCol-5">Airplane, 1.5 turn swap spike</td>
+            <td class="ms-rteTableOddCol-5">10</td>
+            <td class="ms-rteTableEvenCol-5">L4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>ふりけん系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              swingSpike, halfTurnSwapAirplane
+            </td>
+            <td class="ms-rteTableOddCol-5">ふりけん〜0.5回転スワップ飛行機</td>
+            <td class="ms-rteTableEvenCol-5">
+              Swing spike, 0.5 turn swap airplane
+            </td>
+            <td class="ms-rteTableOddCol-5">8</td>
+            <td class="ms-rteTableEvenCol-5">D4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>一周系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">swingSpike, aroundTheWorld</td>
+            <td class="ms-rteTableOddCol-5">ふりけん〜世界一周</td>
+            <td class="ms-rteTableEvenCol-5">Swing spike, Around the world</td>
+            <td class="ms-rteTableOddCol-5">(4)</td>
+            <td class="ms-rteTableEvenCol-5">(K4)</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">aroundTheCosmos, earthTurn</td>
+            <td class="ms-rteTableOddCol-5">宇宙一周〜地球まわし</td>
+            <td class="ms-rteTableEvenCol-5">Around the cosmos, Earth turn</td>
+            <td class="ms-rteTableOddCol-5">7</td>
+            <td class="ms-rteTableEvenCol-5">D3</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              aroundJapan, aroundTheWorld, aroundTheCosmos
+            </td>
+            <td class="ms-rteTableOddCol-5">日本一周〜世界一周〜宇宙一周</td>
+            <td class="ms-rteTableEvenCol-5">
+              Around Japan, Around the world, Around the cosmos
+            </td>
+            <td class="ms-rteTableOddCol-5">7</td>
+            <td class="ms-rteTableEvenCol-5">D3</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>灯台系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">lighthouse, tradespike</td>
+            <td class="ms-rteTableOddCol-5">灯台〜けん</td>
+            <td class="ms-rteTableEvenCol-5">Lighthouse, Tradespike</td>
+            <td class="ms-rteTableOddCol-5">8</td>
+            <td class="ms-rteTableEvenCol-5">D4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">lighthouse, downspike</td>
+            <td class="ms-rteTableOddCol-5">灯台〜ダウンスパイク</td>
+            <td class="ms-rteTableEvenCol-5">Lighthouse, Downspike</td>
+            <td class="ms-rteTableOddCol-5">10</td>
+            <td class="ms-rteTableEvenCol-5">L4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">oneTurnLighthouse, fallingIn</td>
+            <td class="ms-rteTableOddCol-5">1回転灯台〜さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">1 turn lighthouse, Falling in</td>
+            <td class="ms-rteTableOddCol-5">7</td>
+            <td class="ms-rteTableEvenCol-5">D3</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              oneTurnLighthouse, oneTurnFallingIn
+            </td>
+            <td class="ms-rteTableOddCol-5">1回転灯台〜1回転さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">
+              1 turn lighthouse, 1 turn falling in
+            </td>
+            <td class="ms-rteTableOddCol-5">8</td>
+            <td class="ms-rteTableEvenCol-5">D4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              oneTurnLighthouse, lighthouseFlip
+            </td>
+            <td class="ms-rteTableOddCol-5">1回転灯台〜灯台とんぼ返り</td>
+            <td class="ms-rteTableEvenCol-5">
+              1 turn lighthouse, Lighthouse flip
+            </td>
+            <td class="ms-rteTableOddCol-5">(8)</td>
+            <td class="ms-rteTableEvenCol-5">(D4)</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              twoTurnLighthouse, oneTurnFallingIn
+            </td>
+            <td class="ms-rteTableOddCol-5">2回転灯台〜1回転さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">
+              2 turn lighthouse, 1 turn falling in
+            </td>
+            <td class="ms-rteTableOddCol-5">10</td>
+            <td class="ms-rteTableEvenCol-5">L4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              twoTurnLighthouse, doubleLighthouseFlip
+            </td>
+            <td class="ms-rteTableOddCol-5">2回転灯台〜2回転灯台とんぼ返り</td>
+            <td class="ms-rteTableEvenCol-5">
+              2 turn lighthouse, Double lighthouse flip
+            </td>
+            <td class="ms-rteTableOddCol-5">12</td>
+            <td class="ms-rteTableEvenCol-5">L6</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">airplane, buildTheLighthouse</td>
+            <td class="ms-rteTableOddCol-5">飛行機〜灯立</td>
+            <td class="ms-rteTableEvenCol-5">Airplane, Build the lighthouse</td>
+            <td class="ms-rteTableOddCol-5">(7)</td>
+            <td class="ms-rteTableEvenCol-5">(D3)</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              lighthouse, fallingIn, buildTheLighthouse
+            </td>
+            <td class="ms-rteTableOddCol-5">灯台〜さか落とし〜灯立</td>
+            <td class="ms-rteTableEvenCol-5">
+              Lighthouse, Falling in, Build the lighthouse
+            </td>
+            <td class="ms-rteTableOddCol-5">(7)</td>
+            <td class="ms-rteTableEvenCol-5">(D3)</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">jstick, buildTheLighthouse</td>
+            <td class="ms-rteTableOddCol-5">はねけん〜灯立</td>
+            <td class="ms-rteTableEvenCol-5">J-stick, Build the lighthouse</td>
+            <td class="ms-rteTableOddCol-5">8</td>
+            <td class="ms-rteTableEvenCol-5">D4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              airplane, buildTheOneTurnLighthouse
+            </td>
+            <td class="ms-rteTableOddCol-5">飛行機〜1回転灯立</td>
+            <td class="ms-rteTableEvenCol-5">
+              Airplane, Build the 1 turn lighthouse
+            </td>
+            <td class="ms-rteTableOddCol-5">(9)</td>
+            <td class="ms-rteTableEvenCol-5">(D5)</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              oneTurnAirplane, buildTheOneTurnLighthouse
+            </td>
+            <td class="ms-rteTableOddCol-5">1回転飛行機〜1回転灯立</td>
+            <td class="ms-rteTableEvenCol-5">
+              1 turn airplane, Build the 1 turn lighthouse
+            </td>
+            <td class="ms-rteTableOddCol-5">(9)</td>
+            <td class="ms-rteTableEvenCol-5">(D5)</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>twoTurnTapLighthouse, twoTurnTapLighthouse, tradespike</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              2回転タップ灯台〜2回転タップ灯台〜けん
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              2 turn tap lighthouse, 2 turn tap lighthouse, Tradespike
+            </td>
+            <td class="ms-rteTableOddCol-5">13</td>
+            <td class="ms-rteTableEvenCol-5">L7</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>すべり系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">slipSpike, earthTurn</td>
+            <td class="ms-rteTableOddCol-5">けん先すべり〜地球まわし</td>
+            <td class="ms-rteTableEvenCol-5">Slip spike, Earth turn</td>
+            <td class="ms-rteTableOddCol-5">6</td>
+            <td class="ms-rteTableEvenCol-5">D2</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>地球まわし系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">swingSpike, earthTurn</td>
+            <td class="ms-rteTableOddCol-5">ふりけん〜地球まわし</td>
+            <td class="ms-rteTableEvenCol-5">Swing spike, Earth turn</td>
+            <td class="ms-rteTableOddCol-5">(5)</td>
+            <td class="ms-rteTableEvenCol-5">(D1)</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">swingSpike, whirlwind</td>
+            <td class="ms-rteTableOddCol-5">ふりけん〜ワールウィンド</td>
+            <td class="ms-rteTableEvenCol-5">Swing spike, Whirlwind</td>
+            <td class="ms-rteTableOddCol-5">(9)</td>
+            <td class="ms-rteTableEvenCol-5">(D5)</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>swingSpike, doubleWhirlwind</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">ふりけん〜2回転ワールウィンド</td>
+            <td class="ms-rteTableEvenCol-5">Swing spike, Double whirlwind</td>
+            <td class="ms-rteTableOddCol-5">(11)</td>
+            <td class="ms-rteTableEvenCol-5">(L5)</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>はねけん系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">airplane, jstick</td>
+            <td class="ms-rteTableOddCol-5">飛行機〜はねけん</td>
+            <td class="ms-rteTableEvenCol-5">Airplane, J-stick</td>
+            <td class="ms-rteTableOddCol-5">(6)</td>
+            <td class="ms-rteTableEvenCol-5">(D2)</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">lighthouse, fallingIn, jstick</td>
+            <td class="ms-rteTableOddCol-5">灯台〜さか落とし〜はねけん</td>
+            <td class="ms-rteTableEvenCol-5">
+              Lighthouse, Falling in, J-stick
+            </td>
+            <td class="ms-rteTableOddCol-5">7</td>
+            <td class="ms-rteTableEvenCol-5">D3</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">swingSpike, turnover, jstick</td>
+            <td class="ms-rteTableOddCol-5">
+              ふりけん〜もちかえ (けん～玉)〜はねけん
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              Swing spike, Turnover (ken, tama), J-stick
+            </td>
+            <td class="ms-rteTableOddCol-5">8</td>
+            <td class="ms-rteTableEvenCol-5">D4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>airplane, tapReverseJstick</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">飛行機〜タップうらはねけん</td>
+            <td class="ms-rteTableEvenCol-5">Airplane, Tap reverse j-stick</td>
+            <td class="ms-rteTableOddCol-5">10</td>
+            <td class="ms-rteTableEvenCol-5">L4</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>さか落とし系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">lighthouse, fallingIn</td>
+            <td class="ms-rteTableOddCol-5">灯台〜さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">Lighthouse, Falling in</td>
+            <td class="ms-rteTableOddCol-5">(5)</td>
+            <td class="ms-rteTableEvenCol-5">(D1)</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">lighthouse, oneTurnFallingIn</td>
+            <td class="ms-rteTableOddCol-5">灯台〜1回転さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">Lighthouse, 1 turn falling in</td>
+            <td class="ms-rteTableOddCol-5">8</td>
+            <td class="ms-rteTableEvenCol-5">D4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>lighthouse, tapOneTurnFallingIn</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">灯台〜タップ1回転さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">
+              Lighthouse, Tap 1 turn falling in
+            </td>
+            <td class="ms-rteTableOddCol-5">9</td>
+            <td class="ms-rteTableEvenCol-5">D5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>airplane, oneTurnTapFallingIn</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">飛行機〜1回転タップさか落とし</td>
+            <td class="ms-rteTableEvenCol-5">
+              Airplane, 1 turn tap falling in
+            </td>
+            <td class="ms-rteTableOddCol-5">10</td>
+            <td class="ms-rteTableEvenCol-5">L4</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">bigCup, fasthandAirplane</td>
+            <td class="ms-rteTableOddCol-5">大皿〜さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">Big cup, Falling in</td>
+            <td class="ms-rteTableOddCol-5">8</td>
+            <td class="ms-rteTableEvenCol-5">D4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">baseCup, fasthandAirplane</td>
+            <td class="ms-rteTableOddCol-5">中皿〜さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">Base cup, Falling in</td>
+            <td class="ms-rteTableOddCol-5">9</td>
+            <td class="ms-rteTableEvenCol-5">D5</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">bird, fasthandAirplane</td>
+            <td class="ms-rteTableOddCol-5">うぐいす〜さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">Bird, Falling in</td>
+            <td class="ms-rteTableOddCol-5">9</td>
+            <td class="ms-rteTableEvenCol-5">D5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">underbird, fasthandAirplane</td>
+            <td class="ms-rteTableOddCol-5">アンダーバード〜さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">Underbird, Falling in</td>
+            <td class="ms-rteTableOddCol-5">10</td>
+            <td class="ms-rteTableEvenCol-5">L4</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>うぐいす系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">bird, spike</td>
+            <td class="ms-rteTableOddCol-5">うぐいす〜けん</td>
+            <td class="ms-rteTableEvenCol-5">Bird, Spike</td>
+            <td class="ms-rteTableOddCol-5">6</td>
+            <td class="ms-rteTableEvenCol-5">D2</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">bird, oneTurnSpike</td>
+            <td class="ms-rteTableOddCol-5">うぐいす〜回転けん</td>
+            <td class="ms-rteTableEvenCol-5">Bird, 1 turn spike</td>
+            <td class="ms-rteTableOddCol-5">7</td>
+            <td class="ms-rteTableEvenCol-5">D3</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>bird, nodOff, spike</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">うぐいす〜こっくり〜けん</td>
+            <td class="ms-rteTableEvenCol-5">Bird, Nod off, Spike</td>
+            <td class="ms-rteTableOddCol-5">(8)</td>
+            <td class="ms-rteTableEvenCol-5">(D4)</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">swingBird, spike</td>
+            <td class="ms-rteTableOddCol-5">前ふりうぐいす〜けん</td>
+            <td class="ms-rteTableEvenCol-5">Swing bird, Spike</td>
+            <td class="ms-rteTableOddCol-5">9</td>
+            <td class="ms-rteTableEvenCol-5">D5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">swingBird, oneTurnSpike</td>
+            <td class="ms-rteTableOddCol-5">前ふりうぐいす〜回転けん</td>
+            <td class="ms-rteTableEvenCol-5">Swing bird, 1 turn spike</td>
+            <td class="ms-rteTableOddCol-5">9</td>
+            <td class="ms-rteTableEvenCol-5">D5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>アンダーバード系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">underbird, spike</td>
+            <td class="ms-rteTableOddCol-5">アンダーバード〜けん</td>
+            <td class="ms-rteTableEvenCol-5">Underbird, Spike</td>
+            <td class="ms-rteTableOddCol-5">9</td>
+            <td class="ms-rteTableEvenCol-5">D5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>underbird, nodOffUnderbird, fasthandAirplane</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              アンダーバード〜こっくり〜さか落とし
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              Underbird, Nod off underbird, Falling in
+            </td>
+            <td class="ms-rteTableOddCol-5">11</td>
+            <td class="ms-rteTableEvenCol-5">L5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>つるし系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">hangingSpike, earthTurn</td>
+            <td class="ms-rteTableOddCol-5">つるしとめけん〜地球まわし</td>
+            <td class="ms-rteTableEvenCol-5">Hanging spike, Earth turn</td>
+            <td class="ms-rteTableOddCol-5">7</td>
+            <td class="ms-rteTableEvenCol-5">D3</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              hangingAirplane, fasthandBaseCup
+            </td>
+            <td class="ms-rteTableOddCol-5">つるし飛行機〜はやて中皿</td>
+            <td class="ms-rteTableEvenCol-5">
+              Hanging airplane, Fasthand base cup
+            </td>
+            <td class="ms-rteTableOddCol-5">9</td>
+            <td class="ms-rteTableEvenCol-5">D5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              hangingOneTurnAirplane, fasthandBaseCup
+            </td>
+            <td class="ms-rteTableOddCol-5">つるし1回転飛行機〜はやて中皿</td>
+            <td class="ms-rteTableEvenCol-5">
+              Hanging 1 turn airplane, Fasthand base cup
+            </td>
+            <td class="ms-rteTableOddCol-5">9</td>
+            <td class="ms-rteTableEvenCol-5">D5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">hangingOneTurnAirplane, jstick</td>
+            <td class="ms-rteTableOddCol-5">つるし1回転飛行機〜はねけん</td>
+            <td class="ms-rteTableEvenCol-5">
+              Hanging 1 turn airplane, J-stick
+            </td>
+            <td class="ms-rteTableOddCol-5">9</td>
+            <td class="ms-rteTableEvenCol-5">D5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              hangingOneTurnLighthouse, tradespike
+            </td>
+            <td class="ms-rteTableOddCol-5">つるし1回転灯台〜けん</td>
+            <td class="ms-rteTableEvenCol-5">
+              Hanging 1 turn lighthouse, Tradespike
+            </td>
+            <td class="ms-rteTableOddCol-5">9</td>
+            <td class="ms-rteTableEvenCol-5">D5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              hangingOneTurnLighthouse, lighthouseFlip
+            </td>
+            <td class="ms-rteTableOddCol-5">つるし1回転灯台〜灯台とんぼ返り</td>
+            <td class="ms-rteTableEvenCol-5">
+              Hanging 1 turn lighthouse, Lighthouse flip
+            </td>
+            <td class="ms-rteTableOddCol-5">9</td>
+            <td class="ms-rteTableEvenCol-5">D5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>極意系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">handlestall, spike</td>
+            <td class="ms-rteTableOddCol-5">中皿極意〜けん</td>
+            <td class="ms-rteTableEvenCol-5">Handlestall, Spike</td>
+            <td class="ms-rteTableOddCol-5">9</td>
+            <td class="ms-rteTableEvenCol-5">D5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">handlestall, fasthandAirplane</td>
+            <td class="ms-rteTableOddCol-5">中皿極意〜さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">Handlestall, Falling in</td>
+            <td class="ms-rteTableOddCol-5">11</td>
+            <td class="ms-rteTableEvenCol-5">L5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">handlestall, birdOverTheValley</td>
+            <td class="ms-rteTableOddCol-5">中皿極意〜うぐいすの谷渡り</td>
+            <td class="ms-rteTableEvenCol-5">
+              Handlestall, Bird over the valley
+            </td>
+            <td class="ms-rteTableOddCol-5">11</td>
+            <td class="ms-rteTableEvenCol-5">L5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>handlestall, juggleHandlestall, fasthandAirplane</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              中皿極意〜ジャグル中皿極意〜さか落とし
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              Handlestall, Juggle handlestall, Falling in
+            </td>
+            <td class="ms-rteTableOddCol-5">15</td>
+            <td class="ms-rteTableEvenCol-5">L9</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>gunslingerHandlestall, gunslingerSpike</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">風車中皿極意〜風車けん</td>
+            <td class="ms-rteTableEvenCol-5">
+              Gunslinger handlestall, Gunslinger spike
+            </td>
+            <td class="ms-rteTableOddCol-5">13</td>
+            <td class="ms-rteTableEvenCol-5">L7</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">bigWing, smallWing, spike</td>
+            <td class="ms-rteTableOddCol-5">大皿極意〜小皿極意〜けん</td>
+            <td class="ms-rteTableEvenCol-5">Big wing, Small wing, Spike</td>
+            <td class="ms-rteTableOddCol-5">12</td>
+            <td class="ms-rteTableEvenCol-5">L6</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>bigWing, nodOffWing, smallWing, nodOffWing, spike</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              大皿極意〜こっくり〜小皿極意〜こっくり〜けん
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              Big wing, Nod off wing, Small wing, Nod off wing, Spike
+            </td>
+            <td class="ms-rteTableOddCol-5">16</td>
+            <td class="ms-rteTableEvenCol-5">L10</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>月面着陸系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">lunar, fallingIn</td>
+            <td class="ms-rteTableOddCol-5">月面着陸〜さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">Lunar, Falling in</td>
+            <td class="ms-rteTableOddCol-5">7</td>
+            <td class="ms-rteTableEvenCol-5">D3</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">lunar, oneTurnFallingIn</td>
+            <td class="ms-rteTableOddCol-5">月面着陸〜1回転さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">Lunar, 1 turn falling in</td>
+            <td class="ms-rteTableOddCol-5">8</td>
+            <td class="ms-rteTableEvenCol-5">D4</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">lunar, tradespike</td>
+            <td class="ms-rteTableOddCol-5">月面着陸〜けん</td>
+            <td class="ms-rteTableEvenCol-5">Lunar, Tradespike</td>
+            <td class="ms-rteTableOddCol-5">9</td>
+            <td class="ms-rteTableEvenCol-5">D5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">lunarFlip, oneTurnFallingIn</td>
+            <td class="ms-rteTableOddCol-5">
+              月面着陸とんぼ返り〜1回転さか落とし
+            </td>
+            <td class="ms-rteTableEvenCol-5">Lunar flip, 1 turn falling in</td>
+            <td class="ms-rteTableOddCol-5">10</td>
+            <td class="ms-rteTableEvenCol-5">L4</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              oneTurnLunar, lunarFlip, fallingIn
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              1回転月面着陸〜月面着陸とんぼ返り〜さか落とし
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              1 turn lunar, Lunar flip, Falling in
+            </td>
+            <td class="ms-rteTableOddCol-5">11</td>
+            <td class="ms-rteTableEvenCol-5">L5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>baseCup, swapLunar</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">中皿〜スワップ月面着陸</td>
+            <td class="ms-rteTableEvenCol-5">Base cup, Swap lunar</td>
+            <td class="ms-rteTableOddCol-5">10</td>
+            <td class="ms-rteTableEvenCol-5">L4</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>baseCup, swapOneTurnLunar</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">中皿〜スワップ1回転月面着陸</td>
+            <td class="ms-rteTableEvenCol-5">Base cup, Swap 1 turn lunar</td>
+            <td class="ms-rteTableOddCol-5">11</td>
+            <td class="ms-rteTableEvenCol-5">L5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>baseCup, ghostLunar</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">中皿〜ゴースト月面着陸</td>
+            <td class="ms-rteTableEvenCol-5">Base cup, Ghost lunar</td>
+            <td class="ms-rteTableOddCol-5">11</td>
+            <td class="ms-rteTableEvenCol-5">L5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>たけうま系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">stilt, fallingIn</td>
+            <td class="ms-rteTableOddCol-5">たけうま〜さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">Stilt, Falling in</td>
+            <td class="ms-rteTableOddCol-5">9</td>
+            <td class="ms-rteTableEvenCol-5">D5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">stilt, oneTurnFallingIn</td>
+            <td class="ms-rteTableOddCol-5">たけうま〜1回転さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">Stilt, 1 turn falling in</td>
+            <td class="ms-rteTableOddCol-5">10</td>
+            <td class="ms-rteTableEvenCol-5">L4</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">stilt, downspike</td>
+            <td class="ms-rteTableOddCol-5">たけうま〜ダウンスパイク</td>
+            <td class="ms-rteTableEvenCol-5">Stilt, Downspike</td>
+            <td class="ms-rteTableOddCol-5">10</td>
+            <td class="ms-rteTableEvenCol-5">L4</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">stilt, tradespike</td>
+            <td class="ms-rteTableOddCol-5">たけうま〜けん</td>
+            <td class="ms-rteTableEvenCol-5">Stilt, Tradespike</td>
+            <td class="ms-rteTableOddCol-5">11</td>
+            <td class="ms-rteTableEvenCol-5">L5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">stilt, oneHalfTurnSwapSpike</td>
+            <td class="ms-rteTableOddCol-5">
+              たけうま〜1.5回転スワップとめけん
+            </td>
+            <td class="ms-rteTableEvenCol-5">Stilt, 1.5 turn swap spike</td>
+            <td class="ms-rteTableOddCol-5">12</td>
+            <td class="ms-rteTableEvenCol-5">L6</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>stilt, oneTurnTapFallingIn</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">たけうま〜1回転タップさか落とし</td>
+            <td class="ms-rteTableEvenCol-5">Stilt, 1 turn tap falling in</td>
+            <td class="ms-rteTableOddCol-5">13</td>
+            <td class="ms-rteTableEvenCol-5">L7</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del
+                >stilt, nodOffLunar, overTheValleyStilt,
+                oneHalfTurnSwapSpike</del
+              >
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              たけうま〜こっくり月面着陸〜谷渡りたけうま〜1.5回転スワップとめけん
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              Stilt, Nod off lunar, Over the valley stilt, 1.5 turn swap spike
+            </td>
+            <td class="ms-rteTableOddCol-5">14</td>
+            <td class="ms-rteTableEvenCol-5">L8</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">oneTurnStilt, oneTurnFallingIn</td>
+            <td class="ms-rteTableOddCol-5">1回転たけうま〜1回転さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">
+              1 turn stilt, 1 turn falling in
+            </td>
+            <td class="ms-rteTableOddCol-5">11</td>
+            <td class="ms-rteTableEvenCol-5">L5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              oneTurnStilt, overTheValleyStilt, fallingIn
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              1回転たけうま〜谷渡りたけうま〜さか落とし
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              1 turn stilt, Over the valley stilt, Falling in
+            </td>
+            <td class="ms-rteTableOddCol-5">13</td>
+            <td class="ms-rteTableEvenCol-5">L7</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>bird, gravityDropStilt, oneTurnFallingIn</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              うぐいす〜グラビティドロップたけうま〜1回転さか落とし
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              Bird, Gravity drop stilt, 1 turn falling in
+            </td>
+            <td class="ms-rteTableOddCol-5">12</td>
+            <td class="ms-rteTableEvenCol-5">L6</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>stilt, oneTurnCushionStilt, fallingIn</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              たけうま〜1回転クッションたけうま〜さか落とし
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              Stilt, 1 turn cushion stilt, Falling in
+            </td>
+            <td class="ms-rteTableOddCol-5">15</td>
+            <td class="ms-rteTableEvenCol-5">L9</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>airplane, oneTurnTapStilt, fallingIn</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              飛行機〜1回転タップたけうま〜さか落とし
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              Airplane, 1 turn tap stilt, Falling in
+            </td>
+            <td class="ms-rteTableOddCol-5">16</td>
+            <td class="ms-rteTableEvenCol-5">L10</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>まさかり系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">axe, fallingIn</td>
+            <td class="ms-rteTableOddCol-5">まさかり〜さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">Axe, Falling in</td>
+            <td class="ms-rteTableOddCol-5">10</td>
+            <td class="ms-rteTableEvenCol-5">L4</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">underbird, axe, fallingIn</td>
+            <td class="ms-rteTableOddCol-5">
+              アンダーバード〜まさかり〜さか落とし
+            </td>
+            <td class="ms-rteTableEvenCol-5">Underbird, Axe, Falling in</td>
+            <td class="ms-rteTableOddCol-5">11</td>
+            <td class="ms-rteTableEvenCol-5">L5</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>axe, tapAxe, fallingIn</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              まさかり〜タップまさかり〜さか落とし
+            </td>
+            <td class="ms-rteTableEvenCol-5">Axe, Tap axe, Falling in</td>
+            <td class="ms-rteTableOddCol-5">13</td>
+            <td class="ms-rteTableEvenCol-5">L7</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">lunar, axe, lunar, tradespike</td>
+            <td class="ms-rteTableOddCol-5">
+              月面着陸〜まさかり〜月面着陸〜けん
+            </td>
+            <td class="ms-rteTableEvenCol-5">Lunar, Axe, Lunar, Tradespike</td>
+            <td class="ms-rteTableOddCol-5">13</td>
+            <td class="ms-rteTableEvenCol-5">L7</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              oneTurnAxe, overTheValleyAxe, fallingIn
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              1回転まさかり〜谷渡りまさかり〜さか落とし
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              1 turn axe, Over the valley axe, Falling in
+            </td>
+            <td class="ms-rteTableOddCol-5">14</td>
+            <td class="ms-rteTableEvenCol-5">L8</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>ダウンスパイク系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">baseCup, downspike</td>
+            <td class="ms-rteTableOddCol-5">中皿〜ダウンスパイク</td>
+            <td class="ms-rteTableEvenCol-5">Base cup, Downspike</td>
+            <td class="ms-rteTableOddCol-5">6</td>
+            <td class="ms-rteTableEvenCol-5">D2</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              airplane, fasthandBaseCup, downspike
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              飛行機〜はやて中皿〜ダウンスパイク
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              Airplane, Fasthand base cup, Downspike
+            </td>
+            <td class="ms-rteTableOddCol-5">7</td>
+            <td class="ms-rteTableEvenCol-5">D3</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>すくいけん系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">lighthouse, stuntplane</td>
+            <td class="ms-rteTableOddCol-5">灯台〜すくいけん</td>
+            <td class="ms-rteTableEvenCol-5">Lighthouse, Stuntplane</td>
+            <td class="ms-rteTableOddCol-5">9</td>
+            <td class="ms-rteTableEvenCol-5">D5</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">lighthouseFlip, stuntplane</td>
+            <td class="ms-rteTableOddCol-5">灯台とんぼ返り〜すくいけん</td>
+            <td class="ms-rteTableEvenCol-5">Lighthouse flip, Stuntplane</td>
+            <td class="ms-rteTableOddCol-5">10</td>
+            <td class="ms-rteTableEvenCol-5">L4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              oneTurnLighthouse, oneTurnStuntplane
+            </td>
+            <td class="ms-rteTableOddCol-5">1回転灯台〜1回転すくいけん</td>
+            <td class="ms-rteTableEvenCol-5">
+              1 turn lighthouse, 1 turn stuntplane
+            </td>
+            <td class="ms-rteTableOddCol-5">10</td>
+            <td class="ms-rteTableEvenCol-5">L4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>金魚すくい系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              scoopingGoldfish, fasthandAirplane
+            </td>
+            <td class="ms-rteTableOddCol-5">金魚すくい〜さか落とし</td>
+            <td class="ms-rteTableEvenCol-5">Scooping goldfish, Falling in</td>
+            <td class="ms-rteTableOddCol-5">8</td>
+            <td class="ms-rteTableEvenCol-5">D4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">baseCupScoopingGoldfish, spike</td>
+            <td class="ms-rteTableOddCol-5">中皿金魚すくい〜けん</td>
+            <td class="ms-rteTableEvenCol-5">
+              Base cup scooping goldfish, Spike
+            </td>
+            <td class="ms-rteTableOddCol-5">12</td>
+            <td class="ms-rteTableEvenCol-5">L6</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              baseCupScoopingGoldfish, curlSpike
+            </td>
+            <td class="ms-rteTableOddCol-5">中皿金魚すくい〜秘竜のぼりけん</td>
+            <td class="ms-rteTableEvenCol-5">
+              Base cup scooping goldfish, Curl spike
+            </td>
+            <td class="ms-rteTableOddCol-5">12</td>
+            <td class="ms-rteTableEvenCol-5">L6</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>けんフリップ系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">kenflipBigCup, kenflipSmallCup</td>
+            <td class="ms-rteTableOddCol-5">
+              けんフリップ大皿〜けんフリップ小皿
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              Kenflip big cup, Kenflip small cup
+            </td>
+            <td class="ms-rteTableOddCol-5">7</td>
+            <td class="ms-rteTableEvenCol-5">D3</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">bigCup, kenflipBigCup</td>
+            <td class="ms-rteTableOddCol-5">大皿〜けんフリップ大皿</td>
+            <td class="ms-rteTableEvenCol-5">Big cup, Kenflip big cup</td>
+            <td class="ms-rteTableOddCol-5">6</td>
+            <td class="ms-rteTableEvenCol-5">D2</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">bigCup, kenflipSpike</td>
+            <td class="ms-rteTableOddCol-5">大皿〜けんフリップとめけん</td>
+            <td class="ms-rteTableEvenCol-5">Big cup, Kenflip spike</td>
+            <td class="ms-rteTableOddCol-5">9</td>
+            <td class="ms-rteTableEvenCol-5">D5</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>bigCup, kenflipLighthouse</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">大皿〜けんフリップ灯台</td>
+            <td class="ms-rteTableEvenCol-5">Big cup, Kenflip lighthouse</td>
+            <td class="ms-rteTableOddCol-5">10</td>
+            <td class="ms-rteTableEvenCol-5">L4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>ジャグル系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">bigCup, juggleBigCup</td>
+            <td class="ms-rteTableOddCol-5">大皿〜ジャグル大皿</td>
+            <td class="ms-rteTableEvenCol-5">Big cup, Juggle big cup</td>
+            <td class="ms-rteTableOddCol-5">8</td>
+            <td class="ms-rteTableEvenCol-5">D4</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>bigCup, juggleSpike</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">大皿〜ジャグルとめけん</td>
+            <td class="ms-rteTableEvenCol-5">Big cup, Juggle spike</td>
+            <td class="ms-rteTableOddCol-5">11</td>
+            <td class="ms-rteTableEvenCol-5">L5</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del>bigCup, juggleLighthouse</del>
+            </td>
+            <td class="ms-rteTableOddCol-5">大皿〜ジャグル灯台</td>
+            <td class="ms-rteTableEvenCol-5">Big cup, Juggle lighthouse</td>
+            <td class="ms-rteTableOddCol-5">11</td>
+            <td class="ms-rteTableEvenCol-5">L5</td>
+            <td class="ms-rteTableOddCol-5"></td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td colspan="6" class="ms-rteTableEvenCol-5">
+              <br />
+              <strong>複合系</strong>
+            </td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">stilt, handlestall, spike</td>
+            <td class="ms-rteTableOddCol-5">たけうま〜中皿極意〜けん</td>
+            <td class="ms-rteTableEvenCol-5">Stilt, Handlestall, Spike</td>
+            <td class="ms-rteTableOddCol-5">13</td>
+            <td class="ms-rteTableEvenCol-5">L7</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              bigCup, bird, smallCup, smallCupBird, baseCup, handlestall, ufo
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              大皿〜うぐいす〜小皿〜小皿うぐいす〜中皿〜中皿極意〜横はねけん
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              Big cup, Bird, Small cup, Small cup bird, Base cup, Handlestall,
+              UFO
+            </td>
+            <td class="ms-rteTableOddCol-5">15</td>
+            <td class="ms-rteTableEvenCol-5">L9</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              <del
+                >gunslingerBird, gunslingerOverTheValley, gunslingerHandlestall,
+                gunslingerSpike</del
+              >
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              風車うぐいす〜風車谷渡り〜風車中皿極意〜風車けん
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              Gunslinger bird, Gunslinger over the valley, Gunslinger
+              handlestall, Gunslinger spike
+            </td>
+            <td class="ms-rteTableOddCol-5">16</td>
+            <td class="ms-rteTableEvenCol-5">L10</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableOddRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              stiltOverTheValley, birdOverTheValley
+            </td>
+            <td class="ms-rteTableOddCol-5">たけうま渡り〜うぐいすの谷渡り</td>
+            <td class="ms-rteTableEvenCol-5">
+              Stilt over the valley, Bird over the valley
+            </td>
+            <td class="ms-rteTableOddCol-5">16</td>
+            <td class="ms-rteTableEvenCol-5">L10</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+          <tr class="ms-rteTableEvenRow-5">
+            <td class="ms-rteTableEvenCol-5">
+              stiltOverTheValley, underbirdOverTheValley
+            </td>
+            <td class="ms-rteTableOddCol-5">
+              たけうま渡り〜アンダーバード渡り
+            </td>
+            <td class="ms-rteTableEvenCol-5">
+              Stilt over the valley, Underbird over the valley
+            </td>
+            <td class="ms-rteTableOddCol-5">16</td>
+            <td class="ms-rteTableEvenCol-5">L10</td>
+            <td class="ms-rteTableOddCol-5">○</td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+    </div>
+  </body>
+</html>

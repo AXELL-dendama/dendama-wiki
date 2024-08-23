@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>connection-aws-server</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <div class="p-6">
+        <h1 class="text-2xl font-bold mb-4">
+          How to connect with AWS dev/prd servers and commands
+        </h1>
+
+        <p class="mb-4">
+          <span class="text-green-300 font-bold">Step 1:</span>
+        </p>
+        <p class="mb-4">Get the credentials for the server and the .pem file</p>
+        <p class="mb-2">hostname (ip)</p>
+        <p class="mb-2">username</p>
+        <p class="mb-4">port</p>
+
+        <p class="mb-4">Then using the ssh connection connect to the server:</p>
+        <div class="bg-gray-800 p-4 rounded-lg mb-4">
+          <span class="text-green-300"
+            >// I use a conf file for manage all the connection</span
+          >
+        </div>
+        <div class="bg-gray-800 p-4 rounded-lg mb-4">
+          <span class="text-gray-300">ssh -i file.pem username@ip-address</span>
+        </div>
+        <div class="bg-gray-800 p-4 rounded-lg mb-4">
+          <span class="text-gray-300">ssh dev-dendama</span>
+        </div>
+
+        <p class="mb-4">
+          <span class="text-gray-300"
+            >// connection, check the ip of the server to make sure you are in
+            the prd/dev</span
+          >
+        </p>
+        <p class="mb-4">
+          <span class="text-gray-300"
+            >The ip 000000 is the dev server only for develop</span
+          >
+        </p>
+        <div class="bg-gray-800 p-4 rounded-lg mb-4">
+          <span class="text-green-400">ubuntu@ip-000000</span>:<span
+            class="text-blue-300"
+            >~/dendama-webapp$</span
+          >
+        </div>
+        <div class="bg-gray-800 p-4 rounded-lg mb-4">
+          <span class="text-blue-300"
+            >~/dendama-webapp$
+            <span class="text-green-400">cd dendama-webapp</span></span
+          >
+        </div>
+
+        <p class="mb-4">
+          <span class="text-gray-300"
+            >// you can check the content of the root with ls command</span
+          >
+        </p>
+        <div class="bg-gray-800 p-4 rounded-lg mb-4">
+          <span class="text-green-400">ubuntu@ip-0000000</span>:<span
+            class="text-blue-300"
+            >~/dendama-webapp$ <span class="text-white">ls</span></span
+          >
+        </div>
+        <p class="mb-4">
+          Dockerfile README.md
+          <span class="text-yellow-400">dendama</span> docker-compose.yml
+          groups.json <span class="text-green-400">manage.py</span> nginx
+          requirements
+        </p>
+
+        <p class="mb-4">
+          <span class="text-gray-300"
+            >// list of commands that you can use</span
+          >
+        </p>
+
+        <div class="bg-gray-800 p-4 rounded-lg mb-4">
+          <span class="text-gray-300">// to stop the server</span>
+        </div>
+        <div class="bg-gray-800 p-4 rounded-lg mb-4">
+          <span class="text-white">sudo docker-compose down</span>
+        </div>
+
+        <p class="mb-4">
+          <span class="text-gray-400"
+            >// to rebuild the server content, this is used when you do any
+            modification on the database models or configuration of
+            docker/python</span
+          >
+        </p>
+        <div class="bg-gray-800 p-4 rounded-lg mb-4">
+          <span class="text-white">sudo docker-compose build</span>
+        </div>
+
+        <p class="mb-4">
+          <span class="text-gray-400">// restart the server</span>
+        </p>
+        <div class="bg-gray-800 p-4 rounded-lg mb-4">
+          <span class="text-white">sudo docker-compose up -d</span>
+        </div>
+
+        <p class="mb-4">
+          <span class="text-gray-400"
+            >// this will delete any container that was created to get free
+            space in the disc</span
+          >
+        </p>
+        <div class="bg-gray-800 p-4 rounded-lg mb-4">
+          <span class="text-white">sudo docker system prune</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

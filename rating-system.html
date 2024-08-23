@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rating-system</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <div class="p-6">
+        <figure class="w-1/2 mx-auto">
+          <img
+            src="./img/rating-class-explanation.jpg"
+            alt=""
+            class="w-full h-auto"
+          />
+        </figure>
+        <p class="mb-4">
+          <span class="text-gray-400">
+            Links with explanations of the formula and algorithm used to create
+            the rating:
+          </span>
+        </p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li>
+            <a
+              href="./data/rating-01.pdf"
+              class="text-blue-500 hover:underline"
+            >
+              Explanation
+            </a>
+          </li>
+          <li>
+            <a
+              href="./data/rating-example.pdf"
+              class="text-blue-500 hover:underline"
+            >
+              Example of how to use
+            </a>
+          </li>
+        </ul>
+
+        <p class="mb-4">
+          <span class="text-gray-400">How it looks in the database:</span>
+        </p>
+
+        <div
+          class="bg-gray-800 border border-gray-500 rounded-md p-4 overflow-auto"
+        >
+          <pre class="text-sm leading-relaxed whitespace-pre-wrap">
+{
+    <span class="text-red-600">&quot;TLvl&quot;</span>: 
+    <span class="text-gray-300">4</span>,
+    <span class="text-red-600">&quot;pastTG&quot;</span>: 
+    <span class="text-gray-300">11</span>,
+    <span class="text-red-600">&quot;pastAVGR&quot;</span>: 
+    <span class="text-red-600">&quot;0&quot;</span>,
+    <span class="text-red-600">&quot;pastRank&quot;</span>: 
+    <span class="text-red-600">&quot;B-6-4&quot;</span>,
+    <span class="text-red-600">&quot;classRank&quot;</span>: 
+    <span class="text-red-600">&quot;B-6-4&quot;</span>,
+    <span class="text-red-600">&quot;classLabel&quot;</span>: 
+    <span class="text-red-600">&quot;amateur&quot;</span>,
+    <span class="text-red-600">&quot;classLevel&quot;</span>: 
+    <span class="text-red-600">&quot;50.00&quot;</span>,
+    <span class="text-red-600">&quot;currentPPR&quot;</span>: 
+    <span class="text-red-600">&quot;50&quot;</span>,
+    <span class="text-red-600">&quot;currentRating&quot;</span>: 
+    <span class="text-red-600">&quot;6.6&quot;</span>
+}
+            </pre>
+          <pre class="text-sm leading-relaxed whitespace-pre-wrap mt-4">
+                TLvl = current trick level (from 0 to 12)
+                pastTG = how many elements (class levels) were used to get the PPR10
+                pastRank = past rating (not currently used)
+                pastRank = past rating code. The first digit is the "class" the second is the "currentRating" (which needs to be rounded) and the last is the level of trick.
+                classRank = current rating code.
+                classLabel = label to designate a user grade. Example: amateur, beginner, etc.
+                classLevel = newest item in the history of logs ratings of the user.
+                currentPPR = its the PPR result from the game used to create the rating game. This value is saved in the Classlevel (a field in the client) to make the history of that particular game.
+                currentRating = current rating of the user.
+            </pre
+          >
+        </div>
+
+        <div class="mt-6"></div>
+      </div>
+    </div>
+  </body>
+</html>

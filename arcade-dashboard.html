@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DENDAMA+ ARCADE ダッシュボード：　チュートリアル​</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <h2 class="text-2xl font-bold mb-4">DENDAMILE:</h2>
+      <div class="mb-4">このダッシュボードは</div>
+      <div class="mb-4">この画面には2つの部分があります。</div>
+      <div class="mb-4">DENDAMILE: ポイント</div>
+      <div class="mb-4">ARCADE: アーケード機械管理​</div>
+
+      <div class="mb-8">
+        <table class="w-full border border-gray-300 divide-y divide-gray-200">
+          <tbody>
+            <tr class="bg-gray-800">
+              <td class="p-4 w-1/3">
+                <div class="mb-4">
+                  着く時に下記の画面出てきます。
+                  <div class="mt-2">
+                    <img
+                      src="./img/arcade-01.png"
+                      alt="01.png"
+                      class="w-48 h-32 object-cover"
+                    />
+                  </div>
+                  <div class="mt-2 text-gray-200">
+                    ＊ダッシュボード入る前にメールを登録必要なので
+                    <div>開発チームに聞いてください。</div>
+                  </div>
+                </div>
+              </td>
+              <td class="p-4 w-1/3">
+                <div class="mb-4">
+                  このダッシュボードは
+                  <div class="mt-2">この画面には2つの部分があります。</div>
+                  <div class="mt-2">DENDAMILE: ポイント</div>
+                  <div class="mt-2">ARCADE: アーケード機械管理</div>
+                </div>
+                <div class="mt-4">
+                  <img
+                    src="./img/arcade-02.png"
+                    alt="02.png"
+                    class="w-48 h-72 object-cover"
+                  />
+                </div>
+              </td>
+              <td class="p-4 w-1/3">
+                <div class="mb-4">
+                  アーケードで遊ぶ時にポイントをもらう。そのポイントは
+                  <div class="mt-2">ドリンクなど交換できます。</div>
+                  <div class="mt-2">
+                    DENDAMAカードの16桁をIDフィールドに書いてください。
+                  </div>
+                  <div class="mt-2">カードの情報を出てきます。</div>
+                  <div class="mt-2">
+                    確認の上で、お客様にどんな交換したい確認して
+                  </div>
+                  <div class="mt-2">
+                    「オペレーションパネル」から選んだものを選んでください。
+                  </div>
+                  <div class="mt-2">
+                    最後に、「使える」のボタンを押してください。
+                  </div>
+                  <div class="mt-2 text-red-600">
+                    ＊「たまる」のボタンは管理者しか使えません。
+                    <div class="mt-2">
+                      <img
+                        src="./img/arcade-03.png"
+                        alt="03.png"
+                        class="w-48 h-96 object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-2xl font-bold mb-4">ARCADE 機械管理</h2>
+      <p class="mb-4">
+        「ARCADE」にクリックしたらアーケードの管理画面になります。
+      </p>
+
+      <table class="w-full border border-gray-300 divide-y divide-gray-200">
+        <tbody>
+          <tr class="bg-gray-800">
+            <td class="p-4 w-1/2">
+              <div class="text-gray-800 font-mono text-sm mb-2">筐体選択</div>
+              <div class="mb-4">
+                それぞれの機械が番号があります。なにか変更する前に機械の番号を確認して、番号ボタンを押してください。
+              </div>
+              <img
+                src="./img/arcade-04.png"
+                alt="botons-arcade-numbers.png"
+                class="w-full max-w-md mx-auto"
+              />
+            </td>
+          </tr>
+          <tr class="bg-gray-800">
+            <td class="p-4 w-1/2">
+              <div class="text-gray-800 font-mono text-sm mb-2">
+                電玉接続/切断
+              </div>
+              <div class="mb-4">
+                それぞれの機械は４までのDENDAMAを接続できます。ぞれそれのDENDAMAは番号持っています。DENDAMAの番号確認して、その番号を探してください。
+              </div>
+              <div class="mb-4">オペレーションが２つできます：</div>
+              <ul class="list-disc list-inside mb-4">
+                <li>
+                  1．DENDAMAの接続を切る。「切断」赤いボタンを教えてください。
+                </li>
+                <li>
+                  2．新しいDENDAMAを接続する。この場合は、dropdownメニュから新しいDENDAMAを選んでください。もし接続したいDENDAMAをリストから表示なれない場合は開発チームにDENDAMAの番号を入力する依頼してください。
+                </li>
+              </ul>
+              <img
+                src="./img/arcade-05.png"
+                alt="dendama-manager.png"
+                class="w-full max-w-md mx-auto"
+              />
+            </td>
+          </tr>
+          <tr class="bg-gray800">
+            <td class="p-4 w-1/2">
+              <div class="text-gray-800 font-mono text-sm mb-2">
+                コインと時間モード
+              </div>
+              <div class="mb-4">
+                ＊＊現在に使っていませんモードこれでコインの機能でゲームを遊べます。
+              </div>
+              <img
+                src="./img/arcade-06.png"
+                alt="coin-mode.png"
+                class="w-full max-w-md mx-auto"
+              />
+            </td>
+          </tr>
+          <tr class="bg-gray-800">
+            <td class="p-4 w-1/2">
+              <div class="text-gray-800 font-mono text-sm mb-2">BGM</div>
+              <div class="mb-4">BGMを止める</div>
+              <img
+                src="./img/arcade-07.png"
+                alt="bgm.png"
+                class="w-full max-w-md mx-auto"
+              />
+            </td>
+          </tr>
+          <tr class="bg-gray800">
+            <td class="p-4 w-1/2">
+              <div class="text-gray-800 font-mono text-sm mb-2">リロード</div>
+              <div class="mb-4">この機能でアプリのリロードできます。</div>
+              <img
+                src="./img/arcade-08.png"
+                alt="reload-mode.png"
+                class="w-full max-w-md mx-auto"
+              />
+            </td>
+          </tr>
+          <tr class="bg-gray-800">
+            <td class="p-4 w-1/2">
+              <div class="text-gray-800 font-mono text-sm mb-2">
+                アーケードのボタン
+              </div>
+              <div class="mb-4">
+                アーケードのボタンのようにこれで動きます。緑　＝　yes
+                赤い　＝　no/キャンセル 右と左ボタン
+              </div>
+              <img
+                src="./img/arcade-09.png"
+                alt="buttons.png"
+                class="w-full max-w-md mx-auto"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

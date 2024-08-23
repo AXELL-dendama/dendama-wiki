@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DB v2 Info</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <div class="wiki wiki-page">
+        <a name="DB-v2-Info"></a>
+        <h1>DB v2 Info<br /></h1>
+        <ul>
+          <li>
+            iOS
+            <ul>
+              <li>UserDefaultsを利用</li>
+              <li>
+                DB構造<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+[lastDeviceId]                最後に接続した電玉のUUID
+[phoneUuid]                   スマホのUUID
+[deviceTokenString]           push通知用の識別子
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            Android
+            <ul>
+              <li>SharedPreferencesを利用</li>
+              <li>
+                DB構造<br />
+                <pre
+                  style="
+                    margin: 1em 1em 1em 1.6em;
+                    padding: 8px;
+                    background-color: #3d3d3d;
+                    border: 1px solid #e2e2e2;
+                    border-radius: 3px;
+                    width: auto;
+                  "
+                >
+[lastDeviceId]                最後に接続した電玉のUUID
+[phoneUuid]                   スマホのUUID
+[deviceTokenString]           push通知用の識別子
+</pre
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>Web</li>
+        </ul>
+        <div style="background: white">
+          <img src="./img/db_all.png" data-themekey="#" alt="" />
+        </div>
+        <a name="RDB部分ダイアグラム"></a>
+        <h2>
+          RDB部分ダイアグラム<a
+            href="#RDB%e9%83%a8%e5%88%86%e3%83%80%e3%82%a4%e3%82%a2%e3%82%b0%e3%83%a9%e3%83%a0"
+            class="wiki-anchor"
+            >¶</a
+          >
+        </h2>
+        <p><img src="./img/db_rdb.png" data-themekey="#" alt="" />&#160;</p>
+        <ul>
+          <li>DB補足</li>
+        </ul>
+        <ul>
+          <li>
+            Coupon
+            <table>
+              <tbody>
+                <tr>
+                  <td>available_at</td>
+                  <td>クーポンの期限日</td>
+                </tr>
+                <tr>
+                  <td>application_at</td>
+                  <td>クーポンの利用を開始した日</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+        </ul>
+      </div>
+      ​<br />
+    </div>
+  </body>
+</html>

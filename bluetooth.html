@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bluetooth</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <div class="wiki wiki-page">
+        <a name="端末のBluetoothと電玉の関係"></a>
+        <h1>端末のBluetoothと電玉の関係<br /></h1>
+        <a name="iOS"></a>
+        <h2>iOS<a href="#iOS" class="wiki-anchor">¶</a></h2>
+        <ul>
+          <li>
+            dendamaDidUpdateState
+            <ul>
+              <li>
+                端末の Bluetooth を On : powerdOn
+                <ul>
+                  <li>アプリ起動時に On の場合も含む</li>
+                  <li>Web側に ble_on() を呼び出す。</li>
+                </ul>
+              </li>
+              <li>
+                端末の Bluetooth を Off : poweredOff
+                <ul>
+                  <li>アプリ起動時に On の場合も含む</li>
+                  <li>Web側に ble_off() を呼び出す。</li>
+                </ul>
+              </li>
+              <li>
+                上記以外で端末の Bluetooth機能が利用不能になった場合 : unknown,
+                resetting, unauthorized, unsupported
+                <ul>
+                  <li>Web側に ble_off() を呼び出す。</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            dendamaManager(didDisconnect)
+            <ul>
+              <li>
+                以下の全てのパターンで電玉との接続が切れた場合
+                <ul>
+                  <li>
+                    端末側から DendamaManager.cancelPeripheralConnection()
+                    を呼ぶ。
+                  </li>
+                  <li>電玉の電源を切る。</li>
+                  <li>端末の Bluetooth を Off にする。</li>
+                </ul>
+              </li>
+              <li>Web側に disconnect(deviceId) を呼び出す。</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

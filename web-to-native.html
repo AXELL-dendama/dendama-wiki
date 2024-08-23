@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>web to native</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      a {
+        color: blue;
+      }
+      table,
+      tr,
+      td,
+      th {
+        border: 1px solid gray;
+      }
+      th {
+        background: greenyellow;
+        color: black;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <a name="Web-to-NativeWeb-から-Native-の呼び出し"></a>
+      <h1>
+        Web to Native（Web から Native の呼び出し）<a
+          href="#Web-to-NativeWeb-%e3%81%8b%e3%82%89-Native-%e3%81%ae%e5%91%bc%e3%81%b3%e5%87%ba%e3%81%97"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h1>
+      <a name="URLフォーマット"></a>
+      <h2>
+        URLフォーマット<a
+          href="#URL%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%83%e3%83%88"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>Web からネイティブのメソッドを呼び出す際の URL のフォーマット</p>
+      <a name="メソッド呼び出しが1つの場合"></a>
+      <h3>
+        メソッド呼び出しが1つの場合<a
+          href="#%e3%83%a1%e3%82%bd%e3%83%83%e3%83%89%e5%91%bc%e3%81%b3%e5%87%ba%e3%81%97%e3%81%8c1%e3%81%a4%e3%81%ae%e5%a0%b4%e5%90%88"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h3>
+      <p>
+        例：connectDendama(&quot;ABCDEF012345&quot;, &quot;電玉1&quot;)<br />
+      </p>
+      <div
+        style="
+          background: #3d3d3d;
+          overflow: auto;
+          width: auto;
+          border-style: solid;
+          border-color: gray;
+          border-width: 0.1em 0.1em 0.1em 0.8em;
+          padding: 0.2em 0.6em;
+        "
+      >
+        <pre
+          style="margin: 0px; line-height: 125%"
+        >api<span style="color: #666666;">-</span>dendama<span style="color: #666666;">:</span><span style="color: #408080; font-style: italic;">//connectDendama/ABCDEF012345/%E9%9B%BB%E7%8E%891</span>
+</pre>
+      </div>
+      <p></p>
+      <a name="メソッド呼び出しが複数の場合"></a>
+      <h3>
+        メソッド呼び出しが複数の場合<a
+          href="#%e3%83%a1%e3%82%bd%e3%83%83%e3%83%89%e5%91%bc%e3%81%b3%e5%87%ba%e3%81%97%e3%81%8c%e8%a4%87%e6%95%b0%e3%81%ae%e5%a0%b4%e5%90%88"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h3>
+      <ul>
+        <li>/-/ でメソッドをつなげる。</li>
+        <li>
+          引数が &quot;-&quot; の場合、その引数をURLエンコードすれば問題ない。
+        </li>
+      </ul>
+      <p>
+        例：connectDendama(&quot;ABCDEF012345&quot;, &quot;電玉1&quot;) と
+        writeDendama(&quot;電玉1&quot;)<br />
+      </p>
+      <div
+        style="
+          background: #3d3d3d;
+          overflow: auto;
+          width: auto;
+          border-style: solid;
+          border-color: gray;
+          border-width: 0.1em 0.1em 0.1em 0.8em;
+          padding: 0.2em 0.6em;
+        "
+      >
+        <pre
+          style="margin: 0px; line-height: 125%"
+        >api<span style="color: #666666;">-</span>dendama<span style="color: #666666;">:</span><span style="color: #408080; font-style: italic;">//connectDendama/ABCDEF012345/%E9%9B%BB%E7%8E%891/-/writeDendama/%E9%9B%BB%E7%8E%891</span>
+</pre>
+      </div>
+      <p></p>
+      <a name="同時に呼び出しができないメソッド"></a>
+      <h2>
+        同時に呼び出しができないメソッド<a
+          href="#%e5%90%8c%e6%99%82%e3%81%ab%e5%91%bc%e3%81%b3%e5%87%ba%e3%81%97%e3%81%8c%e3%81%a7%e3%81%8d%e3%81%aa%e3%81%84%e3%83%a1%e3%82%bd%e3%83%83%e3%83%89"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <ul>
+        <li>connectDendama</li>
+        <li>disconnectDendama</li>
+        <li>executeLED</li>
+        <li>lightLED</li>
+        <li>readBattery</li>
+        <li>readFirmwareRevision</li>
+        <li>removeNotify</li>
+        <li>scanDendama</li>
+        <li>setNotify</li>
+        <li>stopScanDendama</li>
+      </ul>
+      <ul>
+        <li>requestProducts</li>
+        <li>requestPayment</li>
+        <li>finishPayment</li>
+        <li>restorePayments</li>
+      </ul>
+      <p>
+        <strong
+          >BLEが関係するメソッドは同時に呼び出すと機能しない場合がある。</strong
+        >
+      </p>
+      <p>
+        ただし、上記のBLEが関係するメソッドと、上記以外のメソッドは同時に呼び出してもよい。
+      </p>
+      <hr />
+      <a name="現状のWebでの電玉接続時挙動"></a>
+      <h2>
+        現状のWebでの電玉接続時挙動<a
+          href="#%e7%8f%be%e7%8a%b6%e3%81%aeWeb%e3%81%a7%e3%81%ae%e9%9b%bb%e7%8e%89%e6%8e%a5%e7%b6%9a%e6%99%82%e6%8c%99%e5%8b%95"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <ul>
+        <li>電玉接続時は下記のフローでwebからnativeの関数を呼び出している</li>
+      </ul>
+      <ol>
+        <li>
+          電玉の検索
+          <ul>
+            <li>api-dendama://scanDendam</li>
+          </ul>
+        </li>
+        <li>
+          電玉の検出
+          <ul>
+            <li>discover_dendama</li>
+          </ul>
+        </li>
+        <li>
+          電玉の接続
+          <ul>
+            <li>api-dendama://connectDendama</li>
+          </ul>
+        </li>
+        <li>
+          電玉の接続成功 (接続失敗時はメッセージ表示でユーザにリトライを依頼)
+          <ul>
+            <li>success_connect</li>
+          </ul>
+        </li>
+        <li>
+          HardwareRevisionの読み込み+オフラインの猶予時間の設定(5秒)
+          <ul>
+            <li>
+              api-dendama://readHardwareRevision/XXX/-/parameter/offlineExtension/5
+            </li>
+          </ul>
+        </li>
+        <li>
+          HardwareRevisionの取得
+          <ul>
+            <li>hardware_revision</li>
+          </ul>
+        </li>
+        <li>
+          FirmwareRevisionの読み込み
+          <ul>
+            <li>api-dendama://readFirmwareRevision/</li>
+          </ul>
+        </li>
+        <li>
+          FirmwareRevisionの取得
+          <ul>
+            <li>firmware_revision</li>
+          </ul>
+        </li>
+        <li>
+          電源情報のNotify設定
+          <ul>
+            <li>api-dendama://setNotify/[dendama_uuid]/battery</li>
+          </ul>
+        </li>
+        <li>
+          電源情報のNotify設定成功通知
+          <ul>
+            <li>success_update_notify</li>
+          </ul>
+        </li>
+        <li>
+          技情報のNotify設定(受け取った時のページによってはrequestSensorValuesも同時呼び出し)
+          <ul>
+            <li>api-dendama://setNotify/[dendama_uuid]/sensor</li>
+          </ul>
+        </li>
+        <li>
+          技情報のNotify設定成功通知
+          <ul>
+            <li>success_update_notify</li>
+          </ul>
+        </li>
+        <li>
+          紫点灯(0.2秒)
+          <ul>
+            <li>api-dendama://lightLED/</li>
+          </ul>
+        </li>
+        <li>
+          電源情報の読み込み（Notifyの初回が来るのが少し時間がかかるため）
+          <ul>
+            <li>api-dendama://readBattery/</li>
+          </ul>
+        </li>
+      </ol>
+      <hr />
+      <a name="cancelSensorValues-deviceId-"></a>
+      <h2>
+        cancelSensorValues( <em>deviceId</em> )<a
+          href="#cancelSensorValues-deviceId-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>sensor情報取得終了</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+      </ul>
+      <hr />
+      <a name="connectDendama"></a>
+      <h2>
+        connectDendama()<a href="#connectDendama" class="wiki-anchor">¶</a>
+      </h2>
+      <p>電玉の接続</p>
+      <hr />
+      <a name="disconnectDendama-number-"></a>
+      <h2>
+        disconnectDendama( <em>number</em> )<a
+          href="#disconnectDendama-number-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>電玉の切断</p>
+      <ul>
+        <li>
+          number
+          <ul>
+            <li>切断する電玉の番号（整数）</li>
+            <li>省略化（省略時は 0）</li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <a name="deleteAccount"></a>
+      <h2>deleteAccount()<a href="#deleteAccount" class="wiki-anchor">¶</a></h2>
+      <p>電玉のアカウント削除（フォーンUUIDの削除）</p>
+      <hr />
+      <a name="executeVibration-deviceId-term-停止20-"></a>
+      <h2>
+        executeVibration( <em>deviceId</em>, <em>term</em> ) （
+        <strong>停止：2.0〜</strong> ）<a
+          href="#executeVibration-deviceId-term-%e5%81%9c%e6%ad%a220-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>振動モーターの稼働</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+        <li>term 振動させる秒数</li>
+      </ul>
+      <hr />
+      <a name="executeLED-deviceId-color-location-term-method-非推奨20-"></a>
+      <h2>
+        executeLED( <em>deviceId</em>, <em>color</em>, <em>location</em>,
+        <em>term</em>, <em>method</em> ) （ <strong>非推奨：2.0〜</strong> ）<a
+          href="#executeLED-deviceId-color-location-term-method-%e9%9d%9e%e6%8e%a8%e5%a5%a820-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>LEDの稼働</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+        <li>
+          color 光らせるLED
+          <ul>
+            <li>red</li>
+            <li>green</li>
+          </ul>
+        </li>
+        <li>
+          location 光らせる皿
+          <ul>
+            <li>big</li>
+            <li>small</li>
+            <li>base</li>
+            <li>spike</li>
+          </ul>
+        </li>
+        <li>
+          term 光らせる秒数
+          <ul>
+            <li>0: 消灯</li>
+            <li>1〜255: 点灯時間（例：1 → 0.1秒、10 → 1秒、255 → 25.5秒）</li>
+          </ul>
+        </li>
+        <li>
+          method 点灯方法
+          <ul>
+            <li>0: 点灯</li>
+            <li>
+              1〜10: 点滅（例：1 → 0.1秒ごとに点滅、5 → 0.5秒ごとに点滅 10 →
+              1秒ごとに点滅）
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <a
+        name="lightLED-deviceId-location-color-volume-up_time-stay_time-down_time-20"
+      ></a>
+      <h2>
+        lightLED( <em>deviceId</em>, <em>location</em>, <em>color</em>,
+        <em>volume</em>, <em>up_time</em>, <em>stay_time</em>,
+        <em>down_time</em> ) （2.0〜）<a
+          href="#lightLED-deviceId-location-color-volume-up_time-stay_time-down_time-20"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>LEDの稼働</p>
+      <ul>
+        <li>
+          location 光らせる皿
+          <ul>
+            <li>big</li>
+            <li>small</li>
+            <li>base</li>
+            <li>もしくは、上記の組み合わせ</li>
+          </ul>
+        </li>
+        <li>
+          color 光らせる色
+          <ul>
+            <li>blue</li>
+            <li>green</li>
+            <li>cyan</li>
+            <li>red</li>
+            <li>purple</li>
+            <li>yellow</li>
+          </ul>
+        </li>
+        <li>
+          volume 光量
+          <ul>
+            <li>0: 消灯</li>
+            <li>1: 小</li>
+            <li>2: 中</li>
+            <li>3: 大</li>
+          </ul>
+        </li>
+        <li>
+          up_time 立ち上げ時間
+          <ul>
+            <li>0: 即時点灯</li>
+            <li>
+              1〜255: 立ち上げ時間（例：1 → 0.1秒、10 → 1秒、255 → 25.5秒）
+            </li>
+          </ul>
+        </li>
+        <li>
+          stay_time 点灯時間
+          <ul>
+            <li>0: 即時立ち下げ</li>
+            <li>1〜255: 点灯時間（例：1 → 0.1秒、10 → 1秒、255 → 25.5秒）</li>
+          </ul>
+        </li>
+        <li>
+          down_time 立ち下げ時間
+          <ul>
+            <li>0: 即時消灯</li>
+            <li>
+              1〜255: 立ち下げ時間（例：1 → 0.1秒、10 → 1秒、255 → 25.5秒）
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <a name="hideImage"></a>
+      <h2>hideImage()<a href="#hideImage" class="wiki-anchor">¶</a></h2>
+      <p>Image view の非表示</p>
+      <hr />
+      <a name="hideLoading"></a>
+      <h2>hideLoading()<a href="#hideLoading" class="wiki-anchor">¶</a></h2>
+      <p>Loading の非表示</p>
+      <hr />
+      <a name="initJudge-deviceId-"></a>
+      <h2>
+        initJudge( <em>deviceId</em> )<a
+          href="#initJudge-deviceId-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>技判定の初期化</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+      </ul>
+      <hr />
+      <a name="openURL-url-"></a>
+      <h2>
+        openURL( <em>url</em> )<a href="#openURL-url-" class="wiki-anchor">¶</a>
+      </h2>
+      <p>別ウィンドウでの外部URLオープン</p>
+      <ul>
+        <li>url 外部URL</li>
+      </ul>
+      <hr />
+      <a name="pushSetting"></a>
+      <h2>pushSetting()<a href="#pushSetting" class="wiki-anchor">¶</a></h2>
+      <p>push通知の設定を呼び出す</p>
+      <hr />
+      <a name="readBattery-deviceId-"></a>
+      <h2>
+        readBattery( <em>deviceId</em> )<a
+          href="#readBattery-deviceId-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>バッテリー情報の確認</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+      </ul>
+      <hr />
+      <a name="readDeviceToken"></a>
+      <h2>
+        readDeviceToken()<a href="#readDeviceToken" class="wiki-anchor">¶</a>
+      </h2>
+      <p>push通知用deviceTokenの読み出し</p>
+      <hr />
+      <a name="readFirmwareRevision-deviceId-"></a>
+      <h2>
+        readFirmwareRevision( <em>deviceId</em> )<a
+          href="#readFirmwareRevision-deviceId-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>ファームウェアバージョンの読み出し</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+      </ul>
+      <hr />
+      <a name="readHardwareRevision-deviceId-"></a>
+      <h2>
+        readHardwareRevision( <em>deviceId</em> )<a
+          href="#readHardwareRevision-deviceId-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>ハードウェアバージョンの読み出し</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+      </ul>
+      <hr />
+      <a name="readPhoneUUID"></a>
+      <h2>readPhoneUUID()<a href="#readPhoneUUID" class="wiki-anchor">¶</a></h2>
+      <p>フォーンUUIDの読み出し</p>
+      <hr />
+      <a name="removeNotify-deviceId-type-"></a>
+      <h2>
+        removeNotify( <em>deviceId</em>, <em>type</em> )<a
+          href="#removeNotify-deviceId-type-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>通知設定の解除</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+        <li>
+          type 種類
+          <ul>
+            <li>sensor: センサー情報</li>
+            <li>battery: バッテリー情報</li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <a name="requestSensorValues-deviceId-"></a>
+      <h2>
+        requestSensorValues( <em>deviceId</em> )<a
+          href="#requestSensorValues-deviceId-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>センサー情報の要求</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+      </ul>
+      <hr />
+      <a name="scanDendama-number-"></a>
+      <h2>
+        scanDendama( <em>number</em> )<a
+          href="#scanDendama-number-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>電玉のスキャン</p>
+      <ul>
+        <li>
+          number スキャンした電玉に割り当てる番号
+          <ul>
+            <li>0: メイン</li>
+            <li>1〜: ゲスト</li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <a name="setKenflipMode-deviceId-mode-20"></a>
+      <h2>
+        <del>setKenflipMode( <em>deviceId</em>, <em>mode</em> )</del>
+        （2.0〜）<a href="#setKenflipMode-deviceId-mode-20" class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>技判定における「けんフリップ」モードを設定する。</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+        <li>
+          mode 「けんフリップ」モード
+          <ul>
+            <li>&quot;normal&quot; 通常（デフォルト）</li>
+            <li>&quot;kenflip&quot; けんフリップ優先</li>
+            <li>&quot;gunslinger&quot; 風車優先</li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <a name="setNotify-deviceId-type-"></a>
+      <h2>
+        setNotify( <em>deviceId</em>, <em>type</em> )<a
+          href="#setNotify-deviceId-type-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>センサー、またはバッテリー情報の通知設定</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+        <li>
+          type 種類
+          <ul>
+            <li>sensor: センサー情報</li>
+            <li>battery: バッテリー情報</li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <a name="showImage"></a>
+      <h2>showImage()<a href="#showImage" class="wiki-anchor">¶</a></h2>
+      <p>Image view の表示</p>
+      <hr />
+      <a name="showLoading"></a>
+      <h2>showLoading()<a href="#showLoading" class="wiki-anchor">¶</a></h2>
+      <p>Loading の表示</p>
+      <hr />
+      <a name="stopScanDendama"></a>
+      <h2>
+        stopScanDendama()<a href="#stopScanDendama" class="wiki-anchor">¶</a>
+      </h2>
+      <p>電玉のスキャン終了</p>
+      <hr />
+      <a name="writePhoneUUID-phone_uuid-"></a>
+      <h2>
+        writePhoneUUID( <em>phone_uuid</em> )<a
+          href="#writePhoneUUID-phone_uuid-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>フォーンUUIDの書き込み</p>
+      <hr />
+      <a name="setMoshiKameMode-deviceId-enabled-22"></a>
+      <h2>
+        setMoshiKameMode( <em>deviceId</em> , <em>enabled</em> ) （2.2〜）<a
+          href="#setMoshiKameMode-deviceId-enabled-22"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>もしかめモードの設定<br />デフォルトでは off</p>
+      <ul>
+        <li>deviceId 電玉のデバイスID</li>
+        <li>
+          enabled 「もしかめ」モード
+          <ul>
+            <li>1: on</li>
+            <li>0: off</li>
+          </ul>
+        </li>
+      </ul>
+      <strong>注意事項</strong>
+      <ul>
+        <li>
+          setNotify( <em>deviceId</em>, &quot;sensor&quot;) で off
+          にリセットされます。
+        </li>
+        <li>もしかめモード中はジェスチャーは効きません。</li>
+      </ul>
+      <hr />
+      <a name="parameter-name-value-"></a>
+      <h2>
+        parameter( <em>name</em>, <em>value</em> )<a
+          href="#parameter-name-value-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>パラメータの設定</p>
+      <ul>
+        <li>オフラインの猶予時間の設定：parameter(offlineExtension, [秒数])</li>
+      </ul>
+      <hr />
+      <a name="canMakePayments"></a>
+      <h2>
+        canMakePayments()<a href="#canMakePayments" class="wiki-anchor">¶</a>
+      </h2>
+      <p>購入可能かどうかのチェック</p>
+      <hr />
+      <a name="requestProducts-sku-"></a>
+      <h2>
+        requestProducts( <em>sku</em>, ...)<a
+          href="#requestProducts-sku-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>商品情報の取得</p>
+      <ul>
+        <li>sku 取得する商品情報の商品ID</li>
+      </ul>
+      <hr />
+      <a name="requestPayment-sku-"></a>
+      <h2>
+        requestPayment( <em>sku</em> )<a
+          href="#requestPayment-sku-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>商品の購入</p>
+      <ul>
+        <li>sku 購入する商品の商品ID</li>
+      </ul>
+      <hr />
+      <a name="finishPayment-transactionId-"></a>
+      <h2>
+        finishPayment( <em>transactionId</em> )<a
+          href="#finishPayment-transactionId-"
+          class="wiki-anchor"
+          >¶</a
+        >
+      </h2>
+      <p>購入トランザクションの終了</p>
+      <ul>
+        <li>
+          transactionId
+          <ul>
+            <li>トランザクションID (iOS)</li>
+            <li>購入トークン (Android)</li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <a name="restorePayments"></a>
+      <h2>
+        restorePayments()<a href="#restorePayments" class="wiki-anchor">¶</a>
+      </h2>
+      <p>購入のリストア</p>
+      <hr />
+      <br />
+      <strong></strong>
+      <div>
+        <strong class="ms-rteFontSize-4"
+          >VERSION APP 3.0 - LAST UPDATED 2022-02-16</strong
+        ><br /><br />we added some new functions to communicate with the native.
+      </div>
+      <div>
+        <br />
+      </div>
+      <div>
+        <h2>
+          orientation(value)<a
+            href="/DendamaAPP_WIKI/Web_to_Native.aspx#orientation"
+            class="wiki-anchor"
+            >¶</a
+          ><br />
+        </h2>
+        <p>
+          スクリーンの向きを変える。&quot;portrait&quot;か&quot;landscape&quot;固定になります。<br />
+        </p>
+        <ul>
+          <li>
+            value
+            <ul>
+              <li>landscape<br /></li>
+              <li>portrait<br /><br /></li>
+            </ul>
+          </li>
+        </ul>
+        <p></p>
+        <div
+          style="
+            background: #3d3d3d;
+            overflow: auto;
+            width: auto;
+            border-style: solid;
+            border-color: gray;
+            border-width: 0.1em 0.1em 0.1em 0.8em;
+            padding: 0.2em 0.6em;
+          "
+        >
+          <pre
+            style="margin: 0px; line-height: 125%"
+          >api<span style="color: #666666;">-</span>dendama<span style="color: #666666;">:</span><span style="color: #408080; font-style: italic;">//orientation/landscape</span></pre>
+        </div>
+        <p></p>
+        <hr />
+        <br />
+        <br />
+      </div>
+      <div>
+        <h2>
+          statusBarColor(value)<a
+            href="/DendamaAPP_WIKI/Web_to_Native.aspx#statusBarColor"
+            class="wiki-anchor"
+            >¶</a
+          ><br />
+        </h2>
+        <p>iOsだけのために、そのステータスバーの色を変える<br /></p>
+        <ul>
+          <li>
+            value
+            <ul>
+              <li>
+                #ffffff&#160; &#160;this value needs to be hexagonal value<br />
+              </li>
+              <li>
+                By default if you dont send any color it will takes the #000000
+                color black as color<br /><br />
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p></p>
+        <div
+          style="
+            background: #3d3d3d;
+            overflow: auto;
+            width: auto;
+            border-style: solid;
+            border-color: gray;
+            border-width: 0.1em 0.1em 0.1em 0.8em;
+            padding: 0.2em 0.6em;
+          "
+        >
+          <pre
+            style="margin-top: 0px; margin-bottom: 0px; line-height: 16.25px"
+          >api<span style="color: #666666;">-</span>dendama<span style="color: #666666;">:</span><span style="color: #408080; font-style: italic;">//statusBarColor/#040404</span></pre>
+          <div>
+            <span style="color: #408080; font-style: italic"> <br /></span>
+          </div>
+        </div>
+        <p></p>
+        <span unselectable="on"></span>
+        <div>
+          <br />
+        </div>
+        <h2>
+          showHideStatusBar(value)<a
+            href="/DendamaAPP_WIKI/Web_to_Native.aspx#showhideStatusBar"
+            class="wiki-anchor"
+            >¶</a
+          ><br />
+        </h2>
+        <p>これでスマホのステータスバーを表示・非表示できる。<br /></p>
+        <ul>
+          <li>
+            value
+            <ul>
+              <li>show<br /></li>
+              <li>hide<br /><br /></li>
+            </ul>
+          </li>
+        </ul>
+        <p></p>
+        <div
+          style="
+            background: #3d3d3d;
+            overflow: auto;
+            width: auto;
+            border-style: solid;
+            border-color: gray;
+            border-width: 0.1em 0.1em 0.1em 0.8em;
+            padding: 0.2em 0.6em;
+          "
+        >
+          <pre
+            style="margin-top: 0px; margin-bottom: 0px; line-height: 16.25px"
+          >api<span style="color: #666666;">-</span>dendama<span style="color: #666666;">:</span><span style="color: #408080; font-style: italic;">//showHideStatusBar/show</span></pre>
+          <div>
+            <span style="color: #408080; font-style: italic"> <br /></span>
+          </div>
+        </div>
+        <br />
+        <br />
+      </div>
+    </div>
+  </body>
+</html>

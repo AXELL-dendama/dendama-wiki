@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-mono">
+    <div class="container mx-auto p-4">
+      <div class="wiki wiki-page">
+        <a name="Login方法"></a>
+        <h1>
+          Login方法<a href="#Login%e6%96%b9%e6%b3%95" class="wiki-anchor">¶</a>
+        </h1>
+        <p>
+          電玉のアプリはios/android以外からのアクセスの場合HPへリダイレクトする様設定してある<br />chrome等のエミュレーターでUAを偽装してもリダイレクトされることはないが、その先へは進めない。<br />また、nativeのバージョンチェックも行なっているので、エミュレータのUAを下記に変更する<br /><strong
+            >DDAVの後のバージョンを最新にすること</strong
+          ><br />
+        </p>
+        <pre
+          style="
+            margin: 1em 1em 1em 1.6em;
+            padding: 8px;
+            background-color: #3d3d3d;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: auto;
+          "
+        >
+Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_3 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Mobile/15A432 DDOS/iOS;DDOV/11.0.3;DDOM/iPhone;DDAV/1.6;
+</pre
+        >
+        テストでPC等からログインする必要がある場合は下記をconsoleから実行する
+        <ul>
+          <li>
+            prd<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >
+found_uuid(&#39;00e20889-27d2-4606-b4e0-fd06954f383f&#39;)
+</pre
+            >
+          </li>
+          <li>
+            dev<br />
+            <pre
+              style="
+                margin: 1em 1em 1em 1.6em;
+                padding: 8px;
+                background-color: #3d3d3d;
+                border: 1px solid #e2e2e2;
+                border-radius: 3px;
+                width: auto;
+              "
+            >
+found_uuid(&#39;05e897a8-01e2-4533-80f5-de5f26780bcd&#39;)
+</pre
+            >
+          </li>
+        </ul>
+        <p>
+          新規にユーザを作成する場合は下記を実行する(prdでは新規作成はなるべく行わないでください）<br />
+        </p>
+        <pre
+          style="
+            margin: 1em 1em 1em 1.6em;
+            padding: 8px;
+            background-color: #3d3d3d;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: auto;
+          "
+        >
+not_found_uuid()
+</pre
+        >
+        <p></p>
+      </div>
+    </div>
+  </body>
+</html>
